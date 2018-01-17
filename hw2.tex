@@ -21,17 +21,23 @@
 \vbox{1}
 \vbox{2}
 }
+\usepackage{amsfonts} % standard maths font 
+\usepackage{amssymb} %standard maths symbol 
+\usepackage{amsmath,amsthm} 
 
 \begin{document}
 \title{Homework 2}
 \author{Joe Baker, Brett Schreiber, Brian Knotten}
 \maketitle
 
+% Example Dominoes: $\bigg[\dfrac{ab}{b}\bigg], \bigg[\dfrac{bc}{cac}\bigg], \bigg[\dfrac{ab}{cb}\bigg], \bigg[
+% \dfrac{ca}{b}\bigg]$
+
 \section*{3}
-Post's Correspondence Problem can be proved to be undecidable by reduction to $A_(TM)$; however, there are a few details to work out, such as how to guaruntee that the solution must start with a given block.
+Post's Correspondence Problem can be proved to be undecidable by reduction to $A_{TM}$; however, there are a few details to work out, such as how to guarantee that the solution must start with a given block.
 
-We show that $A_TM$ reduces to PCP. The input for $A_(TM)$ is $<M, w>$. Assume the solution has to start with the block \block{$#$, #$q_(start)$$w$}. From here, since the blocks were created in such a way that the solution simulates $M$ on $w$, the solution to PCP will return the configurations of running $M$ on $w$.
-
+We show that $A_{TM}$ reduces to PCP. The input for $A_{TM}$ is $\langle M, w \rangle$. Assume the solution has to start with the block $\block{\#, \#q_(start)w}$. From here, since the blocks were created in such a way that the solution simulates $M$ on $w$, the solution to PCP will return the configurations of running $M$ on $w$.
+$
 The blocks of the PCP problem are created in such a way that any algorithm is forced to arrange the blocks in
 
 Problem: Sometimes during the PCP algorithm there are steps which could be taken in more than one direction, causing ambiguity.
@@ -40,11 +46,11 @@ Problem: If the TM's first operation involves the left move, then a simulation o
 
 Solution: Detect any first moves to the left in the reduction, and account for that by changing their transition into staying in place.
 
-Problem: $w$ passed to the TM to solve $A_TM$ is \epsilon. This would cause the starting tile to be \# over \#$q_0$\#, and since there is no tile starting with $q_0$\#, the PCP algorithm will reject, even if the TM can operate on empty strings.
+Problem: $w$ passed to the TM to solve $A_{TM}$ is $\epsilon$. This would cause the starting tile to be \# over \#$q_0$\#, and since there is no tile starting with $q_0$\#, the PCP algorithm will reject, even if the TM can operate on empty strings.
 
-Solution: Check if $w = \epsilon$ in the reduction, and replace $w$ with \square.
+Solution: Check if $w = \epsilon$ in the reduction, and replace $w$ with $\square$.
 
-Solution: Turn \epsilon 
+Solution: Turn $\epsilon$
 
 Lemma 1: The starting tile \#,\#$q_0$$w$ always appears first in the solution.
 We can modify the strings on the top and bottom of each tile to make sure that $\#$,$\#$$q_0$$w$ must be the first tile. This can be achieved by turning $\alpha_1\alpha_2\alpha_3...\beta_1\beta_2\beta_3...$ into $*\alpha_1*\alpha_2*\alpha_3...\beta_1,*\beta_2*\beta_3*...$ for some unused character * and for each block in the problem not desired to be a starting block. The initial star guaruntees that the given block cannot go first, since the initial star in the top but not the bottom creates a discrepancy.
@@ -61,7 +67,7 @@ Lemma 3: For a fixed $<M, s>$, the solution to PCP will always be the same.
 Since TMs are deterministic, one configuration always implies the next configuration. And since $A_TM$ is reducible to PCP, then the solution to PCP will always be the same.
 
 
-Lemma 3: If there exists a decider $R$ for PCP, then, since $HALT_TM$ is reducible to PCP, there are some inputs to PCP that will make $R$ loop forever. $A_TM$ halts iff PCP halts.
+Lemma 3: If there exists a decider $R$ for PCP, then, since $HALT_{TM}$ is reducible to PCP, there are some inputs to PCP that will make $R$ loop forever. $A_{TM}$ halts iff PCP halts.
 
 Lemma 4: TMs are deterministic, meaning that for a given TM $M$, and a given input $w$, $M$ will always run through the same configurations when processing $w$.
 
