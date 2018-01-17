@@ -21,8 +21,10 @@
 \vbox{1}
 \vbox{2}
 }
-\usepackage{amsfonts} % standard maths font 
-\usepackage{amssymb} %standard maths symbol 
+
+% Standard math font, symbols, and layout for theorems
+\usepackage{amsfonts} 
+\usepackage{amssymb}
 \usepackage{amsmath,amsthm} 
 
 \begin{document}
@@ -30,8 +32,6 @@
 \author{Joe Baker, Brett Schreiber, Brian Knotten}
 \maketitle
 
-% Example Dominoes: $\bigg[\dfrac{ab}{b}\bigg], \bigg[\dfrac{bc}{cac}\bigg], \bigg[\dfrac{ab}{cb}\bigg], \bigg[
-% \dfrac{ca}{b}\bigg]$
 
 \section*{3}
 % Description of problem
@@ -50,17 +50,17 @@ $PCP$ needs the initial block to be first in its match\\\\
 Solution:\\
 Certain inputs to $PCP$ can cause it to return a match with less tiles than what are necessary to create a valid TM computation history. To remedy this, create a new problem $MPCP$ which takes modified $PCP$ parameters as input and outputs whether a match can be found with the tiles from $PCP$. $MPCP$ will work exactly the same as $PCP$ except it will first modify each tile in the following ways:\\\\
 \begin{itemize}
-\item Transform the $q_0$ tile from $\frac{t_1}{b_1} \rightarrow \frac{*t_1}{*b_1*}$.
-\item Transform every other tile $q_i$ from $\frac{t_i}{b_i} \rightarrow \frac{*t_i}{b_i*}$.
+\item Transform the $q_0$ tile from $\frac{t_0}{b_0} \rightarrow \frac{*t_0}{*b_0*}$.
+\item Transform the rest of the tiles $q_1...q_N$ from $\frac{t_i}{b_i} \rightarrow \frac{*t_i}{b_i*}$.
 \item Add a new tile $q_{N+1} = \frac{*\square}{\square}$ to the input to $MPCP$ to consume the trailing new $*$ letter.
 \end{itemize}
-With this new configuration, $MPCP$ will need to match $q_1$ first since it is the only tile with $*$ to start, but any other tiles are not restricted further in matching. We now reduce $A_{TM}$ to $MPCP$ to make sure the first tile comes first, and then reduce $MPCP$ to $PCP$ to show that $PCP$ is undecidable.
+With this new configuration, $MPCP$ will need to match $q_0$ first since it is the only tile with $*$ to start, but any other tiles are not restricted further in matching. We now reduce $A_{TM}$ to $MPCP$ to make sure the first tile comes first, and then reduce $MPCP$ to $PCP$ to show that $PCP$ is undecidable.
 \\\\
 % Second issue
 Issue 2:\\
 Boundaries between states may not match up\\\\
 Solution:\\
-We couldn't solve this issue.
+As described in the Wikipedia proof, the state strings are separated by a separator symbol (typically \#), and there are both "copy blocks" for each symbol $a \in \Gamma$, and a "transition block" for each position transition the machine can make. Because each of these blocks either has an equal number of symbols on the top and bottom or more symbols on the bottom, two states on the top and bottom will never match in a way that cannot be understood. Additionally, as defined in the Wikipedia proof, no transition blocks contain symbols other than $*$ to the left of a state symbol besides the $q_f$ blocks that are not used until the top reaches an accept state and the bottom needs to catch up. Therefore the only way states can line up in an incorrect way is if the blocks are not a match according to $PCP$.
 \\\\
 % Third issue
 Issue 3:\\
@@ -72,7 +72,7 @@ If $PCP$ doesn't halt on a transformed input from $A_{TM}$ then $A_{TM}$ won't h
 Issue 4:\\
 Can $PCP$ have different results for the same input from $A_{TM}$?\\\\
 Solution:\\
-If $PCP$ matches on an input from $A_{TM}$ then it must match 1 or more copies of an acceptable computation history for $A_{TM}$. To show this, assume that $PCP$  matches partially up to tile $\frac{t_i}{b_i}$. If the input is held constant for each time $PCP$ is run, then $PCP$ will always choose the same tile after $\frac{t_i}{b_i}$. So the results cannot differ. However, $PCP$ can match the same correct computation history repeated more than one time. But in that case it will accept in any multiple of the computation history which is still the correct result and we still have $A_{TM}$ accepting if and only if $PCP$ accepts.
+If $PCP$ matches on an input from $A_{TM}$ then it must match 1 or more copies of an acceptable computation history for $A_{TM}$. To show this, assume that $PCP$  matches partially up to tile $\frac{t_i}{b_i}$. If the input is held constant for each time $PCP$ is run, then $PCP$ will always choose the same tile after $\frac{t_i}{b_i}$ so the results cannot differ. However, $PCP$ can match the same correct computation history repeated more than one time. But in that case it will accept in any multiple of the computation history which is still the correct result and we still have $A_{TM}$ accepting if and only if $PCP$ accepts.
 \\\\
 % Fifth issue
 Issue 5:\\
