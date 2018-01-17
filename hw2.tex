@@ -35,12 +35,20 @@
 
 \section*{3}
 % Description of problem
-Post's Correspondence Problem can be proved to be undecidable by reducing $A_{TM}$ to $PCP$, where $A_{TM}$ is the acceptance problem for a Turing Machine. This is done by transforming the Turing Machine and input string for $A_{TM}$ into tiles as input for $PCP$ as described in the Wikipedia page, and returning the value of $PCP$. However, there are a few details to work out, such as how to guarantee that the solution must start with a given block.\\\\
+Post's Correspondence Problem can be proved to be undecidable by reducing $A_{TM}$ to $PCP$, where $A_{TM}$ is the acceptance problem for a Turing Machine. This is done by transforming the Turing Machine and input string for $A_{TM}$ into tiles as input for $PCP$ as described in the Wikipedia page, and returning the value of $PCP$. However, there are a few details to work out, such as:
+\begin{enumerate}
+\item How to guarantee that the solution must start with a given block?
+\item Dealing with boundaries between states.
+\item What happens if $PCP$ doesn't halt?
+\item Can $PCP$ have different results for the same input from $A_{TM}$?
+\item Can the first move of the input Turing Machine be left?
+\item What if the input string to the TM is $\epsilon$?
+\end{enumerate}
 % First issue
-Issue:\\
-$PCP$ needs the initial block to be first in its match.\\\\
+Issue 1:\\
+$PCP$ needs the initial block to be first in its match\\\\
 Solution:\\
-Create a new problem $MPCP$ which takes modified $PCP$ parameters as input and outputs whether a match can be found with the tiles from $PCP$. $MPCP$ will work exactly the same as $PCP$ except it will first modify each tile in the following ways:\\\\
+Certain inputs to $PCP$ can cause it to return a match with less tiles than what are necessary to create a valid TM computation history. To remedy this, create a new problem $MPCP$ which takes modified $PCP$ parameters as input and outputs whether a match can be found with the tiles from $PCP$. $MPCP$ will work exactly the same as $PCP$ except it will first modify each tile in the following ways:\\\\
 \begin{itemize}
 \item Transform the $q_0$ tile from $\frac{t_1}{b_1} \rightarrow \frac{*t_1}{*b_1*}$.
 \item Transform every other tile $q_i$ from $\frac{t_i}{b_i} \rightarrow \frac{*t_i}{b_i*}$.
@@ -49,42 +57,33 @@ Create a new problem $MPCP$ which takes modified $PCP$ parameters as input and o
 With this new configuration, $MPCP$ will need to match $q_1$ first since it is the only tile with $*$ to start, but any other tiles are not restricted further in matching. We now reduce $A_{TM}$ to $MPCP$ to make sure the first tile comes first, and then reduce $MPCP$ to $PCP$ to show that $PCP$ is undecidable.
 \\\\
 % Second issue
+Issue 2:\\
+Boundaries between states may not match up\\\\
+Solution:\\
+We couldn't solve this issue.
+\\\\
 % Third issue
-
-% Notes
-Thus 
-$a$
-The blocks of the PCP problem are created in such a way that any algorithm is forced to arrange the blocks in
-
-Problem: Sometimes during the PCP algorithm there are steps which could be taken in more than one direction, causing ambiguity.
-
-Problem: If the TM's first operation involves the left move, then a simulation of that TM should keep it in place. But a reduction to PCP does not account for this behavior.
-
-Solution: Detect any first moves to the left in the reduction, and account for that by changing their transition into staying in place.
-
-Problem: $w$ passed to the TM to solve $A_{TM}$ is $\epsilon$. This would cause the starting tile to be \# over \#$q_0$\#, and since there is no tile starting with $q_0$\#, the PCP algorithm will reject, even if the TM can operate on empty strings.
-
-Solution: Check if $w = \epsilon$ in the reduction, and replace $w$ with $\square$.
-
-Solution: Turn $\epsilon$
-
-Lemma 1: The starting tile \#,\#$q_0$$w$ always appears first in the solution.
-We can modify the strings on the top and bottom of each tile to make sure that $\#$,$\#$$q_0$$w$ must be the first tile. This can be achieved by turning $\alpha_1\alpha_2\alpha_3...\beta_1\beta_2\beta_3...$ into $*\alpha_1*\alpha_2*\alpha_3...\beta_1,*\beta_2*\beta_3*...$ for some unused character * and for each block in the problem not desired to be a starting block. The initial star guaruntees that the given block cannot go first, since the initial star in the top but not the bottom creates a discrepancy.
-
-The intermediary stars allow the blocks to be connected together at any point. 
-
-The final star on the bottom string allows the block to line up with another block which has an initial star.
-
-For this reason, the starting block should also have a final star on the bottom, and stars in between each character.
-
-A new block *@ over @ should be added for some unused character @ to allow the string to terminate.
-
-Lemma 3: For a fixed $<M, s>$, the solution to PCP will always be the same.
-Since TMs are deterministic, one configuration always implies the next configuration. And since $A_TM$ is reducible to PCP, then the solution to PCP will always be the same.
-
-
-Lemma 3: If there exists a decider $R$ for PCP, then, since $HALT_{TM}$ is reducible to PCP, there are some inputs to PCP that will make $R$ loop forever. $A_{TM}$ halts iff PCP halts.
-
-Lemma 4: TMs are deterministic, meaning that for a given TM $M$, and a given input $w$, $M$ will always run through the same configurations when processing $w$.
+Issue 3:\\
+What happens if $PCP$ doesn't halt on a transformed input from $A_{TM}$\\\\
+Solution:\\
+If $PCP$ doesn't halt on a transformed input from $A_{TM}$ then $A_{TM}$ won't halt and we will still have $PCP$ if and only if $A_{TM}$. 
+\\\\
+% Fourth issue
+Issue 4:\\
+Can $PCP$ have different results for the same input from $A_{TM}$?\\\\
+Solution:\\
+If $PCP$ matches on an input from $A_{TM}$ then it must match 1 or more copies of an acceptable computation history for $A_{TM}$. To show this, assume that $PCP$  matches partially up to tile $\frac{t_i}{b_i}$. If the input is held constant for each time $PCP$ is run, then $PCP$ will always choose the same tile after $\frac{t_i}{b_i}$. So the results cannot differ. However, $PCP$ can match the same correct computation history repeated more than one time. But in that case it will accept in any multiple of the computation history which is still the correct result and we still have $A_{TM}$ accepting if and only if $PCP$ accepts.
+\\\\
+% Fifth issue
+Issue 5:\\
+Can the first move of the input Turing Machine be left?\\\\
+Solution:\\
+If the input to $A_{TM}$ is $\left<M,w\right>$ where $M$ is a TM and $w$ is the input string, and the first move of $M$ is left past the end of the tape, the tiles for $PCP$ could not simulate the machine $M$. However, in this case, we could replace $M$ with an equivalent machine $M'$ which is able to prevent this behavior but still have equivalent results to $M$ with input $w$. So we can replace $M$ with $M'$ as input to $PCP$ for the reduction.
+\\\\
+% Sixth issue
+Issue 6:\\
+What if the input string to the TM is $\epsilon$?\\\\
+Solution:\\
+If the input to $A_{TM}$ is $\left<M,w\right>$ where $M$ is a TM and $w$ is the input string, and the $w$ is $\epsilon$, then replace the input string in the first tile with $\square$.
 
 \end{document}
