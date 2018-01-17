@@ -34,10 +34,26 @@
 % \dfrac{ca}{b}\bigg]$
 
 \section*{3}
-Post's Correspondence Problem can be proved to be undecidable by reduction to $A_{TM}$; however, there are a few details to work out, such as how to guarantee that the solution must start with a given block.
+% Description of problem
+Post's Correspondence Problem can be proved to be undecidable by reducing $A_{TM}$ to $PCP$, where $A_{TM}$ is the acceptance problem for a Turing Machine. This is done by transforming the Turing Machine and input string for $A_{TM}$ into tiles as input for $PCP$ as described in the Wikipedia page, and returning the value of $PCP$. However, there are a few details to work out, such as how to guarantee that the solution must start with a given block.\\\\
+% First issue
+Issue:\\
+$PCP$ needs the initial block to be first in its match.\\\\
+Solution:\\
+Create a new problem $MPCP$ which takes modified $PCP$ parameters as input and outputs whether a match can be found with the tiles from $PCP$. $MPCP$ will work exactly the same as $PCP$ except it will first modify each tile in the following ways:\\\\
+\begin{itemize}
+\item Transform the $q_0$ tile from $\frac{t_1}{b_1} \rightarrow \frac{*t_1}{*b_1*}$.
+\item Transform every other tile $q_i$ from $\frac{t_i}{b_i} \rightarrow \frac{*t_i}{b_i*}$.
+\item Add a new tile $q_{N+1} = \frac{*\square}{\square}$ to the input to $MPCP$ to consume the trailing new $*$ letter.
+\end{itemize}
+With this new configuration, $MPCP$ will need to match $q_1$ first since it is the only tile with $*$ to start, but any other tiles are not restricted further in matching. We now reduce $A_{TM}$ to $MPCP$ to make sure the first tile comes first, and then reduce $MPCP$ to $PCP$ to show that $PCP$ is undecidable.
+\\\\
+% Second issue
+% Third issue
 
-We show that $A_{TM}$ reduces to PCP. The input for $A_{TM}$ is $\langle M, w \rangle$. Assume the solution has to start with the block $\block{\#, \#q_(start)w}$. From here, since the blocks were created in such a way that the solution simulates $M$ on $w$, the solution to PCP will return the configurations of running $M$ on $w$.
-$
+% Notes
+Thus 
+$a$
 The blocks of the PCP problem are created in such a way that any algorithm is forced to arrange the blocks in
 
 Problem: Sometimes during the PCP algorithm there are steps which could be taken in more than one direction, causing ambiguity.
