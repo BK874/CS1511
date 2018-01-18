@@ -1,0 +1,56 @@
+\documentclass[letterpaper,notitlepage,twoside]{article}
+
+% Basic imports, increase margins...
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amssymb}
+
+% Finite State Machine stuff
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+% Format tables nicely
+\usepackage[latin1]{inputenc}
+\usepackage{array}
+\usepackage{booktabs}
+\setlength{\heavyrulewidth}{1.5pt}
+\setlength{\abovetopsep}{4pt}
+
+% Add more packages that you use here...
+
+\begin{document}
+\title{Homework 3}
+\author{Joe Baker, Brett Schreiber, Brian Knotten}
+\maketitle
+
+\section*{4}
+
+\subsection*{a}
+Claim:\\
+There is no Turing Machine that takes input TM $M$ and determines whether the language $L(M)$ accepted by $M$ is the empty language.\\\\
+Proof by reduction:\\
+
+\subsection*{b}
+Claim:\\
+There is no Turing Machine that takes input TM $M$ and determines whether the language $L(M)$ accepted by $M$ is the language of every string over the input alphabet.\\\\
+Proof by reduction:\\
+
+\subsection*{c}
+Claim:\\
+There is no Turing Machine that takes input TM $M$ and determines whether the language $L(M)$ accepted by $M$ includes the string 11110.\\\\
+Proof by reduction:\\
+
+\subsection*{d}
+Claim:\\
+Given some property $P$ of languages, there is no Turing Machine that takes input TM $M$ and determines whether the language $L(M)$ accepted by $M$ satisfies $P$.\\\\
+Proof by reduction:\\
+
+\subsection*{e}
+To show that 4.a, 4.b, 4.c are consequences of 4.d:
+\begin{enumerate}
+\item For problem 4.a, let $P_a$ be the property that the language is empty
+\item For problem 4.b, let $P_b$ be the property that the language is every string over the input alphabet
+\item For problem 4.c, let $P_c$ be the property that the string 11110 is in the language
+\end{enumerate}
+Each bullet's $P$ is a valid property for a language, thus we can apply the result of 4.d to show 4.a,4.b,4.c are consequences of 4.d.
+\end{document}
