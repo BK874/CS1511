@@ -67,7 +67,7 @@ Next, if $X$ loops forever on $w$, then:
 \item $N$ will not accept on $w$
 \item $N$ did not accept all inputs
 \item $CLP$ returns 0 since there are strings in $L(N)$ that $N$ does not accept
-\item $HP$ returns then same, 0
+\item $HP$ returns the same, 0
 \end{itemize}
 so $HP$ returns 0 if $CLP$ returns 0.\\
 Finally, $HP$ $\leftrightarrow$ $CLP$, so $HP \le CLP$, and thus $CLP$ is undecidable.
@@ -76,12 +76,28 @@ Finally, $HP$ $\leftrightarrow$ $CLP$, so $HP \le CLP$, and thus $CLP$ is undeci
 Claim:\\
 There is no Turing Machine that takes input TM $M$ and determines whether the language $L(M)$ accepted by $M$ includes the string 11110.\\\\
 Proof by reduction:\\
-
+We will reduce the Halting Problem $HP$ to the stated Specific Language Problem $SLP$. Let $\langle X, w \rangle$ be the input to $HP$, where $X$ is a TM and $w$ is the input to the TM.  Then create a new TM $N$ from $\langle X, w \rangle$ where $N$ runs $X$ on $w$, and then accepts if the input to $N = 11110$. Finally, pass $N$ as input to the $SLP$ and return the same as $SLP$'s output.\\
+If $X$ halts on $w$, then:
+\begin{itemize}
+\item $N$ will accept if the input to $N = 11110$
+\item $SLP$ will return 1 since $L(N) = \{11110\}$
+\item $HP$ returns the same output, 1
+\end{itemize}
+so $HP$ returns 1 if $SLP$ returns 1, that is, if $L(N) = \{11110\}$.\\
+Next, if $X$ loops forever on $w$, then:
+\begin{itemize}
+\item $N$ will not accept on $w$
+\item $N$ will not accept any strings.
+\item $SLP$ returns 0 since $L(N) = \phi$ and thus $L(N) \neq \{11110\}$.
+\item $HP$ returns the same, 0
+\end{itemize}
+so $HP$ returns 0 if $SLP$ returns 0.\\
+Finally, $HP$ $\leftrightarrow$ $SLP$, so $HP \le SLP$, and thus $SLP$ is undecidable.
 \subsection*{d}
 Claim:\\
 Given some property $P$ of languages, there is no Turing Machine that takes input TM $M$ and determines whether the language $L(M)$ accepted by $M$ satisfies $P$.\\\\
 Proof by reduction:\\
-We will reduce the Halting Problem $HP$ to the stated Property Language Problem $PLP$. Let $\langle X, w \rangle$ be the input to $HP$, where $X$ is a TM and $w$ is the input to the TM. Then create a new TM $N$ from $\langle X, w \rangle$ that, on input $s$, runs $X$ on $w$ and rejects if $X$ does. If $X$ accepts, $N$ runs the given TM $M_1$ with property $P$ on $s$ and accepts if $M_1$ does. Finally, pass $N$ as input to the $PLP$ and return the same as $PLP$'s output.
+We will reduce the Halting Problem $HP$ to the stated Property Language Problem $PLP$. Let $\langle X, w \rangle$ be the input to $HP$, where $X$ is a TM and $w$ is the input to the TM. Then create a new TM $N$ from $\langle X, w \rangle$ that, on input $s$, runs $X$ on $w$ and rejects if $X$ does not accept. If $X$ accepts, and the input $s$ satisfies the property $P$, then $N$ accepts. Finally, pass $N$ as input to the $PLP$ and return the same as $PLP$'s output.
 
 \subsection*{e}
 To show that 4.a, 4.b, 4.c are consequences of 4.d:
