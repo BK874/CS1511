@@ -32,7 +32,7 @@ Proof by reduction:\\
 We will reduce the Halting Problem $HP$ to the stated Empty Language Problem $ELP$. Let $\left<X, w\right>$ be the input to $HP$, where $X$ is a TM and $w$ is the input to the TM. Then create a new TM $N$ from $\left<X, w\right>$ where $N$ rejects in all cases where input to $N$ is not $w$, and when the input is $w$, $N$ runs $X$ on $w$. Finally, pass $N$ as input to the $ELP$ and return the opposite of $ELP$'s output.\\
 If $X$ halts on  $w$, then:
 \begin{itemize}
-\item $N$ will accept on $s$
+\item $N$ will accept on $w$
 \item $ELP$ will return 0 since $N$ accepts a non-empty input
 \item $HP$ returns the opposite, which is 1
 \end{itemize}
@@ -45,13 +45,32 @@ Next, if $X$ loops forever on $w$, then:
 \item $ELP$ returns 1 since $N$ has no strings in $L(N)$ that accept
 \item $HP$ returns the opposite, which is 0
 \end{itemize}
-so $HP$ returns 1 if $ELP$ returns 0.\\
+so $HP$ returns 0 if $ELP$ returns 1.\\
 Finally, $HP$ $\leftrightarrow$ $!ELP$, so $HP \le ELP$, and thus $ELP$ is undecidable.
 
 \subsection*{b}
 Claim:\\
 There is no Turing Machine that takes input TM $M$ and determines whether the language $L(M)$ accepted by $M$ is the language of every string over the input alphabet.\\\\
 Proof by reduction:\\
+We will reduce the Halting Problem $HP$ to the stated Complete Language Problem $CLP$. Let $\langle X, w \rangle$ be the input to $HP$, where $X$ is a TM and $w$ is the input to the TM.  Then create a new TM $N$ from $\langle X, w \rangle$ where $N$ accepts in all cases where the input to $N$ is not $w$, and when the input is $w$, $N$ runs $X$ on $w$. Finally, pass $N$ as input to the $CLP$ and return the same as $CLP$'s output.\\
+If $X$ halts on $w$, then:
+\begin{itemize}
+\item $N$ will accept on $w$
+\item $N$ accepts all other inputs
+\item $N$ always accepts
+\item $CLP$ will return 1 since $N$ accepts all strings
+\item $HP$ returns the same output, 1
+\end{itemize}
+so $HP$ returns 1 if $CLP$ returns 1.
+Next, if $X$ loops forever on $w$, then:
+\begin{itemize}
+\item $N$ will not accept on $w$
+\item $N$ did not accept all inputs
+\item $CLP$ returns 0 since there are strings in $L(N)$ that $N$ does not accept
+\item $HP$ returns then same, 0
+\end{itemize}
+so $HP$ returns 0 if $CLP$ returns 0.\\
+Finally, $HP$ $\leftrightarrow$ $CLP$, so $HP \le CLP$, and thus $CLP$ is undecidable.
 
 \subsection*{c}
 Claim:\\
