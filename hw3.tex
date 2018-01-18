@@ -81,6 +81,7 @@ Proof by reduction:\\
 Claim:\\
 Given some property $P$ of languages, there is no Turing Machine that takes input TM $M$ and determines whether the language $L(M)$ accepted by $M$ satisfies $P$.\\\\
 Proof by reduction:\\
+We will reduce the Halting Problem $HP$ to the stated Property Language Problem $PLP$. Let $\langle X, w \rangle$ be the input to $HP$, where $X$ is a TM and $w$ is the input to the TM. Then create a new TM $N$ from $\langle X, w \rangle$ that, on input $s$, runs $X$ on $w$ and rejects if $X$ does. If $X$ accepts, $N$ runs the given TM $M_1$ with property $P$ on $s$ and accepts if $M_1$ does. Finally, pass $N$ as input to the $PLP$ and return the same as $PLP$'s output.
 
 \subsection*{e}
 To show that 4.a, 4.b, 4.c are consequences of 4.d:
