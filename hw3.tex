@@ -97,11 +97,11 @@ Finally, $HP$ $\leftrightarrow$ $SLP$, so $HP \le SLP$, and thus $SLP$ is undeci
 Claim:\\
 Given some property $P$ of languages, there is no Turing Machine that takes input TM $M$ and determines whether the language $L(M)$ accepted by $M$ satisfies $P$.\\\\
 Proof by reduction:\\
-We will reduce the Halting Problem $HP$ to the stated Property Language Problem $PLP$. Let $\langle X, w \rangle$ be the input to $HP$, where $X$ is a TM and $w$ is the input to the TM. Next, let $M_1$ be a TM that accepts all inputs that have property $P$. Then create a new TM $N$ from $\langle X, w \rangle$ that, runs $X$ on $w$ and then runs $M_1$ on $w$ and accepts if and only if $M_1$ accepts. Finally, run $PLP$ with input $N$ and return $PLP$'s result as the final result for the halting problem.\\
+We will reduce the Halting Problem $HP$ to the stated Property Language Problem $PLP$. Let $\langle X, w \rangle$ be the input to $HP$, where $X$ is a TM and $w$ is the input to the TM. Next, let $M_1$ be a TM that accepts all inputs that satisfy property $P$. Then create a new TM $N$ from $\langle X, w \rangle$ that, on input $s$, runs $X$ on $w$ and then runs $M_1$ on $s$ and accepts if and only if $M_1$ accepts. Finally, run $PLP$ with input $N$ and return $PLP$'s result as the final result for the Halting Problem.\\
 If $X$ halts on $w$, then:
 \begin{itemize}
 \item $N$ will run $X$ on $w$ and halt
-\item $N$ will run $M_1$ on $w$ and return 1
+\item $N$ will run $M_1$ on $s$ and return 1 if $M_1$ accepts
 \item $PLP$ will return 1 since $N$ returned 1
 \end{itemize}
 so $PLP$ returns 1 if $X$ halts on $w$.\\
@@ -111,7 +111,7 @@ Next, if $X$ loops forever on $w$, then:
 \item $N$ will never halt
 \item $PLP$ returns 0 since $N$ never halts
 \end{itemize}
-so $PLP$ returns 0 if $X$ halts on $w$.\\
+so $PLP$ returns 0 if $X$ does not halt on $w$.\\
 Finally, $X$ $\leftrightarrow$ $PLP$, so $HP \le PLP$, and thus $PLP$ is undecidable.
 
 \subsection*{e}
