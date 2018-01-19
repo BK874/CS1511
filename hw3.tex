@@ -83,12 +83,12 @@ If $X$ halts on $w$, then:
 \item $SLP$ will return 1 since $L(N) = \{11110\}$
 \item $HP$ returns the same output, 1
 \end{itemize}
-so $HP$ returns 1 if $SLP$ returns 1, that is, if $L(N) = \{11110\}$.\\
+so $HP$ returns 1 if $SLP$ returns 1, that is, if $11110 \in L(N)$.\\
 Next, if $X$ loops forever on $w$, then:
 \begin{itemize}
 \item $N$ will not accept on $w$
 \item $N$ will not accept any strings.
-\item $SLP$ returns 0 since $L(N) = \phi$ and thus $L(N) \neq \{11110\}$.
+\item $SLP$ returns 0 since $L(N) = \phi$ and thus $11110 \notin L(N)$.
 \item $HP$ returns the same, 0
 \end{itemize}
 so $HP$ returns 0 if $SLP$ returns 0.\\
