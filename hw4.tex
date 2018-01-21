@@ -1,0 +1,59 @@
+\documentclass[letterpaper,notitlepage,twoside]{article}
+
+% Basic imports, increase margins...
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% Finite State Machine stuff
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+% Format tables nicely
+\usepackage[latin1]{inputenc}
+\usepackage{array}
+\usepackage{booktabs}
+\setlength{\heavyrulewidth}{1.5pt}
+\setlength{\abovetopsep}{4pt}
+
+% Add more packages that you use here...
+
+\begin{document}
+\title{Homework 4}
+\author{Joe Baker, Brett Schreiber, Brian Knotten}
+\maketitle
+
+\section*{5}
+Definition 1:
+\\
+A language $L$ is recursively enumerable $\leftrightarrow$ there is a Turing machine $M$ such that if $x \in L$ then $M$ accepts $x$ and if $x \notin L$ then $M$ loops forever on $x$.
+\\
+\\
+Definition 2:
+\\
+A language $L$ is recursively enumerable $\leftrightarrow$ there a Turing machine $M$, with a read/write tape that is initially empty and a write-only output tape, such that only elements of $L$ are written to the output tape, and every element of $L$ is eventually written to the output tape.
+\\
+\\
+Claim:
+\\
+Definition 1 is logically equivalent to definition 2.
+\\
+\\
+Proof:
+\\
+
+\section*{6}
+Let $A$ be a finite set of axioms, $S$ be a statement, and define the language
+\begin{align*}
+L = \lbrace S \mid S \text{ is provable from } A \rbrace
+\end{align*}
+Claim:
+\\
+$L$ is recursively enumerable.
+\\\\
+Proof:
+\\
+Foo
+
+\end{document}
