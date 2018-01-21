@@ -27,12 +27,12 @@
 \section*{5}
 Definition 1:
 \\
-A language $L$ is recursively enumerable $\leftrightarrow$ there is a Turing machine $M$ such that if $x \in L$ then $M$ accepts $x$ and if $x \notin L$ then $M$ loops forever on $x$.
+A language $L$ is recursively enumerable $\leftrightarrow$ there is a Turing machine $M_1$ such that if $x \in L$ then $M_1$ accepts $x$ and if $x \notin L$ then $M_1$ loops forever on $x$.
 \\
 \\
 Definition 2:
 \\
-A language $L$ is recursively enumerable $\leftrightarrow$ there a Turing machine $M$, with a read/write tape that is initially empty and a write-only output tape, such that only elements of $L$ are written to the output tape, and every element of $L$ is eventually written to the output tape.
+A language $L$ is recursively enumerable $\leftrightarrow$ there a Turing machine $M_2$, with a read/write tape that is initially empty and a write-only output tape, such that only elements of $L$ are written to the output tape, and every element of $L$ is eventually written to the output tape.
 \\
 \\
 Claim:
@@ -42,6 +42,31 @@ Definition 1 is logically equivalent to definition 2.
 \\
 Proof:
 \\
+We will prove that assuming we have the TM $M_1$ from definition 1, that we can construct TM $M_2$ of definition 2. Next we will show the converse, assuming we have TM $M_2$ from definition 2, that we can construct TM $M_1$. Finally, we will have $M_1$ exists $\leftrightarrow$ $L$ recursively enumerable $\leftrightarrow$ $M_2$ exists.
+\\
+\\
+First, assume that $M_1$ exists. Then construct $M_2$ such that $M_2$ has an input tape, an initially empty read/write tape, and a write-only output tape. Let $M_2$ operate in the following way:
+\begin{enumerate}
+\item $M_2$ writes a counter (0 if starting, 1 + previous value otherwise)
+\item $M_2$ reads the counter value and appends a combination of symbols using the counter value as an encoding of the symbols
+\item $M_2$ calls $M_1$ with the combination of symbols as input
+\item $M_2$ writes the combination of symbols to the output tape if $M_1$ accepts
+\item $M_2$ repeats steps 1...4
+\end{enumerate}
+$M_2$ will construct every valid input from its alphabet in a countable manner. Each input will be checked with $M_1$ and written to the output tape iff the input is in $L$. Thus, $M_1$ exists $\rightarrow$ $M_2$ exists.
+\\
+\\
+Now, assume that $M_2$ exists. Then construct $M_1$ as a modified copy of $M_2$ with an addition read-only input tape which contains input $x$. Also, add the following behavior to $M_1$:
+\begin{enumerate}
+\item $M_1$ reads input $x$
+\item $M_1$ calls the steps of $M_2$ until $M_2$ writes to output
+\item When $M_1$ finishes writing to output, it accepts if the most recent output matches $x$
+\item Otherwise, $M_1$ goes back to step 1
+\end{enumerate}
+If $x \in L$ $M_1$ will detect $x$ in the output tape while running $M_2$ and accept, otherwise $M_1$ will never stop reading the output tape of $M_2$ and loop forever. Thus, $M_2$ exists $\rightarrow$ $M_1$ exists.
+\\
+\\
+Finally, $M_1$ exists $\leftrightarrow$ $L$ recursively enumerable $\leftrightarrow$ $M_2$ exists.
 
 \section*{6}
 Let $A$ be a finite set of axioms, $S$ be a statement, and define the language
@@ -51,7 +76,8 @@ L = \lbrace S \mid S \text{ is provable from } A \rbrace
 Claim:
 \\
 $L$ is recursively enumerable.
-\\\\
+\\
+\\
 Proof:
 \\
 Foo
