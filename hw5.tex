@@ -41,7 +41,17 @@
 \section*{7}
 
 \subsection*{a}
+A valid computation history of the given Turing Machine $M$ on the input $I = 101$ is: \\
+$H = \#q_{0}101\#1q_{1}01\#11q_{1}1\#110q_{0}\textvisiblespace \#110\textvisiblespace q_{0}\#...$ \\
 
 \subsection*{b}
+Define the macros:
+\begin{itemize}
+\item $PLACE(j)$ represents an arithmetic expression that returns the digit in location $j$ in $H$
+\item $SAME(i, j, k, l)$ represents a logical expression that will be true iff digits $i$ through $j$ are identical to digits $k$ through $l$
+\item $STATE(i)$ represents a local expression that will be true iff only digit $i$ of $H$ represents a state in $Q$
+\item $TABLE(i, j)$ represents a local expression that will be true iff digits $i$, $i+1$ and $i+2$ in $H$ represents a tape symbol, state in $Q$ and a tape symbol respectively, and digits $j$, $j+1$ and $j+2$ in $H$ evolve properly from digits $i$, $i+1$, and $i+2$ according to $M$.
+\end{itemize}
+
 
 \end{document}
