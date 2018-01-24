@@ -45,6 +45,10 @@ A valid computation history of the given Turing Machine $M$ on the input $I = 10
 $H = \#q_{0}101\textvisiblespace\#1q_{1}01\textvisiblespace\#11q_{1}1\textvisiblespace\#110q_{0}\textvisiblespace \#110q_{0}\textvisiblespace \#110q_{0}\textvisiblespace \#110q_{0}\textvisiblespace \#...$ \\
 This computation history is infinite because $M$ does not halt on an input with an even number of $1$s. \\
 \subsection*{b}
+Let $S$ be defined as the following Godel sentence:
+\begin{align*}
+\exists_H \text{ such that } init(H) \wedge transition(H) \wedge halt(H)
+\end{align*}
 Define the macros:
 \begin{itemize}
 \item $PLACE(j)$ represents an arithmetic expression that returns the digit in location $j$ in $H$
@@ -57,9 +61,19 @@ Define the macros:
 
 Let $|\Gamma| = |\{q_0, q_1, q_h, \#, \textvisiblespace, 0, 1\}| = 7$ \\
 
+\subsection*{place()}
+$(H \pmod{B^{j+1}})$ $/$ $B^j$
+
+\subsection*{same(i,j,k,l)}
+$\forall_z$ where $i - j > z > 0 \wedge i > j \wedge k > l \wedge i - j = k - l$, then $place(z+j) = place(z+j)$
+
+\subsection*{digits}
 Let $DIGITS(i) = \lceil log_{|\Gamma|}i \rceil$ \\ 
+
+\subsection*{leftmost()}
 Let $LEFTMOST(i, j) = \lfloor j \mathbin{/} |\Gamma|^{(DIGITS(j) - i)} \rfloor$ \\
 
+\subsection*{table()}
 Let $TABLE(i, j) = \\
 (i = 0 \land i + 1 = q_0 \land i + 2 = 0 \land j = 0 \land j + 1 = 0 \land j + 2 = q_0) \\
 \lor (i = 1 \land i + 1 = q_0 \land i + 2 = 0 \land j = 1 \land j + 1 = 0 \land j + 2 = q_0) \\
@@ -78,17 +92,21 @@ Let $TABLE(i, j) = \\
 \lor (i = 1 \land i + 1 = q_1 \land i + 2 = \textvisiblespace \land j = 1 \land j + 1 = q_h \land j + 2 = \textvisiblespace)$
 
 
-\subsection*{Starts right}
-$LEFTMOST(6, H) = \#q_0101$
+\subsection*{init()}
+$leftmost(5, H) = \#q_0101$
 
-\subsection*{Transitions right}
-$\forall j, k$ s.t. $k < j, PLACE(j+1), PLACE(k+1) \in \{q_0, q_1, q_h\} \iff TABLE(j, k)$
+\subsection*{transition()}
+$\forall_x$ $place(x)=\# \wedge x \neq 0 \wedge x \neq leftmost(1, x) \wedge validTransition(x) \wedge validCopy(x)$
 
-\subsection*{Ends right}
+\subsection*{validTransition(w)}
+$\exists_{x,y}$ such that $table(x-1, y-1) \wedge place(x) \in \lbrace q_0, q_1 \rbrace \wedge place(y) \in \lbrace q_0, q_1, q_h \rbrace \wedge x > w > y \wedge \forall_z$ where $x > z > w$ or $w > z > y$, $place(z) \notin \lbrace q_0, q_1, q_h, \# \rbrace$
+
+\subsection*{validCopy()}
+
+
+\subsection*{halt()}
+$\exists_j$ such that $place(j) = q_h \wedge \forall_k$ where $0 < k < j$, $place(k) = \textvisiblespace$ $\wedge$ $place(0) = \#$
+\\\\
 $q_h$ should be the rightmost state in the integer, and the integer must end with $\#$ \\
-$\exists j$ s.t. $PLACE(j) = q_h$ \\
-and $\forall k$ s.t. $0 < k < j, PLACE(k) = \textvisiblespace$ \\
-
-$PLACE(0) = \#$
 
 \end{document}
