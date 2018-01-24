@@ -55,12 +55,12 @@ where $init(H)$, $transition(H)$, and $halt(H)$ are macros defined by first orde
 \subsubsection*{place(j)}
 $(H \pmod{B^{j+1}})$ $/$ $B^j$
 \\\\
-Represents an arithmetic expression that returns the digit at location $j$ in $H$
+Represents an arithmetic expression that returns the digit at location $j$ in $H$.
 
 \subsection*{same(i,j,k,l)}
-$\forall_z$ where $i - j > z > 0 \wedge i > j \wedge k > l \wedge i - j = k - l$, then $place(z+j) = place(z+j)$
+$\forall_z$ where $i - j > z > 0 \wedge i > j \wedge k > l \wedge i - j = k - l$, then $place(z+j) = place(z+l)$
 \\\\
-Represents a logical expression that will be true $\iff$ digits $i$ through $j$ are identical to digits $k$ through $l$
+Represents a logical expression that will be true $\iff$ digits $i$ through $j$ are identical to digits $k$ through $l$.
 
 \subsection*{digits(i)}
 $\lceil log_{|\Gamma|}i \rceil$
