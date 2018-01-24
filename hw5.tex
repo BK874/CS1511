@@ -60,16 +60,34 @@ Let $|\Gamma| = |\{q_0, q_1, q_h, \#, \textvisiblespace, 0, 1\}| = 7$ \\
 Let $DIGITS(i) = \lceil log_{|\Gamma|}i \rceil$ \\ 
 Let $LEFTMOST(i, j) = \lfloor j \mathbin{/} |\Gamma|^{(DIGITS(j) - i)} \rfloor$ \\
 
+Let $TABLE(i, j) = \\
+(i = 0 \land i + 1 = q_0 \land i + 2 = 0 \land j = 0 \land j + 1 = 0 \land j + 2 = q_0) \\
+\lor (i = 1 \land i + 1 = q_0 \land i + 2 = 0 \land j = 1 \land j + 1 = 0 \land j + 2 = q_0) \\
+\lor (i = \# \land i + 1 = q_0 \land i + 2 = 0 \land j = \# \land j + 1 = 0 \land j + 2 = q_0) \\
+\lor (i = 0 \land i + 1 = q_0 \land i + 2 = 1 \land j = 0 \land j + 1 = 1 \land j + 2 = q_1) \\
+\lor (i = 1 \land i + 1 = q_0 \land i + 2 = 1 \land j = 1 \land j + 1 = 1 \land j + 2 = q_1) \\
+\lor (i = \# \land i + 1 = q_0 \land i + 2 = 1 \land j = \# \land j + 1 = 1 \land j + 2 = q_1) \\
+\lor (i = 0 \land i + 1 = q_0 \land i + 2 = \textvisiblespace \land j = 0 \land j + 1 = q_0 \land j + 2 = \textvisiblespace) \\
+\lor (i = 1 \land i + 1 = q_0 \land i + 2 = \textvisiblespace \land j = 1 \land j + 1 = q_0 \land j + 2 = \textvisiblespace) \\
+\lor (i = \# \land i + 1 = q_0 \land i + 2 = \textvisiblespace \land j = 0 \land j + 1 = q_0 \land j + 2 = \textvisiblespace) \\
+\lor (i = 0 \land i + 1 = q_1 \land i + 2 = 0 \land j = 0 \land j + 1 = 1 \land j + 2 = q_1) \\
+\lor (i = 1 \land i + 1 = q_1 \land i + 2 = 0 \land j = 1 \land j + 1 = 1 \land j + 2 = q_1) \\
+\lor (i = 0 \land i + 1 = q_1 \land i + 2 = 1 \land j = 0 \land j + 1 = 0 \land j + 2 = q_0) \\
+\lor (i = 1 \land i + 1 = q_1 \land i + 2 = 1 \land j = 1 \land j + 1 = 0 \land j + 2 = q_0) \\
+\lor (i = 0 \land i + 1 = q_1 \land i + 2 = \textvisiblespace \land j = 0 \land j + 1 = q_h \land j + 2 = \textvisiblespace) \\
+\lor (i = 1 \land i + 1 = q_1 \land i + 2 = \textvisiblespace \land j = 1 \land j + 1 = q_h \land j + 2 = \textvisiblespace)$
+
+
 \subsection*{Starts right}
-$LEFTMOST(6, H) = \#q_0101$\#
+$LEFTMOST(6, H) = \#q_0101$
 
 \subsection*{Transitions right}
-$\forall j, k$ s.t. $k < j, PLACE(j+1), PLACE(k+1) \in \{q_0, q_1, q_h\} \lor  \iff TABLE(j, k)$
+$\forall j, k$ s.t. $k < j, PLACE(j+1), PLACE(k+1) \in \{q_0, q_1, q_h\} \iff TABLE(j, k)$
 
 \subsection*{Ends right}
 $q_h$ should be the rightmost state in the integer, and the integer must end with $\#$ \\
 $\exists j$ s.t. $PLACE(j) = q_h$ \\
-and $\forall k$ s.t. $0 < k < j, PLACE(k) \notin \{q_0, q_1, q_h, \# \}$ \\
+and $\forall k$ s.t. $0 < k < j, PLACE(k) = \textvisiblespace$ \\
 
 $PLACE(0) = \#$
 
