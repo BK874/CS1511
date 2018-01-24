@@ -41,8 +41,8 @@
 \section*{7}
 
 \subsection*{a}
-A valid computation history of the given Turing Machine $M$ on the input $I = 101$ is: \\
-$H = \#q_{0}101\#1q_{1}01\#11q_{1}1\#110q_{0}\textvisiblespace \#110q_{0}\textvisiblespace \#110q_{0}\textvisiblespace \#110q_{0}\textvisiblespace \#...$ \\
+A valid computation history of the given Turing Machine $M$ on the input $I = 101\textvisiblespace$ is: \\
+$H = \#q_{0}101\textvisiblespace\#1q_{1}01\textvisiblespace\#11q_{1}1\textvisiblespace\#110q_{0}\textvisiblespace \#110q_{0}\textvisiblespace \#110q_{0}\textvisiblespace \#110q_{0}\textvisiblespace \#...$ \\
 This computation history is infinite because $M$ does not halt on an input with an even number of $1$s. \\
 \subsection*{b}
 Define the macros:
@@ -51,13 +51,14 @@ Define the macros:
 \item $SAME(i, j, k, l)$ represents a logical expression that will be true iff digits $i$ through $j$ are identical to digits $k$ through $l$
 \item $STATE(i)$ represents a local expression that will be true iff only digit $i$ of $H$ represents a state in $Q$
 \item $TABLE(i, j)$ represents a local expression that will be true iff digits $i$, $i+1$ and $i+2$ in $H$ represents a tape symbol, state in $Q$ and a tape symbol respectively, and digits $j$, $j+1$ and $j+2$ in $H$ evolve properly from digits $i$, $i+1$, and $i+2$ according to $M$.
+\item $DIGITS(i)$ represents the number of digits in a given integer $i$.
+\item $FIRST(i, j)$ represents the $i$ most significant digits of the integer $j$.
 \end{itemize}
 
 Let $|\Gamma| = |\{q_0, q_1, q_h, \#, \textvisiblespace, 0, 1\}| = 7$ \\
 
 Let $DIGITS(i) = \lceil log_{|\Gamma|}i \rceil$ \\ 
-
-Let $FIRST(i, j) = \lfloor j \mathbin{/} |\Gamma|^{(DIGITS(j) - i)} \rfloor$
+Let $FIRST(i, j) = \lfloor j \mathbin{/} |\Gamma|^{(DIGITS(j) - i)} \rfloor$ \\
 
 % starts right
 $FIRST(5, H) = \#q_0101$
