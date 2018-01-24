@@ -107,10 +107,10 @@ $\exists_{x,y}$ such that $table(x-1, y-1) \wedge place(x) \in \lbrace q_0, q_1 
 \\\\
 Checks that the transition from the state left of a $\#$ to the right of a $\#$ is valid based on the current read head value and state and written value and state.
 
-\subsection*{validCopy()}
-%expression
-
-%explanation in english
+\subsection*{validCopy(c)}
+$\exists_{a,b,d,e}$ such that $same(a,b-2,c,d-2) \wedge same(b+2,c,d+2,e) \wedge place(b) \in \lbrace q_0, q_1 \rbrace \wedge place(d) \in \lbrace q_0, q_1, q_h \rbrace \wedge place(a)=place(e)=\# \wedge \forall_z$ where $a > z > b \lor b > z > c \lor c > z > d \lor d > z > e$, then $place(z) \notin \lbrace q_0, q_1, q_h, \# \rbrace$
+\\\\
+Checks that the tape before the previous state matches the tape before the next state. Also checks that the tape after the previous state matches the tape after the next state. Botch checks exclude the digit immediately before and after a state.
 
 \subsection*{halt()}
 $\exists_j$ such that $place(j) = q_h \wedge \forall_k$ where $0 < k < j$, $place(k) = \textvisiblespace$ $\wedge$ $place(0) = \#$
