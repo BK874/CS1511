@@ -45,37 +45,35 @@ A valid computation history of the given Turing Machine $M$ on the input $I = 10
 $H = \#q_{0}101\textvisiblespace\#1q_{1}01\textvisiblespace\#11q_{1}1\textvisiblespace\#110q_{0}\textvisiblespace \#110q_{0}\textvisiblespace \#110q_{0}\textvisiblespace \#110q_{0}\textvisiblespace \#...$ \\
 This computation history is infinite because $M$ does not halt on an input with an even number of $1$s. \\
 \subsection*{b}
-Let $S$ be defined as the following Godel sentence:
+Let $|\Gamma| = |\{q_0, q_1, q_h, \#, \textvisiblespace, 0, 1\}| = 7$ be the alphabet of a computation history for TM $M$ from part a. Let $H$ be a base-7 number, where each member of $\Gamma$ is mapped to a specific digit, and $H$ represents a computation history of $M$.
+Let $S$ be the following Godel sentence:
 \begin{align*}
-\exists_H \text{ such that } init(H) \wedge transition(H) \wedge halt(H)
+\exists_H \text{ such that } init(H) \wedge transition() \wedge halt()
 \end{align*}
-Define the macros:
-\begin{itemize}
-\item $PLACE(j)$ represents an arithmetic expression that returns the digit in location $j$ in $H$
-\item $SAME(i, j, k, l)$ represents a logical expression that will be true iff digits $i$ through $j$ are identical to digits $k$ through $l$
-\item $STATE(i)$ represents a local expression that will be true iff only digit $i$ of $H$ represents a state in $Q$
-\item $TABLE(i, j)$ represents a local expression that will be true iff digits $i$, $i+1$ and $i+2$ in $H$ represents a tape symbol, state in $Q$ and a tape symbol respectively, and digits $j$, $j+1$ and $j+2$ in $H$ evolve properly from digits $i$, $i+1$, and $i+2$ according to $M$.
-\item $DIGITS(i)$ represents the number of digits in a given integer $i$.
-\item $LEFTMOST(i, j)$ represents the $i$ most significant digits of the integer $j$.
-\end{itemize}
+where $init(H)$, $transition(H)$, and $halt(H)$ are macros defined by first order logic and other macros below:
 
-Let $|\Gamma| = |\{q_0, q_1, q_h, \#, \textvisiblespace, 0, 1\}| = 7$ \\
-
-\subsection*{place()}
+\subsubsection*{place(j)}
 $(H \pmod{B^{j+1}})$ $/$ $B^j$
+\\\\
+Represents an arithmetic expression that returns the digit at location $j$ in $H$
 
 \subsection*{same(i,j,k,l)}
 $\forall_z$ where $i - j > z > 0 \wedge i > j \wedge k > l \wedge i - j = k - l$, then $place(z+j) = place(z+j)$
+\\\\
+Represents a logical expression that will be true $\iff$ digits $i$ through $j$ are identical to digits $k$ through $l$
 
-\subsection*{digits}
-Let $DIGITS(i) = \lceil log_{|\Gamma|}i \rceil$ \\ 
+\subsection*{digits(i)}
+$\lceil log_{|\Gamma|}i \rceil$
+\\\\
+Represents the number of digits in a given integer $i$.
 
-\subsection*{leftmost()}
-Let $LEFTMOST(i, j) = \lfloor j \mathbin{/} |\Gamma|^{(DIGITS(j) - i)} \rfloor$ \\
+\subsection*{leftmost(i,j)}
+$\lfloor j \mathbin{/} |\Gamma|^{(DIGITS(j) - i)} \rfloor$
+\\\\
+Represents the $i$ most significant digits of the integer $j$.
 
-\subsection*{table()}
-Let $TABLE(i, j) = \\
-(i = 0 \land i + 1 = q_0 \land i + 2 = 0 \land j = 0 \land j + 1 = 0 \land j + 2 = q_0) \\
+\subsection*{table(i,j)}
+$(i = 0 \land i + 1 = q_0 \land i + 2 = 0 \land j = 0 \land j + 1 = 0 \land j + 2 = q_0) \\
 \lor (i = 1 \land i + 1 = q_0 \land i + 2 = 0 \land j = 1 \land j + 1 = 0 \land j + 2 = q_0) \\
 \lor (i = \# \land i + 1 = q_0 \land i + 2 = 0 \land j = \# \land j + 1 = 0 \land j + 2 = q_0) \\
 \lor (i = 0 \land i + 1 = q_0 \land i + 2 = 1 \land j = 0 \land j + 1 = 1 \land j + 2 = q_1) \\
@@ -90,23 +88,41 @@ Let $TABLE(i, j) = \\
 \lor (i = 1 \land i + 1 = q_1 \land i + 2 = 1 \land j = 1 \land j + 1 = 0 \land j + 2 = q_0) \\
 \lor (i = 0 \land i + 1 = q_1 \land i + 2 = \textvisiblespace \land j = 0 \land j + 1 = q_h \land j + 2 = \textvisiblespace) \\
 \lor (i = 1 \land i + 1 = q_1 \land i + 2 = \textvisiblespace \land j = 1 \land j + 1 = q_h \land j + 2 = \textvisiblespace)$
+\\\\
+Represents a local expression that will be true iff digits $i$, $i+1$ and $i+2$ in $H$ represents a tape symbol, state in $Q$ and a tape symbol respectively, and digits $j$, $j+1$ and $j+2$ in $H$ evolve properly from digits $i$, $i+1$, and $i+2$ according to $M$.
 
 
-\subsection*{init()}
+\subsection*{init(H)}
 $leftmost(5, H) = \#q_0101$
+\\\\
+Represents the valid initial state for $M$ on input $I$.
 
 \subsection*{transition()}
 $\forall_x$ $place(x)=\# \wedge x \neq 0 \wedge x \neq leftmost(1, x) \wedge validTransition(x) \wedge validCopy(x)$
+\\\\
+Represents a valid sequence of digits on both "sides" of any internal $\#$. Each "side" is a configuration. The transition between configurations is validated with $validTransition()$ and the rest of the tape is validated with $validCopy()$.
 
 \subsection*{validTransition(w)}
 $\exists_{x,y}$ such that $table(x-1, y-1) \wedge place(x) \in \lbrace q_0, q_1 \rbrace \wedge place(y) \in \lbrace q_0, q_1, q_h \rbrace \wedge x > w > y \wedge \forall_z$ where $x > z > w$ or $w > z > y$, $place(z) \notin \lbrace q_0, q_1, q_h, \# \rbrace$
+\\\\
+Checks that the transition from the state left of a $\#$ to the right of a $\#$ is valid based on the current read head value and state and written value and state.
 
 \subsection*{validCopy()}
+%expression
 
+%explanation in english
 
 \subsection*{halt()}
 $\exists_j$ such that $place(j) = q_h \wedge \forall_k$ where $0 < k < j$, $place(k) = \textvisiblespace$ $\wedge$ $place(0) = \#$
 \\\\
-$q_h$ should be the rightmost state in the integer, and the integer must end with $\#$ \\
+Represents valid halting states from the state symbol to the final $\#$. $q_h$ should be the rightmost state in the integer, and the integer must end with $\#$
+\\\\\\
+The Godel sentence is valid if and only if a number represents a valid computation history. The computation history is valid if:
+\begin{enumerate}
+\item the first configuration is the initial configuration
+\item each configuration follows from the previous
+\item the final configuration is a halting configuration
+\end{enumerate}
+Each of these conditions is met by the macros $init()$, $transition()$, and $halt()$.
 
 \end{document}
