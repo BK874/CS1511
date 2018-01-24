@@ -42,8 +42,8 @@
 
 \subsection*{a}
 A valid computation history of the given Turing Machine $M$ on the input $I = 101$ is: \\
-$H = \#q_{0}101\#1q_{1}01\#11q_{1}1\#110q_{0}\textvisiblespace \#110\textvisiblespace q_{0}\#...$ \\
-
+$H = \#q_{0}101\#1q_{1}01\#11q_{1}1\#110q_{0}\textvisiblespace \#110q_{0}\textvisiblespace \#110q_{0}\textvisiblespace \#110q_{0}\textvisiblespace \#...$ \\
+This computation history is infinite because $M$ does not halt on an input with an even number of $1$s. \\
 \subsection*{b}
 Define the macros:
 \begin{itemize}
@@ -53,5 +53,20 @@ Define the macros:
 \item $TABLE(i, j)$ represents a local expression that will be true iff digits $i$, $i+1$ and $i+2$ in $H$ represents a tape symbol, state in $Q$ and a tape symbol respectively, and digits $j$, $j+1$ and $j+2$ in $H$ evolve properly from digits $i$, $i+1$, and $i+2$ according to $M$.
 \end{itemize}
 
+Let $|\Gamma| = |\{q_0, q_1, q_h, \#, \textvisiblespace, 0, 1\}| = 7$ \\
+
+Let $DIGITS(i) = \lceil log_{|\Gamma|}i \rceil$ \\ 
+
+Let $FIRST(i, j) = \lfloor j \mathbin{/} |\Gamma|^{(DIGITS(j) - i)} \rfloor$
+
+% starts right
+$FIRST(5, H) = \#q_0101$
+
+
+% ends right
+There exists some integer $j$ such that $PLACE(j_{end}) = q_h$ \\
+and for all $k$ such that $0 < k < j, PLACE(k) \notin \{q_0, q_1, q_h, \# \}$ \\
+
+$PLACE(0) = \#$
 
 \end{document}
