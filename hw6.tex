@@ -52,7 +52,9 @@ $P = N \cap M$ where the ''$\cap$'' symbol represents the closure under the DFAs
 \subsection*{e}
 
 \subsection*{f}
+Treat the DFA $S$ as a directed graph such that each vertex is a state and each directed edge between some vertices $q_a$ and $q_b$ represents the transition $\delta(q_a, c) \leftarrow q_b$ for some character $c$. Compute a breadth-first search on $S$ starting from the start state $q_0$ and accept if an accepting state is ever encountered. If the breadth-first search finishes without finding any accept states, then reject. \\
 
+This algorithm works because if there exists an accepting state in the search's resultant tree, then there exists a path on $S$ from the start state $q_0$ to an accepting state. Each edge in the path represents a character $c$, and the path taken to the accepting state is a string $c_1c_2c_3...c_n$. But if there is no path to an accepting state in $S$, then there is no string of this form, and so $L(S) = \emptyset$
 \subsection*{g}
 
 \end{document}
