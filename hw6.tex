@@ -46,15 +46,13 @@ Since $L(N) = \overline  {L(M)}$, then $N$ can be constructed as a modified $M$ 
 \subsection*{b}
 $P = N \cap M$ where the ''$\cap$'' symbol represents the closure under the DFAs so that $L(P) = \{x | x \in L(N) \land x \in L(M)\}$.
 \subsection*{c}
-Let $W$ be the set of states for $Q$ such that $W = \{q \mid \neg \exists_{q'} \delta(q', w) \rightarrow q\}$ \\
-Let $\Sigma$ be the alphabet of $P$. \\
-Let $\delta$ be the transition functions of $P$ except for those involving the character $w$. \\
-Let $q_0$ be the starting state of $P$. \\
-Let $F$ be the set of final states for $Q$ such that $F = \{q \mid \forall_{q'} \delta(q, w) \rightarrow q'$ where $q'$ is an accepting state of $P\}$. \\
-Let $Q = (W, \Sigma, \delta, q_0, F)$
+Every accepting state of $P$ has a transition on the final character of the encoding of $w$. Since $Q$ does not have an input for $w$, consider $Q$ as a modification of $P$ which contains no states involved with the transitions for $w$. The accepting states of $Q$ are all states with any transition over a character in $w$ from the equivalent state in $P$ which leads to an accepting state.
+
 \subsection*{d}
+Every accepting state of $Q$ has a transition on the final character of the encoding of $z$. Since $R$ does not have an input for $z$, consider $R$ as a modification of $Q$ which contains no states involved with the transitions for $z$. The accepting states of $R$ are all states with transitions over a character in $z$ from the equivalent state in $Q$ that lead to an accepting state.
 
 \subsection*{e}
+Every accepting state of $S$ has a transition on the final character of the encoding of $y$. Since $R$ does not have an input for $y$, consider $S$ as a modification of $R$ which contains no states involved with the transitions for $y$. The accepting states of $S$ are all states with transitions over a character in $y$ from the equivalent state in $R$ that lead to an accepting state.
 
 \subsection*{f}
 Treat the DFA $S$ as a directed graph such that each vertex is a state and each directed edge between some vertices $q_a$ and $q_b$ represents the transition $\delta(q_a, c) \rightarrow q_b$ for some character $c$. Compute a breadth-first search on $S$ starting from the start state $q_0$ and accept if an accepting state is ever encountered. If the breadth-first search finishes without finding any accept states, then reject. \\
