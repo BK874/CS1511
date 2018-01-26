@@ -59,5 +59,16 @@ Treat the DFA $S$ as a directed graph such that each vertex is a state and each 
 
 This algorithm works because if there exists an accepting state in the search's resultant tree, then there exists a path on $S$ from the start state $q_0$ to an accepting state. Each edge in the path represents a character $c$, and the path taken to the accepting state is a string $c_1c_2c_3...c_n$. But if there is no path to an accepting state in $S$, then there is no string of this form, and so $L(S) = \emptyset$
 \subsection*{g}
+First, parse the arithmetic statements into parts based on their order of operations, and then apply these rules to each statement based on the order of operations.
+
+For each arithmetic statement of the form $(a + b = c)$ or $(a + b = c + d)$, create a DFA which only accepts when the equation is true. \\
+
+For each negation upon any arithmetic statement, perform the complement closure on the DFA $D$ corresponding to the term being negated. That is, switch all the accepting and non-accepting states. \\
+
+For each and symbol in the statement, perform the intersection closure on the corresponding DFAs to the left and right of the and symbol. \\
+
+Now, from right to left, conditionally transform the DFA depending on whether the quantifier is existential or universal using the above strategies. \\
+
+The final result is a DFA $S$ which a TM can then perform a BFS on to determine if $L(S) = \emptyset$. If so, then the first order sentence is never satisfiable. Otherwise, it will return a path which can be interpereted as a valid encoded variable assignment which satisfies the first order sentence. \\
 
 \end{document}
