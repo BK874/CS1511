@@ -1,2 +1,24 @@
-# ignore Texmaker build files #
+## Borrowed pieces from https://github.com/github/gitignore/blob/master/TeX.gitignore
+
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb# ignore Texmaker build files #
 **/build
+
+## Build tool auxiliary files:
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
