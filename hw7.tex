@@ -98,7 +98,20 @@ I(Y;X) &= 0.992771 - 0.737625 \\
 \subsection*{b}
 \begin{enumerate}[(i)]
 \item Since mutual information measures the average reduction in uncertainty, then a negative reduction in uncertainty would mean an increase in uncertainty in some $x$ for knowing the value of some $y$. However, Shannon's Source Coding Theorem is sufficient. There is enough information in $H(X)$ to encode $x$. No more information is needed. So, in the worst case, knowing the value of $y$ won't provide any help in determining the value of $X$, that is, the lowest value of mutual information must be 0, since knowledge of the value of $y$ cannot increase the randomness of $x$ any further.
-\item $I(X ; Y) = I(Y ; X)$ for all $X$ and $Y$ implies that mutual information always works both ways.
+\item $I(X ; Y) = I(Y ; X)$ for all $X$ and $Y$ implies that mutual information always works both ways. \\
+$I(X;Y)$ is defined as $H(X) - H(X|Y)$ and $I(Y;X)$ as $H(Y) - H(Y|X)$ \\ 
+With some algebra manipulation, $I(X,Y)$ can be arranged to be $\sum\limits_{x,y} P(x,y) log(\frac{P(x,y)}{P(x)P(y)})$ \\
+This can be further manipulated as follows: \\
+$\begin{aligned}
+I(X;Y) &= \sum\limits_{x,y} P(x,y) log(\frac{P(x,y)}{P(x)P(y)}) \\
+&= \sum\limits_{x,y} P(x,y) log(\frac{P(x,y)}{P(x)}) - \sum\limits_{x,y} P(x,y) log(P(y)) \\
+&= \sum\limits_{x} P(x) (\sum\limits_{y} P(y|x) log P(y|x)) - \sum\limits_{y} log(P(y)) (\sum\limits_{x} P(x, y)) \\
+&= \sum\limits_{x} P(x) H(Y|X = x) - \sum\limits_{y} log(P(y)P(y) \\
+&= H(Y) - H(Y|X) \\
+&= I(Y;X) \\
+\end{aligned}$ \\
+The proof for $I(Y;X) = H(X) - H(X|Y)$ follows in the same manner.
+
 \end{enumerate}
 
 \end{document}
