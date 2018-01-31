@@ -53,16 +53,16 @@ $|s|$ must be even, since $|s| = ($ number of $0$s in $s) * (2)$. $|s|$ is divis
 For every string $s$ of length $n$, where $n \geq 4$, there are enough strings of length $n - 1$ to hold all strings in $s$.\\
 The number of strings with the same number of $0$s and $1$s make up $frac{1}{\sqrt(n)}$ of all strings of length $n$.
 Consider flipping a coin $n$ times and seeing if it landed on heads as much as tails. This has a probability of happening $frac{1}{\sqrt(n)}$ times.
-So there are $\frac{2^n}{\sgrt{n}}$ strings of length $n$ that have the same number of $0$s and $1$s.\\
+So there are $\frac{2^n}{\sqrt{n}}$ strings of length $n$ that have the same number of $0$s and $1$s.\\
 
-So if $\frac{2^n}{\sgrt{n}} \leq 2^{n - 1}$, then there are enough strings of length $n - 1$ to hold each string of length $n$ which have the same number of $0$s and $1$s.\\
+So if $\frac{2^n}{\sqrt{n}} \leq 2^{n - 1}$, then there are enough strings of length $n - 1$ to hold each string of length $n$ which have the same number of $0$s and $1$s.\\
 
-$\begin{aligned*}
-\frac{2^n}{\sgrt{n}} &\leq 2^{n - 1} \\
+$\begin{aligned}
+\frac{2^n}{\sqrt{n}} &\leq 2^{n - 1} \\
 \frac{2^n}{2^{n - 1}} &\leq \sqrt{n} \\
 2^1 &\leq \sqrt{n} \\
 n &\geq 4 \\
-\end{aligned*}$
+\end{aligned}$
 
 \item Show that the set of incompressible strings contains no infinite subset that is recursively enumerable.
 
