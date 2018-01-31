@@ -38,8 +38,16 @@
 \maketitle
 
 \section*{11}
+\begin{itemize}
 
-Show that the set of compressible strings is recursively enumerable.\\
+\item Show that the set of semi-incompressible strings is not computable. \\
+Assume that the set of semi-incompressible strings is computable to reach a contradiction. \\
+Therefore $\exists$ TM $M$ the computes the set of semi-incompressible strings. \\
+Consider the TM $N$ that for each string $x$ of size $n$: \\
+\tab If $M$ halts on $x$, print $x$ and halt. \\
+$|N| = O(log_{2} n)$, which is $< \sqrt{n}$ for a sufficiently large $n$, contradicting the semi-incompressibility of $x$.\\
+
+\item Show that the set of compressible strings is recursively enumerable.\\
 A string is compressible if it is not incompressible.\\
 The set of all strings is enumerable. Consider each string to be an integer of base $|\Gamma|$ where $|\Gamma|$ is the size of the alphabet. \\
 For an alphabet $\Gamma = \{0, 1\}$, then $ALL\_STRINGS = \{\epsilon, 0, 1, 00, 01, 10, 11, 000, 001,...\}$
@@ -49,6 +57,8 @@ For each string $s$ in $ALL\_STRINGS$: \\
 		\tab\tab if $t$ describes $s$, output $s$ and break to outer for loop \\		
 Since $|t|$ is less than $|s|$, and $t$ perfectly describes $s$, then $t$ is a compressed version of $s$. Therefore, $s$ is compressible. Since $M$ checks all strings which are less than the given string $s$, then $M$ will eventually find a compressed version of $s$ if it exists. Therefore $L(M)$, the set of compressible strings, is recursively enumerable.
 
-\section*{2}
+
+\end{itemize}
+\section*{12}
 
 \end{document}
