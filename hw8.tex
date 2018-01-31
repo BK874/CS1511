@@ -78,7 +78,7 @@ For an alphabet $\Gamma = \{0, 1\}$, then $ALL\_STRINGS = \{\epsilon, 0, 1, 00, 
 Consider the TM $M$ which: \\
 For each string $s$ in $ALL\_STRINGS$: \\
 	\tab for each string $t$ in $ALL\_STRINGS$ where $|t| < |s|$ \\
-		\tab\tab if $t$ describes $s$, output $s$ and break to outer for loop \\		
+		\tab\tab if $t$ treated as a Turing machine, describes $s$, output $s$ and break to outer for loop \\		
 Since $|t|$ is less than $|s|$, and $t$ perfectly describes $s$, then $t$ is a compressed version of $s$. Therefore, $s$ is compressible. Since $M$ checks all strings which are less than the given string $s$, then $M$ will eventually find a compressed version of $s$ if it exists. Therefore $L(M)$, the set of compressible strings, is recursively enumerable.
 
 
