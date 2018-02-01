@@ -1,0 +1,60 @@
+\documentclass[letterpaper,notitlepage,twoside]{article}
+
+% Basic imports, increase margins...
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% Finite State Machine stuff
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+% Format tables nicely
+\usepackage[latin1]{inputenc}
+\usepackage{array}
+\usepackage{booktabs}
+\setlength{\heavyrulewidth}{1.5pt}
+\setlength{\abovetopsep}{4pt}
+
+\usepackage{amsfonts} 
+\usepackage{amssymb}
+\usepackage{amsmath,amsthm}
+
+\renewcommand{\implies}{\Rightarrow} % redefine command "implies"  
+\renewcommand{\iff}{\Leftrightarrow} % double arrow
+\newcommand{\maps}{\rightarrow} % define command "map" 
+\newcommand{\union}{\cup}
+\newcommand{\intersect}{\cap}
+\newcommand{\N}{\mathbb{N}} % natural number 
+\newcommand{\Q}{\mathbb{Q}} % rational number 
+\newcommand{\R}{\mathbb{R}} % real number 
+\newcommand{\Z}{\mathbb{Z}} % integers 
+\newcommand\tab[1][1cm]{\hspace*{#1}} %\tab command
+
+% Add more packages that you use here...
+
+\begin{document}
+\title{Homework N}
+\author{Joe Baker, Brett Schreiber, Brian Knotten}
+\maketitle
+
+\section*{13}
+Definition 1: $M$ \implies $N$ \\
+
+Given $M$, there exists a finite number of strings $X$ such that $M$ does not halt on each $x \in X$ in $T(|x|)$ steps. \\
+
+Consider the running time of $M$ on each $x_i \in X$. Let $s_i$ be the number of steps $M$ takes to accept $x_i$.
+
+Let $b_i = \frac{s_i}{|x_i|}$. Therefore $s_i = b_i * |x_i|$.
+Let $b$ be the largest $b_i$ for all $x_i \in X$.
+
+Now construct $N$ as a Turing machine which does the following: \\
+On input $x$:
+	Run $M$ on $x$.
+	If $M$ accepts $x$ in a $b * T(|x|)$, then accept.
+
+$N$ is in $TIME(T(n))$ because it matches the second definition. Therefore $M \implies N$.
+
+
+\end{document}
