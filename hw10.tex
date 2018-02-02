@@ -1,0 +1,77 @@
+\documentclass[letterpaper,notitlepage,twoside]{article}
+
+% Basic imports, increase margins...
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% Finite State Machine stuff
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+% Format tables nicely
+\usepackage[latin1]{inputenc}
+\usepackage{array}
+\usepackage{booktabs}
+\setlength{\heavyrulewidth}{1.5pt}
+\setlength{\abovetopsep}{4pt}
+
+\usepackage{amsfonts} 
+\usepackage{amssymb}
+\usepackage{amsmath,amsthm}
+
+\renewcommand{\implies}{\Rightarrow} % redefine command "implies"  
+\renewcommand{\iff}{\Leftrightarrow} % double arrow
+\newcommand{\maps}{\rightarrow} % define command "map" 
+\newcommand{\union}{\cup}
+\newcommand{\intersect}{\cap}
+\newcommand{\N}{\mathbb{N}} % natural number 
+\newcommand{\Q}{\mathbb{Q}} % rational number 
+\newcommand{\R}{\mathbb{R}} % real number 
+\newcommand{\Z}{\mathbb{Z}} % integers 
+\newcommand\tab[1][1cm]{\hspace*{#1}} %\tab command
+
+% Add more packages that you use here...
+
+\begin{document}
+\title{Homework 10}
+\author{Joe Baker, Brett Schreiber, Brian Knotten}
+\maketitle
+
+\section*{14}
+
+
+\section*{15}
+\subsection*(a)
+A TM $M$ can be defined as follows so that $L(M) = A$: \\
+On input $x$: \\
+\tab Instantiate $c = 0$ on the working tape. \\
+\tab for each character $x_i \in x$: \\
+\tab\tab if $x_i =$ '(', then increment $c$. \\
+\tab\tab else, if $x_i =$ ')', then decrement $c$. \\
+\tab\tab if $c < 0$ reject. (There is a right paren before a left one). \\
+\tab Accept if an only if the final value of $c = 0$. \\
+$L(M) = A$ because $L(M)$ only accepts when the number of left parentheses matches the number of right parentheses. \\
+$M$ runs in logspace because the in the worst case, the input $x$ to $M$ will be $n$ number of left parentheses. So the working tape has to count up to $n$. But by using the standard base-2 binary encoding of $n$, the working tape will only use a maximum of $\log(n)$ cells. \\
+
+\subsection*(b)
+A TM $N$ can be defined as follows so that $L(N) = B$: \\
+Assume $N$ has two work tapes. \\
+On input $x$: \\
+\tab First pass: For each character $x_i, x_{i + 1}$ in $x$: \\
+\tab\tab If $x_i, x_{i + 1} = $ '(', ']', reject, \\
+\tab\tab or if $x_i, x_{i + 1} = $ '[', ')', reject. \\
+
+Set $c_1 = 0$ on the first working tape. \\
+Set $c_2 = 0$ on the second working tape. \\
+\tab Second pass: For each character $x_i$ in $x$: \\
+\tab\tab If $x = $ '(', increment $c_1$ \\
+\tab\tab or if $x = $ ')', decrement $c_1$ \\
+\tab\tab or if $x = $ '[', increment $c_2$ \\ 
+\tab\tab or if $x = $ ']', decrement $c_2$ \\
+\tab\tab If $c_1 < 0$ or $c_2 < 0$, then immediately reject. \\
+\tab If $c_1 = 0$ and $c_2 = 0$, then accept. Otherwise, reject. \\
+
+$N$ runs in logspace, even though it uses two work tapes, since $2\log(n) = O(\log(n))$.
+\end{document}
