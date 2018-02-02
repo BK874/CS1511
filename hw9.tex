@@ -50,20 +50,23 @@ Let $b$ be the largest $b_i$ for all $x_i \in X$.\\
 Now construct $N$ as a Turing machine which does the following: \\
 On input $x$: \\
 	\tab Run $M$ on $x$ while counting the number of steps. \\
-	\tab If $M$ accepts $x$ in a $b * T(|x|)$, then accept. \\
+	\tab If $M$ accepts $x$ in $b * T(|x|)$ steps, then accept. \\
 $N \in TIME(T(n))$ because it accepts $x$ within some number $b * T(|x|)$ steps. Therefore $M \implies N$. \\ \\
-We will use $N$ that accepts $x$ in $b * T(|x|)$ steps to build $M$ that accepts $x$ in $T(|x|)$ steps with finitely many exceptions.
-Second, show $N \implies M$
+Second, show $N \implies M:$ \\
+We will use $N$ that accepts $x$ in $b * T(|x|)$ steps to build $M$ that accepts $x$ in $T(|x|)$ steps with finitely many exceptions. \\
 Given $N$, we will construct $M$'s alphabet $\gamma '$ and set of states $Q'$ from $N$'s alphabet $\gamma$ and set of states $Q$ as follows: \\
 $\gamma ' = \gamma \cup \gamma^{b}$ \\
-$Q'$ = $Q \times b \times \gamma^{3b} \cup Q \times \gamma^{i}$ where $i = 1, ..., m-1$
+$Q'$ = $Q \times b \times \gamma^{3b} \cup Q \times \gamma^{i}$ where $i = 1, ..., m-1$ \\
 Define $M$ as follows:
-\tab Copy the input from the read tape to a new tape in chunks of size $b$ using the symbols from $\gamma'$ that correspond to the chunks. \\
-\tab As each symbol in a chunk of $b$ the new machine $M$ will transition to a new state in $Q \times \gamma^{i}$ in order to remember the symbols in the chunk it has read. \\
-\tab When the end of the input is encountered, pad the rest of the chunk with spaces until the chunk is size $b$ \\
-\tab $M$ will then perform four steps by moving to the left once, right twice, and to the left once again. During each of these steps $M$ will move to the state in $Q \times b \times \gamma^{3b}$ to track the next $b$ steps of $N$. \\
-\tab When $M$ encounters an accepting state of $N$, accept. \\
-$M$ executes every $b$ number of steps of $N$ in a constant number of steps, so $M$ runs in $T(|x|)$ time and accepts iff $N$ accepts.
+\begin{itemize}
+\item Copy the input from the read tape to a new tape in chunks of size $b$ using the symbols from $\gamma'$ that correspond to the chunks. 
+\item As each symbol in a chunk of $b$ is read $M$ will transition to a new state in $Q \times \gamma^{i}$ in order to remember the symbols in the chunk it has read. 
+\item When the end of the input is encountered, pad the rest of the chunk with spaces until the chunk has size $b$ 
+\item$M$ will then perform four steps by moving to the left once, right twice, and to the left once again. During each of these steps $M$ will move to a state in $Q \times b \times \gamma^{3b}$ to track the next $b$ steps of $N$. 
+\item When $M$ encounters an accepting state of $N$, accept.
+\end{itemize}
+$M$ executes every $b$ number of steps of $N$ in a constant number of steps, so $M$ runs in $T(|x|)$ time and accepts iff $N$ accepts. \\ \\
+We have shown that given $M$ we can construct $N$ and therefore $M \implies N$ and that given $N$ we can construct $M$ and therefore $N \implies M$. Thus, $M \Leftrightarrow N$ and the definitions are equivalent.
 
 
 
