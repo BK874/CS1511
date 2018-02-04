@@ -40,10 +40,18 @@
 \maketitle
 
 \section*{14}
+Let $J_i$ be the $i^{th}$ binary-encoded Java program, and $MJ_i$ be the $i^{th}$ binary-encoded mini-Java program.
+\\\\
+Define TM $D$:
+For an input $x$, run $MJ_x(x)$ and return the opposite. (Note that all $MJ$ programs halt on all inputs).
+\\\\
+The language accepted by $D$ cannot be accepted by any $MJ_i$ by its construction. Any $MJ_i$ will return the opposite of $D$ on input $i$, for any $i$.
+\\\\
+Need to show that language accepted by $D$ can be accepted by some $J_i$.
 
 
 \section*{15}
-\subsection*(a)
+\subsection*{a}
 A TM $M$ can be defined as follows so that $L(M) = A$: \\
 On input $x$: \\
 \tab Instantiate $c = 0$ on the working tape. \\
@@ -55,7 +63,7 @@ On input $x$: \\
 $L(M) = A$ because $L(M)$ only accepts when the number of left parentheses matches the number of right parentheses. \\
 $M$ runs in logspace because the in the worst case, the input $x$ to $M$ will be $n$ number of left parentheses. So the working tape has to count up to $n$. But by using the standard base-2 binary encoding of $n$, the working tape will only use a maximum of $\log(n)$ cells. \\
 
-\subsection*(b)
+\subsection*{b}
 A TM $N$ can be defined as follows so that $L(N) = B$: \\
 Assume $N$ has two work tapes. \\
 On input $x$: \\
