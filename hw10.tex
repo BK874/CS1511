@@ -45,9 +45,9 @@ Let $J_i$ be the $i^{th}$ binary-encoded Java program, and $MJ_i$ be the $i^{th}
 Define TM $D$:
 For an input $x$, run $MJ_x(x)$ and return the opposite. (Note that all $MJ$ programs halt on all inputs).
 \\\\
-The language accepted by $D$ cannot be accepted by any $MJ_i$ by its construction. Any $MJ_i$ will return the opposite of $D$ on input $i$, for any $i$.
+The language accepted by $D$ cannot be accepted by any $MJ_i$ by its construction. Any $MJ_i$ will return the opposite of $D$ on input $i$.
 \\\\
-Need to show that language accepted by $D$ can be accepted by some $J_i$.
+Since mini-java is a subset of Java, we can build a Java $J$ program that: For an input $x$, run $MJ_x(x)$ and returns the opposite. Then $J$ accepts the language that no $MJ_i$ can accept.
 
 
 \section*{15}
