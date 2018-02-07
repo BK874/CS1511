@@ -51,6 +51,7 @@ Next, we will show that $\forall C' \in EXPSPACE$, $C' \leq_{poly} C$. \\
 Let $C' \in EXPSPACE$. \\
 Since $C' \in EXPSPACE$, $\exists$ TM $M$ and $k \in \Z$ such that $M(x)$ accepts in $2^{|I|^{k}}$ space iff $x \in C'$
 
-
+\subsection*{b}
+The problem with the previous proof was that the space requirements for an arbitrary $<M>$ could grow faster than $2^n$. Consider a TM $T$ such that $L(T) = C$. Since $C$ passes in an arbitrary base $c$, $T$ needs to account for that difference in growth rate. But this $c$ is negligible, because $c^{n^k}$ can be expressed as $2^{n^{k + \epsilon}}$ for some $\epsilon$. Since the number of steps can be written as $2^{n^{x + \epsilon}}$, and since $T$ can handle any $2^{n^k}}$, the base does not matter.
 
 \end{document}
