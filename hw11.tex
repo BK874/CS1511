@@ -51,7 +51,7 @@ The new approach will have a TM $U$ which runs $T'$ and $S'$ which are both $log
 Let $C = \left\{ \left( M, I, 2^{|I|^k} \right) \mid \text{ TM } M \text{ accepts } I \text{ in at most } 2^{|I|^k} \text{ space } \right\}$.\\
 First we will show that $C \in EXPSPACE$:\\ 
 Construct a TM $T$ that takes in the tuple $(M, I, 2^{I^{k}})$, reads $I$, and runs $M$ on $I$ with a tape of size $2^{|I|^{k}}$. \\ 
-$T$ accepts if $M$ accepts and used less than $2^{|I|^{k}}$ space and rejects otherwise. \\
+$T$ accepts if $M$ accepts using less than $2^{|I|^{k}}$ space and rejects otherwise. \\
 Because the TM $M$ uses exponential space, $T$ must also have exponential space available and therefore $C \in EXPSPACE$. \\ \\ 
 Next, we will show that $\forall C' \in EXPSPACE$, $C' \leq_{poly} C$. \\
 Let $C' \in EXPSPACE$. \\
