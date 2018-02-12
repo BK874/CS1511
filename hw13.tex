@@ -89,8 +89,16 @@ Let $L \in \text{co-NP}$. Then $\overline{\text{3SAT}} \le_P L$ since $\overline
 Now let $L \in \text{NP}$. Then.... prove pt 1.b
 \\\\
 Next we will show that if NP = co-NP, then $\Sigma_2^p = \text{NP} = \pi_2^p = \text{co-NP}$:\\
-Proof for pt 2 goes here..
-\\\\
+Consider an arbitrary language $L \in$ NP. If NP = co-NP, then $L \in$ co-NP.\\
+$L$ being in NP implies that for some string $x \in L$, there exists a certificate $c$ of polynomial size which a poly-time Turing machine can use to verify that $x \in L$. \\
+$L$ being in co-NP implies that for some string $x \in L$, for all arbitrary "counter examples", a poly-time Turing machine can verify these counter examples do not forbid $x$ from being a member of $L$. \\
+
+Consider an arbitrary language $M$ such that $M \in \Sigma_2^p$. This means that $M$ can be described as an existential statement followed by a universal. Since NP = co-NP, this latter universal statement can be rewritten as an existential statement, because instead of providing all counter examples, a verifier TM can be given a verifying certificate $c$. So $M$ can be rewrwitten as two existential statements, which can further be rewritten as a single existential statement requiring a pair of values which would both verify an input string $x \in M$. Since $M$ can be verified by a poly-time verifier and a certificate (containing a tuple), $M \in$ NP. Therefore, for all $M \in \Sigma_2^p \implies M \in$ NP. \\
+
+It follows that any language $N \in \Pi_2^p \implies N \in$ co-NP, because $N$'s universal and existential statement can be rewritten as a universal statement requiring a pair of values. And since $N \in$ co-NP, $N \in$ NP. \\
+
+This strategy can be applied to all levels of the polynomial hierarchy. Any given class $\Sigma_n^p$ can have its final existential or universal quantifier be rewritten as a universal or existential quantifier respectively and combined with the previous quantifier to expect a pair of values, which transforms the class into $\Sigma_{n-1}^p$, which itself can have its final  quantifier be rewritten and be combined with the previous quantifier to expect a 3-tuple of values. This can be repeatedly applied until the class $\Sigma_1^p$ is reached, which is NP. The same is true for any given class $\Pi_n^p$. \\
+
 Finally, we can repeat the logic used to show that $\Sigma_2^p$ and $\pi_2^p$ collapse into NP and co-NP to show that higher levels of the polynomial time hierarchy collapse into NP and co-NP. Thus if 3SAT is polynomial-time reducible to $\overline{\text{3SAT}}$, then PH = NP.
 
 \end{document}
