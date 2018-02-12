@@ -1,0 +1,96 @@
+\documentclass[letterpaper,notitlepage,twoside]{article}
+
+% Basic imports, increase margins...
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{commath}
+
+% Finite State Machine stuff
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+% Format tables nicely
+\usepackage[latin1]{inputenc}
+\usepackage{array}
+\usepackage{booktabs}
+\setlength{\heavyrulewidth}{1.5pt}
+\setlength{\abovetopsep}{4pt}
+
+\usepackage{amsfonts} 
+\usepackage{amssymb}
+\usepackage{amsmath,amsthm}
+
+\renewcommand{\implies}{\Rightarrow} % redefine command "implies"  
+\renewcommand{\iff}{\Leftrightarrow} % double arrow
+\newcommand{\maps}{\rightarrow} % define command "map" 
+\newcommand{\union}{\cup}
+\newcommand{\intersect}{\cap}
+\newcommand{\N}{\mathbb{N}} % natural number 
+\newcommand{\Q}{\mathbb{Q}} % rational number 
+\newcommand{\R}{\mathbb{R}} % real number 
+\newcommand{\Z}{\mathbb{Z}} % integers 
+\newcommand\tab[1][1cm]{\hspace*{#1}} %\tab command
+
+% Add more packages that you use here...
+
+\begin{document}
+\title{Homework 13}
+\author{Joe Baker, Brett Schreiber, Brian Knotten}
+\maketitle
+
+\section*{19}
+
+\subsection*{a}
+Problem 5.9 part (a): Show that EXACT INDSET $\in \pi_2^p$.
+\\\\
+Proof:\\
+EXACT INDSET can be expressed as the following language in first-order logic:\\\\
+EXACT INDSET = $\left\{ \left( G, k \right) \mid \forall \text{ Independent Sets } S_1 \in G,  \exists \text{ an Independent Set } S_2 \in G \text{ such that } \abs{S_2} = k \text{ and } \abs{S_2} >= \abs{S_1} \right\}$.\\\\
+By the definition of $\pi_2^p$, EXACT INDSET $\in \pi_2^p$.
+
+\subsection*{b}
+Problem 5.11: Show that SUCCINCT SET-COVER $\in \Sigma_2^p$.
+\\\\
+Proof:\\
+SUCCINCT SET COVER can be expressed as the following language in first-order logic:\\\\
+SUCCINCT SET COVER = $\left\{ \left( S, k \right) \mid \exists \text{ } S' \subseteq S, \forall \text{ possible assignments of } S', \text{ then } \abs{S'} <= k \text{ and } S' \text{ true} \right\}$.\\\\
+By the definition of $\Sigma_2^p$, SUCCINCT SET COVER $\in \Sigma_2^p$.
+
+\subsection*{c}
+Problem 5.13: Show that VC-DIMENSION $\in \Sigma_3^p$.
+\\\\\
+Proof:\\
+VC-DIMENSION can be expressed as the following language in first-order logic:\\\\
+VC-DIMENSION = $\left\{ \left( C, k \right) \mid \exists \text{ } X \subseteq U, \forall \text{ } X' \subseteq X, \exists \text{ } i, \text{ such that } \abs{X} >= k \text{ and } C_i \cup X = X' \right\}$.\\\\
+By the definition of $\Sigma_3^p$, VC-DIMENSION $\in \Sigma_3^p$.
+
+\subsection*{d}
+Problem 5.9 part(b): Show that EXACT INDSET $\in $ DP.
+\\\\
+Proof:\\
+Let $L_1 = \left\{ \left( G, k \right) \mid \exists \text{ an Independent Set } S, \text{ such that } \abs{S} = k \right\}$.\\
+$L_1 \in \text{NP}$ because $L_1 \in \Sigma_1^p$ by definition and $\Sigma_1^p = \text{NP}$.
+\\\\
+Let $L_2 = \left\{ \left( G, k \right) \mid \forall \text{ Independent Sets } S, \text{ such that } \abs{S} <= k \right\}$.\\
+$L_2 \in \text{co-NP}$ because it is in $\pi_1^p$ by definition and $\pi_1^p = \text{co-NP}$.
+\\\\
+Since the intersection of two sets requires both constraints to be met:\\
+Let $L = L_1 \cap L_2 = \left\{ \left( G, k \right) \mid \forall \text{ Independent Sets } S_1, \exists \text{ an Independent Set } S_2, \text{ such that } \abs{S_1} <= k \text{ and } \abs{S_2} = k \right\}$ = EXACT IND SET.\\\\
+Finally, since $L = L_1 \cap L_2$ and $L_1 \in \text{NP}$ and $L_2 \in \text{co-NP}$, then $L \in \text{DP}$.
+
+\section*{20}
+Problem 5.3: Show that if 3SAT is polynomial-time reducible to $\overline{\text{3SAT}}$, then PH = NP.
+\\\\
+Proof:\\
+First we will show that if 3SAT is polynomial-time reducible to $\overline{\text{3SAT}}$, then NP = co-NP:\\
+Let $L \in \text{co-NP}$. Then $\overline{\text{3SAT}} \le_P L$ since $\overline{\text{3SAT}}$ is co-NP-complete. Next, 3SAT $\le_P \overline{\text{3SAT}} \le_P L$ by our original assumption, so $L$ is reducible to 3SAT. Since 3SAT $\le_P L$, there exists a TM with input and advice tapes which accepts $L$ in polynomial time, so $L \in$ NP. Thus, $L \in$ co-NP $\rightarrow L \in$ NP.\\
+Now let $L \in \text{NP}$. Then.... prove pt 1.b
+\\\\
+Next we will show that if NP = co-NP, then $\Sigma_2^p = \text{NP} = \pi_2^p = \text{co-NP}$:\\
+Proof for pt 2 goes here..
+\\\\
+Finally, we can repeat the logic used to show that $\Sigma_2^p$ and $\pi_2^p$ collapse into NP and co-NP to show that higher levels of the polynomial time hierarchy collapse into NP and co-NP. Thus if 3SAT is polynomial-time reducible to $\overline{\text{3SAT}}$, then PH = NP.
+
+\end{document}
