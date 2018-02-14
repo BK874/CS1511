@@ -77,7 +77,8 @@ First, show that $f$ computed by circuit $|C| = S \rightarrow$ $f$ computed by $
 For each Boolean gate (NOT, AND, OR) in $C$, there exists an equivalent straight-line program statement with a left-side assignment variable corresponding to the output of the gate and a right side consisting of either a boolean operation ($\land$, $\lor$) performing the gate's operation on input variables corresponding to the input of the gate, or the negation ($\neg$) of an input variable corresponding to the input of the gate. \\
 Therefore, given a circuit $|C| = S$, we can construct an equivalent straight-line program with $S$ statements by iterating over each gate in $C$ and converting it to an equivalent straight-line program statement. \\ \\
 Next, show that $f$ computed by $S$-line program $\rightarrow$ $f$ computed by circuit $|C| = S$: \\
-For every straight-line program statement there exists an equivalent Boolean gate with inputs corresponding to the right-side variable(s) of the statement that performs the corresponding Boolean operation of the right-side of the statement and an output corresponding to the left-side assignment variable of the statement.
+For every straight-line program statement there exists an equivalent Boolean gate with inputs corresponding to the right-side variable(s) of the statement that performs the corresponding Boolean operation of the right-side of the statement and an output corresponding to the left-side assignment variable of the statement. \\
+Therefore, given a straight-line program with $S$ statements, we can construct an equivalent circuit $|C| = S$ by iterating over each statement and converting it to an equivalent Boolean gate. \\
 
 \section*{22}
 
