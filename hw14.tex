@@ -82,5 +82,18 @@ Therefore, given a straight-line program with $S$ statements, we can construct a
 Thus, $f$ can be computed by a circuit $|C| = S \Leftrightarrow f$ can be computed by a $S$-line straight-line program.
 
 \section*{22}
+Problem:
+\\
+Show that there are some Boolean functions $f: \left\{ 0,1 \right\}^n \rightarrow \left\{ 0,1 \right\}$ that can be computed with $n^4$ gates but not with $n^2$ gates.
+\\\\
+Proof:
+\\
+Let $f: \left\{ 0,1 \right\}^x \rightarrow \left\{ 0,1 \right\}$ be a Boolean function that cannot be computed with a circuit of $\frac{2^x}{x}$ or less gates. We know from Shannon's proof of Theorem 6.21 in the book that such a function exists. We also know from class that a circuit of size $x*2^x$ gates or less can compute $f$.
+\\\\
+Let $x = 3*log(n)$ and define $g: \left\{ 0,1 \right\}^n \rightarrow \left\{ 0,1 \right\}$ as a Boolean function that runs $f$ for the first $x$ bits of input.
+\\\\
+Then the size of $g$ uses less than $n^4$ gates to compute $f$ since a circuit of size $x*2^x$ gates or less can compute $f$ and $(3*log(n))*2^{3*log(n)} = 3*log(n)*n^3 \in O(n^4)$. Additionally, $g$ uses more than $n^2$ gates to compute $f$ since $f$ cannot be computed with less than $\frac{2^x}{x}$ and $2^{3*log(n)} / (3*log(n)) = n^3 / (3*log(n)) \notin O(n^2)$. Thus $f$ is a function which can be computed with $n^4$ gates but not $n^2$ gates.
+
+%From Shannon's proof of Theorem 6.21 in the book we know that a function $f: \left\{ 0,1 \right\}^x \rightarrow \left\{ 0,1 \right\}$ exists that cannot be computed by a circuit with $\frac{2^x}{x}$ gates. However, we also know that every function can be computed by a circuit with $x*2^x$ gates.\\
 
 \end{document}
