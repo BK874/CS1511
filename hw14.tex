@@ -49,10 +49,10 @@ The formula for $F$ can be naively implemented through the following algorithm:
 List all binary numbers of length $n$ from $0$ to $2^n$. Let $B$ be this list.
 For each number $b$ in $B$: \\
 \tab for each bit $b_i$ in $b$: \\
-\tab\tab if b_i = 0, write out $\not x_i$ \\
-\tab\tab if b_i = 1, write out $x_i$ \\
-\tab Join together all of these boolean expressions with $\land$s \\
-Join together all of these boolean expressions with $\lor$s \\
+\tab\tab if $b_i = 0$, write out $\neg x_i$ \\
+\tab\tab if $b_i = 1$, write out $x_i$ \\
+\tab Join together all of these boolean expressions with $\land$'s \\
+Join together all of these boolean expressions with $\lor$'s \\
 
 Here is an example Boolean function $f$ encoded as 1011. This means $f$ has the following outputs: \\
 $f(00) = 1$ \\
@@ -69,11 +69,12 @@ $f(x_1x_2) = (\neg x_1 \land \neg x_2) \lor \\
 So every boolean function on $n$ bits has a formula of size at most $2^n$.
 Since $\land$, $\lor$, and $\neg$ exist as gates in circuits, this formula can be converted into a circuit with size at most $2^n$ gates.
 
-\subsection*{b} For every boolean function $f$ can be computed by a Boolean circuit of size $S$ iff $f$ can be computed by a straight-line program with $S$ lines. \\
+\subsection*{b}
 First, show that $f$ computed by circuit $|C| = S \rightarrow$ $f$ computed by $S$-line program: \\
-For each Boolean gate in $C$, there exists an equivalent straight-line program statement with a left-side assignment variable corresponding to the output of the gate and a right side consisting of either a boolean operation performing the gate's operation on input variables corresponding to the input of the gate, or the negation of an input variable corresponding to the input of the gate. \\
+For each Boolean gate (NOT, AND, OR) in $C$, there exists an equivalent straight-line program statement with a left-side assignment variable corresponding to the output of the gate and a right side consisting of either a boolean operation ($\land$, $\lor$) performing the gate's operation on input variables corresponding to the input of the gate, or the negation ($\neg$) of an input variable corresponding to the input of the gate. \\
+Therefore, given a circuit $|C| = S$, we can construct an equivalent straight-line program with $S$ statements by iterating over each gate in $C$ and converting it to an equivalent straight-line program statement. \\ \\
 Next, show that $f$ computed by $S$-line program $\rightarrow$ $f$ computed by circuit $|C| = S$: \\
-For every straight-line program statement there exists an equivalent Boolean gate with inputs corresponding to the right-side variable(s) of the statement
+For every straight-line program statement there exists an equivalent Boolean gate with inputs corresponding to the right-side variable(s) of the statement that performs the corresponding Boolean operation of the right-side of the statement and an output corresponding to the left-side assignment variable of the statement.
 
 \section*{22}
 
