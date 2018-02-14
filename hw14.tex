@@ -42,6 +42,32 @@
 \section*{21}
 
 \subsection*{a}
+Any Boolean function $F$ for an input size $n$ can be encoded into a string $s$ of size $2^n$, where each bit represents an output for a given input. For example, if $n = 4$, the first bit of $s$, either a 0 or 1, represents the output for the input 0000. The second bit of $s$ represents the output for input 0001... and the last bit of $s$ represents the output for input 1111.
+
+The formula for $F$ can be naively implemented through the following algorithm:
+
+List all binary numbers of length $n$ from $0$ to $2^n$. Let $B$ be this list.
+For each number $b$ in $B$: \\
+\tab for each bit $b_i$ in $b$: \\
+\tab\tab if b_i = 0, write out $\not x_i$ \\
+\tab\tab if b_i = 1, write out $x_i$ \\
+\tab Join together all of these boolean expressions with $\land$s \\
+Join together all of these boolean expressions with $\lor$s \\
+
+Here is an example Boolean function $f$ encoded as 1011. This means $f$ has the following outputs: \\
+$f(00) = 1$ \\
+$f(01) = 0$ \\
+$f(10) = 1$ \\
+$f(11) = 1$ \\
+
+The corresponding boolean formula using the naive implementation is:
+$f(x_1x_2) = (\neg x_1 \land \neg x_2) \lor \\
+\neg(\neg x_1 \land x_2) \lor \\
+(x_1 \land \neg x_2) \lor \\
+(x_1 \land x_2)$ \\
+
+So every boolean function on $n$ bits has a formula of size at most $2^n$.
+Since $\land$, $\lor$, and $\neg$ exist as gates in circuits, this formula can be converted into a circuit with size at most $2^n$ gates.
 
 \subsection*{b} For every boolean function $f$ can be computed by a Boolean circuit of size $S$ iff $f$ can be computed by a straight-line program with $S$ lines. \\
 First, show that $f$ computed by circuit $|C| = S \rightarrow$ $f$ computed by $S$-line program: \\
