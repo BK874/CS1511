@@ -45,7 +45,7 @@
 Consider that every Boolean circuit can be represented by AND, OR, and NOT gates. \\
 Consider a Boolean circuit $C$ containing $n$ gates. There exists a corresponding Boolean formula $F$ of size $n$, because AND, OR, and NOT gates can be represented in a Boolean formula as logical operators $\land$'s, $\lor$'s, and $\neg$'s. Since there is a one-to-one mapping of gates to logical operators, there exists a Boolean formula $F$ with an output equivalent to $C$ of size $n$.
 
-Any Boolean function $F$ for an input size $n$ can be encoded into a string $s$ of size $2^n$, where each bit represents an output for a given input. For example, if $n = 4$, the first bit of $s$, either a 0 or 1, represents the output for the input 0000. The second bit of $s$ represents the output for input 0001... and the last bit of $s$ represents the output for input 1111.
+Any Boolean function $F$ for an input size $n$ can be encoded into a string $x$ of size $|x| = S = 2^n$, where each bit represents an output for a given input. For example, if $n = 4$, the first bit of $x$, either a 0 or 1, represents the output for the input 0000. The second bit of $x$ represents the output for input 0001... and the last bit of $x$ represents the output for input 1111.
 
 The formula for $F$ can be naively implemented through the following algorithm:
 
