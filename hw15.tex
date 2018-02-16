@@ -40,6 +40,9 @@
 \maketitle
 
 \section*{23}
+Problem 6.3 Describe a decidable language in $P/_{poly}$ that is not in $P$
+\\\\
+From the Time Hierarchy Theorem we know there exists a decidable language $L \notin EXP$. Using $L$, we can construct the unary language $L' = \{1^{n} | n \in L\}$. Clearly, by the proof of claim 6.8 in the book, $L' \in P/_{poly}$. To show that $L' \notin P$, assume the opposite: therefore $\exists$ TM $M$ that decides $L'$ in time $O(n^{k})$. We could then use $M$ to construct the TM $M'$ that decides $L$ in time $O((2^{n})^{k})$, meaning that $L \in EXP$ - a contradiction. All that remains is to show that $L'$ is decidable; this is trivial however, as $L$ is decidable so we merely define $L'$ to reject all inputs not of the form $1^{n}$ and accept only if $n \in L$. Therefore $\exists$ decidable language $L'$ such that $L' \in P_{poly}$ and $L' \notin P$.
 
 \section*{24}
 
