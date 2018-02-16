@@ -58,10 +58,10 @@ Problem 6.6: Show for every $k > 0$ that $\Sigma_2^p$ contains languages whose c
 \\\\
 Proof:
 \\
-
+Consider the circuit $C$ from problem 6.5. Now construct the same formula $F$, but only use two quantifiers. One $\exists$ over the tuple of some of the variables and one $\forall$ for the remaining tuple of variables. Again let $L$ be the language of all variable assignments for $k$ which satisfy $F$. Since $\left| C \right|$ is polynomial, $C$ can decide if an input is valid for $F$ in polynomial time. So there must exist a TM $M$ with 2 advice tapes (from the quantifiers) that can decide the input with its advice tapes in polynomial time. Thus for each $k > 0$, there is a language in $\Sigma_2^p$ whose circuit complexity is $\Omega\left(n^k\right)$.
 
 \subsection*{c}
-Problem 6.: Show that if P = NP, then there is a language in EXP that requires circuits of size $\frac{2^n}{n}$.
+Problem 6.7: Show that if P = NP, then there is a language in EXP that requires circuits of size $\frac{2^n}{n}$.
 \\\\
 Proof:
 \\
