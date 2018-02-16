@@ -1,0 +1,67 @@
+\documentclass[letterpaper,notitlepage,twoside]{article}
+
+% Basic imports, increase margins...
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% Finite State Machine stuff
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+% Format tables nicely
+\usepackage[latin1]{inputenc}
+\usepackage{array}
+\usepackage{booktabs}
+\setlength{\heavyrulewidth}{1.5pt}
+\setlength{\abovetopsep}{4pt}
+
+\usepackage{amsfonts} 
+\usepackage{amssymb}
+\usepackage{amsmath,amsthm}
+
+\renewcommand{\implies}{\Rightarrow} % redefine command "implies"  
+\renewcommand{\iff}{\Leftrightarrow} % double arrow
+\newcommand{\maps}{\rightarrow} % define command "map" 
+\newcommand{\union}{\cup}
+\newcommand{\intersect}{\cap}
+\newcommand{\N}{\mathbb{N}} % natural number 
+\newcommand{\Q}{\mathbb{Q}} % rational number 
+\newcommand{\R}{\mathbb{R}} % real number 
+\newcommand{\Z}{\mathbb{Z}} % integers 
+\newcommand\tab[1][1cm]{\hspace*{#1}} %\tab command
+
+% Add more packages that you use here...
+
+\begin{document}
+\title{Homework 15}
+\author{Joe Baker, Brett Schreiber, Brian Knotten}
+\maketitle
+
+\section*{23}
+
+\section*{24}
+
+\subsection*{a}
+Problem 6.5: Show for every $k > 0$ that PH contains languages whose circuit complexity is $\Omega\left(n^k\right)$.
+\\\\
+Proof:
+\\
+Let $C$ be a circuit with complexity at of at least $n^k$. We know that such a circuit must exist by Theorem 6.22 from the book. We can construct a boolean formula $F$ from the gates of $C$ with $k$ quantifiers over the boolean formula. Now let $L$ be the language of all variable assignments for $k$ which satisfy $F$. Since $\left| C \right|$ is polynomial, $C$ can decide if an input is valid for $F$ in polynomial time. So there must exist a TM $M$ with $k$ advice tapes (from the quantifiers) that can decide the input with its advice tapes in polynomial time. Thus for each $k > 0$, there is a language in PH whose circuit complexity is $\Omega\left(n^k\right)$.
+
+\subsection*{b}
+Problem 6.6: Show for every $k > 0$ that $\Sigma_2^p$ contains languages whose circuit complexity is $\Omega\left(n^k\right)$.
+\\\\
+Proof:
+\\
+
+
+\subsection*{c}
+Problem 6.: Show that if P = NP, then there is a language in EXP that requires circuits of size $\frac{2^n}{n}$.
+\\\\
+Proof:
+\\
+
+
+\end{document}
