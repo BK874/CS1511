@@ -43,6 +43,14 @@
 
 \section*{7.6}
 \subsection*{a}
-
+Contruct a TM $N$ with the following behavior: \\
+On input $x$:
+\begin{enumerate}
+  \item Run $M$ on $x$.
+  \item If $M(x) = 1$, accept.
+  \item If $M(x) = 0$, reject.
+  \item If $M(x) = ?$, repeat step 1.
+\end{enumerate}
+$L(N) \in$ ZPP because it uses a probablistic TM $M$, but has zero-sided error. If $M$ outputs $1$ or $0$, then $N$ finishes computation. But since $M$ has a chance of outputting $?$, the runtime of $N$ is probablistic, because $N$ only halts when $M$ does not output $?$. $P(N$ loops once$) = \frac{1}{2}$, $P(N$ loops twice$) = \frac{1}{4}$, $P(N$ loops $n$ times$) = \frac{1}{2^n}$.
 \subsection*{b}
 \end{document}
