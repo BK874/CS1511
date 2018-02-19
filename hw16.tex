@@ -74,7 +74,7 @@ Since 3-SAT is decidable in polynomial time, 3-SAT $\in $ P. Since 3-SAT is also
 \section*{26}
 
 \subsection*{a}
-Contruct a TM $N$ with the following behavior: \\
+Construct a TM $N$ with the following behavior: \\
 On input $x$:
 \begin{enumerate}
   \item Run $M$ on $x$.
@@ -82,6 +82,56 @@ On input $x$:
   \item If $M(x) = 0$, reject.
   \item If $M(x) = ?$, repeat step 1.
 \end{enumerate}
-$L(N) \in$ ZPP because it uses a probablistic TM $M$, but has zero-sided error. If $M$ outputs $1$ or $0$, then $N$ finishes computation. But since $M$ has a chance of outputting $?$, the runtime of $N$ is probablistic, because $N$ only halts when $M$ does not output $?$. $P(N$ loops once$) = \frac{1}{2}$, $P(N$ loops twice$) = \frac{1}{4}$, $P(N$ loops $n$ times$) = \frac{1}{2^n}$.
+$L(N) \in$ ZPP because it uses a probabilistic TM $M$, but has zero-sided error. If $M$ outputs $1$ or $0$, then $N$ finishes computation. But since $M$ has a chance of outputting $?$, the runtime of $N$ is probabilistic, because $N$ only halts when $M$ does not output $?$. $P(N$ loops once$) = \frac{1}{2}$, $P(N$ loops twice$) = \frac{1}{4}$, $P(N$ loops $n$ times$) = \frac{1}{2^n}$.
 \subsection*{b}
+Show that $ZPP = RP \cap coRP$ \\ \\
+First we show that $ZPP \subseteq RP \cap coRP$ \\
+Let $L \in ZPP$ \\
+Then $\exists$ probabilistic TM $T$ and integer $t$ such that:
+\begin{itemize}
+  \item $\forall x T(x)$ runs in time $|x|^{t}$ for all but finitely many inputs
+  \item $x \in L \Rightarrow$ Prob($T(x)$ accepts) $=1$
+  \item $x \notin L \Rightarrow$ Prob($T(x)$ rejects) $=1$
+\end{itemize}
+Using $T$, we construct a TM $Z$ as follows: \\
+On input $x$:
+\begin{enumerate}
+  \item Run $T$ on $x$ for $100|x|^{t}$ steps.
+  \item If $T$ halted, output its answer
+  \item Otherwise reject
+\end{enumerate}
+Now we have a TM $Z$ such that if $x \in L$, $Z$ accepts with probability $\leq \frac{1}{100}$ and, if $x \notin L$, $Z$ accepts accepts with probability 0. Additionally, because $T$ runs in polynomial time, so does $Z$. \\
+Therefore $L(Z) \in RP$ and $ZPP \subseteq RP$. \\ 
+Moreover, using the fact that $ZPP$ is closed under complement, we get that $ZPP \subseteq coRP$ by switching acceptance and rejection in our definition of $Z$. \\
+Therefore $L(Z) \in coRP$ and $ZPP \subseteq coRP$. \\
+Thus $L(Z) \in RP \cap coRP$ and $ZPP \subseteq RP \cap coRP$.
+\\ \\
+Next we will show $RP \cap coRP \subseteq ZPP$: \\
+Let $L \in RP \cap coRP$ \\
+Then $\exists$ probabilistic TM $M$ and integer $m$ such that:
+\begin{itemize}
+  \item $\forall x M(x)$ runs in time $|x|^{m}$ for all but finitely many inputs
+  \item $x \in L \Rightarrow$ Prob($M(x)$ accepts) $> 0.6$
+  \item $x \notin L \Rightarrow$ Prob($M(x)$ rejects) $=1$
+\end{itemize}
+There also exists a probabilistic TM $N$ and integer $n$ such that:
+\begin{itemize}
+\item $\forall x N(x)$ runs in time $|x|^{n}$ for all but finitely many inputs
+\item $x \in L \Rightarrow$ Prob($N(x)$ accepts) $=1$
+\item $x \notin L \Rightarrow$ Prob($N(x)$ rejects) $> 0.6$
+\end{itemize}
+Using $M$ and $N$, we construct a TM $O$ similar to the TM constructed in part a as follows: \\
+On input $x$:
+\begin{enumerate}
+  \item Run $M$ on $x$.
+  \item If M(x) = 1, output 1.
+  \item Otherwise, run $N$ on $x$.
+  \item If N(x) = 0, output 0.
+  \item Otherwise output ?.
+\end{enumerate}
+Clearly $O$ runs in polynomial time and, by part a, $L(O) \in ZPP$ \\
+Therefore $RP \cap coRP \subseteq ZPP$
+\\ \\
+Thus, $ZPP = RP \cap coRP$
+
 \end{document}
