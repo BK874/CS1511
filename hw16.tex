@@ -1,0 +1,76 @@
+\documentclass[letterpaper,notitlepage,twoside]{article}
+
+% Basic imports, increase margins...
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% Finite State Machine stuff
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+% Format tables nicely
+\usepackage[latin1]{inputenc}
+\usepackage{array}
+\usepackage{booktabs}
+\setlength{\heavyrulewidth}{1.5pt}
+\setlength{\abovetopsep}{4pt}
+
+\usepackage{amsfonts} 
+\usepackage{amssymb}
+\usepackage{amsmath,amsthm}
+
+\renewcommand{\implies}{\Rightarrow} % redefine command "implies"  
+\renewcommand{\iff}{\Leftrightarrow} % double arrow
+\newcommand{\maps}{\rightarrow} % define command "map" 
+\newcommand{\union}{\cup}
+\newcommand{\intersect}{\cap}
+\newcommand{\N}{\mathbb{N}} % natural number 
+\newcommand{\Q}{\mathbb{Q}} % rational number 
+\newcommand{\R}{\mathbb{R}} % real number 
+\newcommand{\Z}{\mathbb{Z}} % integers 
+\newcommand\tab[1][1cm]{\hspace*{#1}} %\tab command
+
+% Add more packages that you use here...
+
+\begin{document}
+\title{Homework 16}
+\author{Joe Baker, Brett Schreiber, Brian Knotten}
+\maketitle
+
+\section*{25}
+Show that if a sparse language is NP-complete, then P = NP.
+\\\\
+Proof:
+\\
+Let $L \in $ NP be a sparse, complete language.
+\\\\
+Since $L$ is complete in NP, then there exists a reduction from 3-SAT to $L$ in polynomial time. Let $R(x)$ be the part of that reduction which transforms the 3-CNF boolean formula from 3-SAT to an input to $L$.
+\\\\
+Since $L$ is sparse but 3-SAT is not, then there will be some $x_1,x_2 \in $ 3-SAT where $R(x_1) = R(x_2)$. Let $l = \left|L\right| + 1$. Then given any boolean formulas $f_1,f_2,...,f_l$, consider $R(f_1),R(f_2),...,R(f_l)$. There are two cases:
+\begin{itemize}
+\item If $\forall i,j$ then $R(f_i) \neq R(f_j)$, then $\exists k \in \left[ 1,l \right]$ such that $R(f_k)$ is unsatisfiable. This is true because under the reduction $f$ is satisfiable iff $R(f)$ is in $L$, and by the pigeonhole principle, only $l-1$ members of $R(f_1),R(f_2),...,R(f_l)$ can be in $L$, so one must be unsatisfiable.
+\item If $\exists i,j$ such that $R(f_i) = R(f_j)$, then $f_i$ and $f_j$ are either both satisfiable or both unsatisfiable.
+\end{itemize}
+We will now construct an algorithm for a TM $M$ which can solve 3-SAT in polynomial time. The algorithm will construct a tree $T$ of different variable assignments. Each level $i$ of $T$ will represent boolean formulas where variable $i$'s assignment is considered. Each node in level $i-1$ has 2 branches, one where variable $i$ is true and one where it is false. At any level, if we have a boolean formula that is satisfiable with the variable assignments at that node then the original formula is satisfiable. Also, if no boolean formulas at a level are satisfiable, then the original formula is unsatisfiable.
+\\\\
+With $n$ variables as input, $T$ will have a maximum height of $n$ and $2^n$ leaves. Constructing and searching this tree as it stands would take exponential time so $M$ must prune branches at each level with more than $l$ nodes. Let $M$ also use the following steps to prune $T$ as it is constructed:
+\begin{enumerate}
+\item Construct $l$ boolean formulas $g_2 = f_1 \lor f_2,g_3 = f_1 \lor f_3,...,g_{l+1} = f_1 \lor f_{l+1}$
+\item Run $R$ against $g_1,...,g_l$. Since there are $l$ different results of the transformation, we have one of our two previous properties. Consider the following cases:
+\begin{enumerate}
+\item $\forall i,j$ then $g_i \neq g_j$. In this case, $f_1$ must be unsatisfiable. If it were satisfiable, then all $g$ must be satisfiable which we know cannot happen. Thus we prune all the $f_1$ node since its unsatisfiability will not help us to determine if the overall formula is unsatisfiable.
+\item $\exists i,j$ such that $g_i = g_j$. Then we can prune either $f_i$ or $f_j$ with the same result. This is because of the two following cases:
+\begin{enumerate}
+\item If $f_1$ is satisfiable, then the original formula is satisfiable so we don't need both $f_i$ and $f_j$ to determine that.
+\item If $f_1$ is unsatisfiable, then $f_i$ is satisfiable iff $f_j$ is, so either node can be removed without changing whether our original formula is satisfiable.
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+Following the previous rules for pruning $T$, will result in a tree with a maximum depth of $n$ and a maximum width of $n*l$ at each level. Thus the tree wil have a maximum of $n^2*l$ nodes which is polynomial to construct and search. Finally ,$M$ decides 3-SAT in polynomial time.
+\\\\
+Since 3-SAT is decidable in polynomial time, 3-SAT $\in $ P. Since 3-SAT is also NP-complete, all languages in NP are in P. So we have the final results that $L$ being NP-complete and sparse implies that P = NP.
+\section*{26}
+
+\end{document}
