@@ -86,7 +86,7 @@ $L(N) \in$ ZPP because it uses a probabilistic TM $M$, but has zero-sided error.
 \subsection*{b}
 Show that $ZPP = RP \cap coRP$ \\ \\
 First we show that $ZPP \subseteq RP \cap coRP$ \\
-Let $L \in ZPP$ \\
+Let $L \in ZPP$. \\
 Then $\exists$ probabilistic TM $T$ and integer $t$ such that:
 \begin{itemize}
   \item $\forall x T(x)$ runs in time $|x|^{t}$ for all but finitely many inputs
@@ -100,7 +100,7 @@ On input $x$:
   \item If $T$ halted, output its answer
   \item Otherwise reject
 \end{enumerate}
-Now we have a TM $Z$ such that if $x \in L$, $Z$ accepts with probability $\leq \frac{1}{100}$ and, if $x \notin L$, $Z$ accepts accepts with probability 0. Additionally, because $T$ runs in polynomial time, so does $Z$. \\
+Now we have a TM $Z$ such that if $x \in L$, $Z$ accepts with probability $\leq \frac{1}{100}$ and, if $x \notin L$, $Z$ accepts with probability 0. Additionally, because $T$ runs in polynomial time, so does $Z$. \\
 Therefore $L(Z) \in RP$ and $ZPP \subseteq RP$. \\ 
 Moreover, using the fact that $ZPP$ is closed under complement, we get that $ZPP \subseteq coRP$ by switching acceptance and rejection in our definition of $Z$. \\
 Therefore $L(Z) \in coRP$ and $ZPP \subseteq coRP$. \\
@@ -120,7 +120,7 @@ There also exists a probabilistic TM $N$ and integer $n$ such that:
 \item $x \in L \Rightarrow$ Prob($N(x)$ accepts) $=1$
 \item $x \notin L \Rightarrow$ Prob($N(x)$ rejects) $> 0.6$
 \end{itemize}
-Using $M$ and $N$, we construct a TM $O$ similar to the TM constructed in part a as follows: \\
+Using $M$ and $N$, we construct a TM $O$ similar to the TM described in part a as follows: \\
 On input $x$:
 \begin{enumerate}
   \item Run $M$ on $x$.
