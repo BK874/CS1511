@@ -40,12 +40,15 @@
 \maketitle
 
 \section*{27}
-$\rho = \frac{1}{\pi}$ \\
+Assume that our coin-flip Turing machine $M$ doesn't require that $\rho$ be efficiently computable.
+\\\\
+Let $\rho = \frac{1}{\pi}$.
+\\\\
 The complete binary representation of $\frac{1}{\pi}$ is infinitely long. Any finite representation is not completely accurate, since $\frac{1}{\pi}$ is irrational.
-
-Since $\frac{1}{\pi}$ is infinitely long, the probability that it contains an encoding of a computation history as a substring is 1.
-
-% now we need to define a relationship between coin flips and transition functions. I'm not sure how to do this.
+\\\\
+By the law of large numbers, since $\frac{1}{\pi}$ represented in binary is infinitely long with no repeated patterns,the probability that it must contain a substring of bits which is the encoding of a Turing machine which can solve the halting problem goes to 1 as the number of bits in $\frac{1}{\pi}$ goes to infinity.
+\\\\
+Since $M$ generates a Turing machine to decide the halting problem as an intermediate step, removing the requirement that $\rho$ be efficiently computable implies that $M$ can decide an undecidable language in polynomial time. 
 
 \section*{28}
 Show that $\left(\text{NP}\cup\text{co-NP}\right)\subseteq\text{PP}$.
