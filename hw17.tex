@@ -42,5 +42,21 @@
 \section*{27}
 
 \section*{28}
+Show that $\left(\text{NP}\cup\text{co-NP}\right)\subseteq\text{PP}$.
+\\\\
+Proof:
+\\
+We will show that $\text{Boolean Satisfiability}\in\text{PP}$. Since Boolean Satisfiability is NP-complete, then any $L \in \text{NP} \rightarrow L \in \text{PP}$.
+\\
+Let $M$ be a probabilistic Turing machine which takes a Boolean formula $F$ as input. Then does the following:
+\begin{enumerate}
+\item Pick a random assignment of variables for $F$
+\item Verify if $F$ is satisfied
+\item If $F$ is satisfied, then accept
+\item If $F$ is not satisfied, accept with $P(1/2)$ or reject with $P(1/2)$
+\end{enumerate}
+First note that each step can clearly be done in polynomial time. $P(\text{M accepts}) = 1/2 + P(\text{random assignment is satisfied})$ and since $P(\text{random assignment is satisfied}) > 0$, then $P(\text{M accepts}) > 1/2$ and $P(\text{M rejects}) < 1/2$. Thus Boolean Satisfiability $\in \text{PP}$ since $M$ is a Turing machine which meets the requirements for PP. So NP is contained in PP.
+\\\\
+Since PP is closed under complement and contains NP, it must also contain co-NP. Finally, $\left(\text{NP}\cup\text{co-NP}\right)\subseteq\text{PP}$.
 
 \end{document}
