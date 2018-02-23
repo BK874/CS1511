@@ -40,7 +40,14 @@
 \maketitle
 
 \section*{29}
+BP \dot NP is the set of languages which can probablistically reduce to 3SAT with a probability of $\frac{2}{3}$.
+Let $L$ be a language in BP \dot NP.
 
+$L$ can be probablistically reduced to 3SAT with probability of failure $\frac{1}{2^n}$ using a circuit $C$, this is possible, because $C$ can be produced by running a reducer TM $R$ enough times such that the probability of failing to reduce is $\frac{1}{2^n}$.
+
+Let the randomized reduction to 3SAT be conducted by a random bitstring of length $m$, which is functionally dependent on $n$. There exist $2^m$ possible random reductions, which produces a 3SAT instance that accurately represents
+
+There are $2^m$ possible reductions given $m$. For any input $x$ of size $n$ bits, there are at most $\frac{2^m}{2^{n + 1}}$ reductions that are not correct. By the union bound over all inputs, there are at most ${2^n} * \frac{2^m}{2^{n + 1}} = \frac{2^m}{2}}$ reductions which are not correct out of the total $2^m$ reductions. By the probablistic method, there must be at least one reduction which is correct for all inputs. Hard-code this string $m$, along with the NP/poly machine that solves 3SAT, and you will have a circuit that solves $L$. Therefore, $BP \dot NP \subseteq NP/poly$.
 \section*{30}
 
 \end{document}
