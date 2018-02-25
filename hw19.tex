@@ -40,15 +40,19 @@
 \maketitle
 
 \section*{31}
-Problem 7.8 from the text: Show that if $UNSAT \in BPNP$, then $PH$ collapses to $\Sigma_3^p$.
-
+Problem 7.8 from the text: Show that if $\overline{SAT} \in BPNP$, then $PH$ collapses to $\Sigma_3^p$. \\
 Hint: Recall the proof that $BPP$ is in $\Sigma_2^p$.
+\\\\
 
-
+Start of the proof: \\
+$\overline{SAT} \in BPNP \implies PH \subseteq \Sigma_3^p$ \\
+Assume $\overline{SAT} \in BPNP$. \\\\
 
 End of the proof: \\
 $\Sigma_3^p = \Pi_3^p$ \\
-Therefore $PH = \Sigma_3^p$, since $\exists...\forall\exists\forall\exists P = \exists...\forall\Sigma_3^p = \exists...\forall\Pi_3^p = \exists...\Pi_3^p ... = \Pi_3^p = \Sigma_3^p$.
+Therefore $PH \subseteq \Sigma_3^p$, since $\exists...\forall\exists\forall\exists P = \exists...\forall\Sigma_3^p = \exists...\forall\Pi_3^p = \exists...\Pi_3^p ... = \Pi_3^p = \Sigma_3^p$.
+\\\\
 
-
+Brett's note:
+Proving that $\overline{SAT} \leq SAT$ would imply that $NP = coNP$, which implies that $PH = NP = \Sigma_1^p$, which is a stronger conclusion than the homework. Since it's stronger, it is probably harder to prove, so I would avoid this route.
 \end{document}
