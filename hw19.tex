@@ -40,11 +40,24 @@
 \maketitle
 
 \section*{31}
-Problem 7.8 from the text: Show that if $\overline{3SAT} \in BPNP$, then $PH$ collapses to $\Sigma_3^p$. \\
+Problem 7.8 from the text: Show that if $\overline{3SAT} \in BPNP$, then $PH$ collapses to $\Sigma_3^p$.
+\\
 Hint: Recall the proof that $BPP$ is in $\Sigma_2^p$.
 \\\\
-
-Start of the proof: \\
+Proof:
+\\
+Assume that $\overline{3SAT} \in BPNP$. Then we know that $\exists M$ where $M$ is a Turing machine which does the reduction $\overline{3SAT} \leq_p 3SAT$ in polynomial time such that $P(\overline{3SAT}(M(x)) = 3SAT(x)) > 2/3$.
+\\\\
+If $\overline{3SAT} \leq_p 3SAT$ with, then there is a bijective relationsihp between problems in NP and co-NP since $3SAT$ and $\overline{3SAT}$ are complete in each complexity class, respectively. Given that bijective relationship, any NP problem represented as $\exists y$ such that $F(x,y)$ iff $x \in L$ can be rewritten as $\forall y$ then $!F(x,y)$ iff $x \notin L$.
+\\\\
+Furthermore, if we can change a quantifier for any NP or co-NP problem, we could use the same argument for any $\Sigma_n^p$ or $\Pi_n^p$ problem to swap quantifiers. Then we could group variables from similar adjacent quantifiers to reduce the complexity of the problem to a smaller $n$. Finally we could repeat these two steps (changing quantifiers, and grouping variables into tuples) to reduce any $\Sigma_n^p$ or $\Pi_n^p$ problem into a NP or co-NP problem with a single quantifier, collapsing the polynomial hierarchy.
+\\\\
+The last issue to be addressed is that our reduction $M$ only has a greater than $2/3$ success rate, but our previous argument requires a reduction with a perfect bijective relationship. So it remains to be shown that we can tack on a few more quantifiers to our original problem collapsed to NP or co-NP, to guarantee the reduction to change quantifiers is always correct.
+\\\\
+(proof with "weddings")
+\\\\
+Old Stuff:
+\\
 $\overline{3SAT} \in BPNP \implies PH \subseteq \Sigma_3^p$ \\
 Assume $\overline{3SAT} \in BPNP$. \\\\
 
