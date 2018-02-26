@@ -49,7 +49,7 @@ Proof:
 Assume that $\overline{3SAT} \in BPNP$. Then we know that there exists a probablistic Turing machine $M$ which outputs a reduction in poly-time such that $P(x \in \overline{3SAT} \implies M(x) \in 3SAT) > 2/3$. Let $M$ get its decisions for random transitions from an advice tape $a$. Thus for $2/3$ of all possible $a$, $x \in \overline{3SAT} \implies M(x, a) \in 3SAT$.
 \\\\
 The following proof is in a similar vein to the proof of $BPP \subseteq \Sigma_2^p$:\\
-If $2/3$ of all possible values of $a$ produce a correct reduction and the other $1/3$ do not, then it follows that there exists some grouping of values ($a_1, a_2, ... a_k$) such that for all groupst the majority of advices $a_1...a_k$ cause $M$ reduce correctly.
+If $2/3$ of all possible values of $a$ produce a correct reduction and the other $1/3$ do not, then it follows that there exists some grouping of values ($a_1, a_2, ... a_k$) such that for all groups the majority of advices $a_1...a_k$ cause $M$ reduce correctly.
 \\\\
 Now construct a deterministic TM $N$ with tapes $x, y, z, w$ such that:\\
 On input $x$, where $x$ is an $\overline{SAT}$ problem: \\
@@ -57,9 +57,9 @@ $\exists y$ where $y$ is grouping, such that \\
 $\forall z$ where $z$ is groups of advice, $M(x, z)$ is an instance of a $SAT$ formula, such that \\
 $\exists w$ where $w$ is a correct assignment of variables to satisfy the formula.
 \\\\
-$N$ is clearly a TM with a language in $\Sigma_3^p$. Since $L(M) = L(N) = \overline{3SAT}, \overline{3SAT} \in \Sigma_3^p$.
+$N$ is clearly a TM with a language in $\Sigma_3^p$. Since $L(M) = L(N) = \overline{3SAT}$, $\overline{3SAT} \in \Sigma_3^p$.
 \\\\
-Since also $\overline{3SAT} \in coNP$, and $coNP = \Pi_1^p \subseteq \Sigma_2^p \subseteq \Pi_3^p$, then $\Pi_3^p = \Sigma_3^p$
+Since $\overline{3SAT}$ is $coNP$-complete, and $coNP = \Pi_1^p \subseteq \Sigma_2^p \subseteq \Pi_3^p$, then $\Pi_3^p = \Sigma_3^p$ since $\overline{3SAT}$ reduces to $\Sigma_3^p$.
 \\\\
 We can group variables from similar adjacent quantifiers to reduce the complexity of the problem to a smaller $n$. And we can repeat these two steps (changing quantifiers, and grouping variables into tuples) to reduce any $\Sigma_n^p$ or $\Pi_n^p$ problem into a $\Sigma_3^p$, collapsing the polynomial hierarchy.
 \\\\
