@@ -46,26 +46,23 @@ Hint: Recall the proof that $BPP$ is in $\Sigma_2^p$.
 \\\\
 Proof:
 \\
-Assume that $\overline{3SAT} \in BPNP$. Then we know that $\exists M$ where $M$ is a Turing machine which does the reduction $\overline{3SAT} \leq_p 3SAT$ in polynomial time such that $P(\overline{3SAT}(M(x)) = 3SAT(x)) > 2/3$.
+Assume that $\overline{3SAT} \in BPNP$. Then we know that there exists a probablistic Turing machine $M$ which outputs a reduction in poly-time such that $P(x \in \overline{3SAT} \implies M(x) \in 3SAT) > 2/3$. Let $M$ get its decisions for random transitions from an advice tape $a$. Thus for $2/3$ of all possible $a$, $x \in \overline{3SAT} \implies M(x, a) \in 3SAT$.
 \\\\
-If $\overline{3SAT} \leq_p 3SAT$ with, then there is a bijective relationsihp between problems in NP and co-NP since $3SAT$ and $\overline{3SAT}$ are complete in each complexity class, respectively. Given that bijective relationship, any NP problem represented as $\exists y$ such that $F(x,y)$ iff $x \in L$ can be rewritten as $\forall y$ then $!F(x,y)$ iff $x \notin L$.
+The following proof is in a similar vein to the proof of $BPP \subseteq \Sigma_2^p$:\\
+If $2/3$ of all possible values of $a$ produce a correct reduction and the other $1/3$ do not, then it follows that there exists some grouping of values ($a_1, a_2, ... a_k$) such that for all groupst the majority of advices $a_1...a_k$ cause $M$ reduce correctly.
 \\\\
-Furthermore, if we can change a quantifier for any NP or co-NP problem, we could use the same argument for any $\Sigma_n^p$ or $\Pi_n^p$ problem to swap quantifiers. Then we could group variables from similar adjacent quantifiers to reduce the complexity of the problem to a smaller $n$. Finally we could repeat these two steps (changing quantifiers, and grouping variables into tuples) to reduce any $\Sigma_n^p$ or $\Pi_n^p$ problem into a NP or co-NP problem with a single quantifier, collapsing the polynomial hierarchy.
+Now construct a deterministic TM $N$ with tapes $x, y, z, w$ such that:\\
+On input $x$, where $x$ is an $\overline{SAT}$ problem: \\
+$\exists y$ where $y$ is grouping, such that \\
+$\forall z$ where $z$ is groups of advice, $M(x, z)$ is an instance of a $SAT$ formula, such that \\
+$\exists w$ where $w$ is a correct assignment of variables to satisfy the formula.
 \\\\
-The last issue to be addressed is that our reduction $M$ only has a greater than $2/3$ success rate, but our previous argument requires a reduction with a perfect bijective relationship. So it remains to be shown that we can tack on a few more quantifiers to our original problem collapsed to NP or co-NP, to guarantee the reduction to change quantifiers is always correct.
+$N$ is clearly a TM with a language in $\Sigma_3^p$. Since $L(M) = L(N) = \overline{3SAT}, \overline{3SAT} \in \Sigma_3^p$.
 \\\\
-(proof with "weddings")
+Since also $\overline{3SAT} \in coNP$, and $coNP = \Pi_1^p \subseteq \Sigma_2^p \subseteq \Pi_3^p$, then $\Pi_3^p = \Sigma_3^p$
 \\\\
-Old Stuff:
-\\
-$\overline{3SAT} \in BPNP \implies PH \subseteq \Sigma_3^p$ \\
-Assume $\overline{3SAT} \in BPNP$. \\\\
-
-End of the proof: \\
-$\Sigma_3^p = \Pi_3^p$ \\
-Therefore $PH \subseteq \Sigma_3^p$, since $\exists...\forall\exists\forall\exists P = \exists...\forall\Sigma_3^p = \exists...\forall\Pi_3^p = \exists...\Pi_3^p ... = \Pi_3^p = \Sigma_3^p$.
+We can group variables from similar adjacent quantifiers to reduce the complexity of the problem to a smaller $n$. And we can repeat these two steps (changing quantifiers, and grouping variables into tuples) to reduce any $\Sigma_n^p$ or $\Pi_n^p$ problem into a $\Sigma_3^p$, collapsing the polynomial hierarchy.
 \\\\
-
-Brett's note:
-Proving that $\overline{3SAT} \leq_p 3SAT$ would imply that $NP = coNP$, which implies that $PH = NP = \Sigma_1^p$, which is a stronger conclusion than the homework. Since it's stronger, it is probably harder to prove, so I would avoid this route.
+In other words, since $\Sigma_3^p = \Pi_3^p$, \\
+then $PH \subseteq \Sigma_3^p$, since $\exists...\forall\exists\forall\exists P = \exists...\forall\Sigma_3^p = \exists...\forall\Pi_3^p = \exists...\Pi_3^p ... = \Pi_3^p = \Sigma_3^p$.
 \end{document}
