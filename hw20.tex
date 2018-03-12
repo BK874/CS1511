@@ -54,6 +54,11 @@ Prove that $IP \subseteq PSPACE$.
 
 Consider that an exponential number of proofs can be searched for in a proof tree using polynomial space by checking one branch at a time. Similarly, for any verifier $V$ in an $IP$ problem, a $PSPACE$ prover can be the prover that considers all possible sequences of messages that the verifier could send. The prover considers one branch of messages at a time using only a polynomial amount of space. So the prover is in $PSPACE$.
 
+\subsection{c}
+$IP' \subseteq IP$, because any language in $IP'$ trivially meets the same requirements for completeness and soundness for $IP$.
+
+$IP \subseteq IP'$, because you can ask for enough advices such that one of the advices causes $V$ to accept $x$. Again, this uses the probablistic method as our other proofs.
+
 \subsection{d}
 To show that $NP \subseteq IP'$, have the prover send the advice that causes the verifier to accept. This works deterministically with probability of accepting correct inputs $1 > 2/3$, and probability of rejecting incorrect inputs $0$. So $NP \subseteq IP$. \\\\
 
