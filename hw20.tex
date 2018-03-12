@@ -1,0 +1,58 @@
+\documentclass[letterpaper,notitlepage,twoside]{article}
+
+% Basic imports, increase margins...
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% Finite State Machine stuff
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+% Format tables nicely
+\usepackage[latin1]{inputenc}
+\usepackage{array}
+\usepackage{booktabs}
+\setlength{\heavyrulewidth}{1.5pt}
+\setlength{\abovetopsep}{4pt}
+
+\usepackage{amsfonts} 
+\usepackage{amssymb}
+\usepackage{amsmath,amsthm}
+
+\renewcommand{\implies}{\Rightarrow} % redefine command "implies"  
+\renewcommand{\iff}{\Leftrightarrow} % double arrow
+\newcommand{\maps}{\rightarrow} % define command "map" 
+\newcommand{\union}{\cup}
+\newcommand{\intersect}{\cap}
+\newcommand{\N}{\mathbb{N}} % natural number 
+\newcommand{\Q}{\mathbb{Q}} % rational number 
+\newcommand{\R}{\mathbb{R}} % real number 
+\newcommand{\Z}{\mathbb{Z}} % integers 
+\newcommand\tab[1][1cm]{\hspace*{#1}} %\tab command
+
+% Add more packages that you use here...
+
+\begin{document}
+\title{Homework 20}
+\author{Joe Baker, Brett Schreiber, Brian Knotten}
+\maketitle
+
+\section*{32}
+\subsection*{a}
+First, it must be proven that $IP' \subseteq IP$.
+Every time the verifier would ask the prover a question, instead, ask it $n$ times. $n$ can be so large, (say, 1000), that the
+probability gets so high that one of the responses is guarunteed to be true. And thus we have a deterministic prover. \\\\
+
+Next, it must be proven that $IP \subseteq IP'$.
+Any $IP$ protocol is also $IP'$, because the definitions match in every way, except the prover's chance of success.
+But a deterministic prover's chance of an accurate response $= 1 > 2/3$.
+\subsection*{b}
+Prove that $IP \subseteq PSPACE$.
+
+\section*{33}
+
+\section*{34}
+
+\end{document}
