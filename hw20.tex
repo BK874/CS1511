@@ -55,6 +55,9 @@ Prove that $IP \subseteq PSPACE$.
 Consider that an exponential number of proofs can be searched for in a proof tree using polynomial space by checking one branch at a time. Similarly, for any verifier $V$ in an $IP$ problem, a $PSPACE$ prover can be the prover that considers all possible sequences of messages that the verifier could send. The prover considers one branch of messages at a time using only a polynomial amount of space. So the prover is in $PSPACE$.
 
 \section*{33}
+It is trivial to prove that $IP' \subseteq IP$, since given that a prover $P$ in $IP'$ for all $x \in L$, then for each $x \in L$ there exists a prover, specifically, $P$. \\\\
+
+Next it must be proven that $IP \subseteq IP'$. Consider a prover $P$ which is $\bigcup_{i = 0}^n P_i$ where $P_i$ is a prover for $x \in L$. All these $P_i$ are given from the definition of $IP$. 
 
 \section*{34}
 
