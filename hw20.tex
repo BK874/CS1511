@@ -48,8 +48,11 @@ probability gets so high that one of the responses is guarunteed to be true. And
 Next, it must be proven that $IP \subseteq IP'$.
 Any $IP$ protocol is also $IP'$, because the definitions match in every way, except the prover's chance of success.
 But a deterministic prover's chance of an accurate response $= 1 > 2/3$.
+
 \subsection*{b}
 Prove that $IP \subseteq PSPACE$.
+
+Consider that an exponential number of proofs can be searched for in a proof tree using polynomial space by checking one branch at a time. Similarly, for any verifier $V$ in an $IP$ problem, a $PSPACE$ prover can be the prover that considers all possible sequences of messages that the verifier could send. The prover considers one branch of messages at a time using only a polynomial amount of space. So the prover is in $PSPACE$.
 
 \section*{33}
 
