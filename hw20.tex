@@ -60,5 +60,6 @@ It is trivial to prove that $IP' \subseteq IP$, since given that a prover $P$ in
 Next it must be proven that $IP \subseteq IP'$. Consider a prover $P$ which is $\bigcup_{i = 0}^n P_i$ where $P_i$ is a prover for $x \in L$. All these $P_i$ are given from the definition of $IP$. 
 
 \section*{34}
+First, it must be proved that $BP \cdot NP \subseteq AM\left[2\right]$. Given a language $L \in BP \cdot NP$, let $L$ be the subject to an interactive proof. So the prover and verifier both have access to a given string $x$, and the prover $P$ has to prove to the verifier $V$ that $x \in L$. Since $L \ in BP \cdot NP$, there exists a certain set of advice which can cause a reducer $R$ to successfully reduce $x$ into an instance of 3SAT, $x'$. The prover has an unlimited amount of time to try different advices and successfully reduce $x$ into $x'$. Then, the prover can send over the reduction and the verifier can perform it. The prover can then decide the satisfiability of $x'$ and send over the satisfying assignments to the verifier.
 
 \end{document}
