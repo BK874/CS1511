@@ -43,14 +43,16 @@
 
 \section*{37}
 
-Asking whether
+\subsection*{a}
 
+\subsubsection*{1}
+Since the assignment of $x=1,y=0/1,z=1$ will satisfy this boolean formula, Merlin will send true answers for each function and integer. In the first step, Merlin will send the function:
 \begin{align*}
-\exists_x\forall_y\exists_z(x \lor y \lor \neg z) \land (\neg x \lor \neg y \lor z)
-\end{align*}
-is satisfiable is equivalent to asking if:
-\begin{align*}
-\Sigma_{x = 0}^1\Pi_{y = 0}^1\Sigma_{z = 0}^1 (1 - (1 - x)(1 - y)z)(1 - xy(1 - z) \neq 0
+s(x)&=\Pi_{y = 0}^1\Sigma_{z = 0}^1 (1 - (1 - x)(1 - y)z)(1 - xy(1 - z)) \\
+    &=\Pi_{y = 0}^1 (1 - (1 - (1 - (1 - x)(1 - y)0)(1 - xy(1 - 0)))(1 - (1 - (1 - x)(1 - y)1)(1 - xy(1 - 1))))\\
+    &=\Pi_{y = 0}^1 (1 - (xy)(1 - x)(1 - y))\\
+    &=(1 - (x0)(1 - x)(1 - 0))*(1 - (x1)(1 - x)(1 - 1))\\
+    &=(1)
 \end{align*}
 
 Merlin will construct a function $s(x)$ as follows:
