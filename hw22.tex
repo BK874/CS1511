@@ -49,49 +49,30 @@ In an MAM protocol, Arthur makes the wrong decision on the first round with prob
 \subsection*{a}
 
 \subsubsection*{1}
-Since the assignment of $x=1,y=0/1,z=1$ will satisfy this boolean formula, Merlin will send true answers for each function and integer. In the first step, Merlin will send the function $s(x)$ which is derived from the Boolean Formula $\exists x \forall y \exists z ( x \lor y \lor \overline{z}) \land (\overline{x} \lor \overline{y} \lor z)$.
+Since the assignment of $x=1,y=0/1,z=1$ will satisfy this boolean formula, Merlin will send true answers for each function and integer. In the first step, Merlin will send the function $s(x)$ which is derived from an integer $S$ which is 1 iff the Boolean Formula $\exists x \forall y \exists z ( x \lor y \lor \overline{z}) \land (\overline{x} \lor \overline{y} \lor z)$ is true.
 \begin{align*}
 y \lor \overline{z} &\rightarrow (1 - y)(1 - (1 - z)) = 1 - z(1 - y)\\
 x \lor y \lor \overline{z} &\rightarrow 1 - (1 - x)(1 - (1 - z(1 - y))) = 1 - (1 - x)(1 - y)z\\
 \overline{y} \lor z &\rightarrow 1 - (1 - (1 - y))(1 - z) = 1 - y(1 - z)\\
 \overline{x} \lor \overline{y} \lor z &\rightarrow 1 - (1 - (1 - x))(1 - (1 - y(1 - z))) = 1 - xy(1 - z)
 \end{align*}
-Using this, and changing $\exists \rightarrow \Sigma$, $\forall \rightarrow \Pi$, then the original function is:
+Using this, and changing $\exists \rightarrow \Sigma$, $\forall \rightarrow \Pi$, then $S$ is:
 \begin{align*}
-S(x)&=\Sigma_{x = 0}^1\Pi_{y = 0}^1\Sigma_{z = 0}^1 (1 - (1 - x)(1 - y)z)(1 - xy(1 - z))
+S(x)&=\Sigma_{x = 0}^1\Pi_{y = 0}^1\Sigma_{z = 0}^1 (1 - (1 - x)(1 - y)z)(1 - xy(1 - z)) = 1
 \end{align*}
-So Merlin will send
+$S=1$ since Merlin knows the formula is satisfiable. Merlin will send
 \begin{align*}
 s(x)&=\Pi_{y = 0}^1\Sigma_{z = 0}^1 (1 - (1 - x)(1 - y)z)(1 - xy(1 - z))
 \end{align*}
 Additionally Merlin will return the integer 1 since he knows there is a true answer.
 
-Alternative idea for 37.a.1:\\
-Merlin will construct a function $s(x)$ as follows:
-
-\begin{align*}
-s(x) &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 (1 - (1 - x)(1 - y)z)(1 - xy(1 - z)) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z(1 - x)(1 - y) - xy(1 - z) + xyz(1 - x)(1 - y)(1 - z) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - (z - xz)(1 - y) - xy + xyz + (xyz - x^2yz)(1 - y)(1 - z) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - (z - xz)(1 - y) - xy + xyz + (xyz - x^2yz)(1 - y)(1 - z) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - (z - xz) - y(z - zx) - xy + xyz + (xyz - x^2yz)(1 - y)(1 - z) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xz - yz + xyz - xy + xyz + xyz - x^2yz - y(xyz - x^2yz))(1 - z) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xz - yz + 2xyz - xy - x^2yz - (xy^2z + x^2y^2z)(1 - z) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xz - yz + 2xyz - xy - x^2yz - (xy^2z + x^2y^2z - z(xy^2z + x^2y^2z)) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xz - yz + 2xyz - xy - x^2yz - (xy^2z + x^2y^2z - xy^2z^2 - x^2y^2z^2) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xz - yz + 2xyz - xy - x^2yz - xy^2z - x^2y^2z + xy^2z^2 + x^2y^2z^2 \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xy - xz - yz + 2xyz - x^2yz - xy^2z - x^2y^2z + xy^2z^2 + x^2y^2z^2 \\
-\end{align*}
-
 \subsubsection*{2}
 \begin{align*}
-s(x)&=\Pi_{y = 0}^1\Sigma_{z = 0}^1 (1 - (1 - x)(1 - y)z)(1 - xy(1 - z)) \\
-    &=\Pi_{y = 0}^1 (1 - (1 - (1 - (1 - x)(1 - y)0)(1 - xy(1 - 0)))(1 - (1 - (1 - x)(1 - y)1)(1 - xy(1 - 1))))\\
-    &=\Pi_{y = 0}^1 (1 - (xy)(1 - x)(1 - y))\\
-    &=(1 - (x0)(1 - x)(1 - 0))*(1 - (x1)(1 - x)(1 - 1))\\
-    &=(1)
+s(x)&=\Sigma_{z = 0}^1 (1 - (1 - x)(1 - y)z)(1 - xy(1 - z)) \\
 \end{align*}
+
 \subsubsection*{3}
+Arthur will check that $s''(1/3) = s'(0) * s'(1)$.
 
 \subsection*{b}
 \subsubsection*{1}
