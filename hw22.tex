@@ -50,18 +50,23 @@ Asking whether
 \end{align*}
 is satisfiable is equivalent to asking if:
 \begin{align*}
-\Sigma_{x = 0}^1\Pi_{y = 0}^1\Sigma_{z = 0}^1(x + y + (1 - z))((1 - x) + (1 - y) + z \neq 0
+\Sigma_{x = 0}^1\Pi_{y = 0}^1\Sigma_{z = 0}^1 (1 - (1 - x)(1 - y)z)(1 - xy(1 - z) \neq 0
 \end{align*}
 
 Merlin will construct a function $s(x)$ as follows:
 
 \begin{align*}
-s(x) &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 (x + y + (1 - z))((1 - x) + (1 - y) + z \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 x(1 - x) + x(1 - y) + xz + y(1 - x) + y(1 - y) + yz + (1 - z)(1 - x) + (1 - z)(1 - y) + z(1 - z) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 x - x^2 + x - xy + xz + y - xy + y - y^2 + yz + 1 + xz - x - z + yz - y - z + 1 + z - z^2 \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 x - x^2 - 2xy + 2xz + y - y^2 + 2yz + 2 - z - z^2 \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 -x^2 + x - 2xy + 2xz + 2yz - y^2 + y - z - z^2 + 2 \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 -(x + y - z - 2) (x + y - z + 1) % I used wolfram alpha to get to this step
+s(x) &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 (1 - (1 - x)(1 - y)z)(1 - xy(1 - z)) \\
+     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z(1 - x)(1 - y) - xy(1 - z) + xyz(1 - x)(1 - y)(1 - z) \\
+     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - (z - xz)(1 - y) - xy + xyz + (xyz - x^2yz)(1 - y)(1 - z) \\
+     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - (z - xz)(1 - y) - xy + xyz + (xyz - x^2yz)(1 - y)(1 - z) \\
+     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - (z - xz) - y(z - zx) - xy + xyz + (xyz - x^2yz)(1 - y)(1 - z) \\
+     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xz - yz + xyz - xy + xyz + xyz - x^2yz - y(xyz - x^2yz))(1 - z) \\
+     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xz - yz + 2xyz - xy - x^2yz - (xy^2z + x^2y^2z)(1 - z) \\
+     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xz - yz + 2xyz - xy - x^2yz - (xy^2z + x^2y^2z - z(xy^2z + x^2y^2z)) \\
+     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xz - yz + 2xyz - xy - x^2yz - (xy^2z + x^2y^2z - xy^2z^2 - x^2y^2z^2) \\
+     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xz - yz + 2xyz - xy - x^2yz - xy^2z - x^2y^2z + xy^2z^2 + x^2y^2z^2 \\
+     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xy - xz - yz + 2xyz - x^2yz - xy^2z - x^2y^2z + xy^2z^2 + x^2y^2z^2 \\
 \end{align*}
 
 \end{document}
