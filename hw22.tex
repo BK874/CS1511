@@ -41,6 +41,9 @@
 
 \section*{36}
 
+In an MAM protocol, Arthur makes the wrong decision on the first round with probablility $\frac{1}{3}$. But this probability can be as low as $\frac{1}{4^m}$, where $m$ is the number of bits that Merlin sends over. For proving some strings, Merlin may only need to send over 1 bit of information (like when proving an instance of GRAPH-NON-ISO). But Merlin can send $m$ bits instead as a proof against $m$ different tests. (In GRAPH-NON-ISO, Arthur sends over $m$ relabeled graphs, each randomly corresponding to either $G_0$ or $G_1$, to which Merlin responds with $m$ bits where the $i$th bit of $m$ corresponds to the $i$th graph that Arthur sent over). So Arthur has up to $m$ proofs to check against, giving him $m$ opportunities to reject, whereas before he may have only had just one. This lowers the probability of a wrong decision in GRAPH-NON-ISO from $\frac{1}{2}$ to $\frac{1}{2^m}$.
+
+
 \section*{37}
 
 \subsection*{a}
