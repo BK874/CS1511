@@ -62,17 +62,13 @@ Alternative idea for 37.a.1:\\
 Merlin will construct a function $s(x)$ as follows:
 
 \begin{align*}
-s(x) &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 (1 - (1 - x)(1 - y)z)(1 - xy(1 - z)) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z(1 - x)(1 - y) - xy(1 - z) + xyz(1 - x)(1 - y)(1 - z) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - (z - xz)(1 - y) - xy + xyz + (xyz - x^2yz)(1 - y)(1 - z) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - (z - xz)(1 - y) - xy + xyz + (xyz - x^2yz)(1 - y)(1 - z) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - (z - xz) - y(z - zx) - xy + xyz + (xyz - x^2yz)(1 - y)(1 - z) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xz - yz + xyz - xy + xyz + xyz - x^2yz - y(xyz - x^2yz))(1 - z) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xz - yz + 2xyz - xy - x^2yz - (xy^2z + x^2y^2z)(1 - z) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xz - yz + 2xyz - xy - x^2yz - (xy^2z + x^2y^2z - z(xy^2z + x^2y^2z)) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xz - yz + 2xyz - xy - x^2yz - (xy^2z + x^2y^2z - xy^2z^2 - x^2y^2z^2) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xz - yz + 2xyz - xy - x^2yz - xy^2z - x^2y^2z + xy^2z^2 + x^2y^2z^2 \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z - xy - xz - yz + 2xyz - x^2yz - xy^2z - x^2y^2z + xy^2z^2 + x^2y^2z^2 \\
+s(x) &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 (x + y + (1 - z)) * ((1 - x) + (1 - y) + z) \\
+     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 x(1 - x) + y(1 - x) + (1 - z)(1 - x) + x(1 - y) + y(1 - y) + (1 - z)(1 - y) + xz + yz + z(1 - z) \\
+     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 x - x^2 + y - xy + 1 - z - x + xz + x - xy + y - y^2 + 1 - y - z + zy + xz + yz + z - z^2 \\
+     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 x - x + x - x^2 + y - y + y - xy - xy - z - z + z + xz + xz - y^2 + zy + yz - z^2 + 1 + 1 \\
+     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 x - x^2 + y - 2xy - z + 2xz - y^2 + zy + yz - z^2 + 2 \\
+     &= \Sigma_{z = 0}^1 (x - x^2 + (0) - 2x(0) - z + 2xz - (0)^2 + z(0) + (0)z - z^2 + 2) * (x - x^2 + (1) - 2x(1) - z + 2xz - (1)^2 + z(1) + (1)z - z^2 + 2) \\
+     &= \Sigma_{z = 0}^1 (x - x^2 - z + 2xz - z^2 + 2) * (x - x^2 + 1 - 2x - z + 2xz - 1 + z + z - z^2 + 2) \\
 \end{align*}
 
 \subsubsection*{2}
@@ -83,14 +79,9 @@ s(x) &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 (1 - (1 - x)(1 - y)z)(1 - xy(1 - z)) \\
 Merlin will construct a linearized function $s(x)$ as follows:
 
 \begin{align*}
-s(x) &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 (1 - (1 - x)(1 - y)z)(1 - xy(1 - z)) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z(1 - x)(1 - y) - xy(1 - z) + xyz(1 - x)(1 - y)(1 - z) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - (z - xz)(1 - y) - xy + xyz + (xyz - xyz)(1 - y)(1 - z) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - (z - xz)(1 - y) - xy + xyz + (0)(1 - y)(1 - z) \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - (z - xz)(1 - y) - xy + xyz \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - (z - xz) - y(z - zx) - xy + xyz \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z + xz - yz + xyz - xy + xyz \\
-     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 1 - z + xz - yz - xy + 2xyz \\
+s(x) &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 (x + y + (1 - z)) * ((1 - x) + (1 - y) + z) \\
+     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 x(1 - x) + y(1 - x) + (1 - z)(1 - x) + x(1 - y) + y(1 - y) + (1 - z)(1 - y) + xz + yz + z(1 - z) \\
+     &= \Pi_{y = 0}^1\Sigma_{z = 0}^1 x(1 - x) + y(1 - x) + (1 - z)(1 - x) + x(1 - y) + y(1 - y) + (1 - z)(1 - y) + xz + yz + z(1 - z) \\
 \end{align*}
 
 \subsubsection*{2}
