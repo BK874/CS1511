@@ -40,6 +40,35 @@
 \maketitle
 
 \section*{39}
+\subsection*{a}
+The interactive protocol to show that coNP $\subseteq$ IP has a problem when a boolean formula $\phi$ with variables $x_1,...,x_n$ is arithmetized and products are expanded. When $\phi$ is arithmetized to create function $f$, expanding the product will multiply the variables in such a way that the exponent of each variable can double in size, making the size of $f$ exponential. Since the verifier runs in polytime, it may not be able to read the function $f$.
+\\\\
+To solve this problem, assume that $\phi$ has the property that its variables $x_1,...,x_n$ occur in order in $\phi$ and that for each $x_i$ there is at most a single universal quantifier for variable $x_j$ appearing before the last occurrence of $x_i$. Now when $\phi$ is arithmetized, the resulting function $f$ will have a maximum degree of size $O(n)$.
+\\\\
+To see how the maximum degree is $O(n)$, consider how the $f$ will have the product for each variable expanded. At any point in the expansion we will have one of the two following scenarios:
+\begin{enumerate}
+\item $...\Pi_{x_i=0}^1f_{x_i}...\Pi_{x_j=0}^1f_{x_j}...$
+\item $...\Pi_{x_{j'}=0}^1f_{x_{j'}}...\Pi_{x_i=0}^1f_{x_i}...\Pi_{x_j=0}^1f{x_j}...$
+\end{enumerate}
+In case 1, when each product is expanded from right-to-left we will have:
+\begin{align*}
+\left(...\Pi_{x_i=0}^1f_{x_i}...\right)f_{x_j=0}f_{x_j=1}
+\end{align*}
+and the part where $f_{x_j=0}$ will prevent the degrees of the variables from doubling for $x_j$. Additionally, any variables $x_k$ with $k > j$ will not be doubled in future expansions because they are not in future $f$ by definition (with the exception mentioned in case 2). By similar logic, variables $x_h$ with $h < i$ will not have been doubled in previous expansions.
+\\\\
+In case 2, we will have the same situation, but there will be one extra occurrence of the variable $x_j$, so the degree of $x_j$ will increase once from 1 to 2.
+\\\\
+Finally, each of the $n$ variables will have a max degree of $2$, so the degree of $f$ will be $O(n)$ and the verifier can validate the prover's response.
+
+\subsection*{b}
+Every size $n$ boolean formula $\phi$ can be transformed into a boolean formula $\psi$ with the sorted-variable property mentioned above and size $O(n^2)$.
+\\\\
+To transform $\phi$ into $\psi$ apply the following procedure from right to left until $\psi$ meets the sorted-variable property:
+\begin{align*}
+\text{Find the rightmost "fragment" of } \psi \text{ of the form: }& \forall x_i ... \forall x_j ... \forall x_{i'} f(x_i,...) \text{ where } i' > j > i \\
+\text{Replace the fragment with the following: }& \forall x_i \exists y_i \text{ s.t. } (y_i=x_i) \land ... \forall x_j ... \forall x_{i'} f(y_i,...)
+\end{align*}
+Each of the $n$ variables can be out of place out of place (meaning there is a fragment) less than $n$ times, so there will be at most $O(n^2)$ fragments to fix. Since fixing each fragment adds 1 new variable (without adding a new fragment, because a fixed fragment adds an $\exists$ and a variable in correct order) , the resulting formula $\psi$ will have a maximum size of $O(n^2)$. 
 
 \section*{40}
 Alice and Bob both know a secret key $k$, a one time pad, which is the same bitlength as the message $m$.
