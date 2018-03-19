@@ -1,0 +1,57 @@
+\documentclass[letterpaper,notitlepage,twoside]{article}
+
+% Basic imports, increase margins...
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+% Finite State Machine stuff
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+% Format tables nicely
+\usepackage[latin1]{inputenc}
+\usepackage{array}
+\usepackage{booktabs}
+\setlength{\heavyrulewidth}{1.5pt}
+\setlength{\abovetopsep}{4pt}
+
+\usepackage{amsfonts} 
+\usepackage{amssymb}
+\usepackage{amsmath,amsthm}
+
+\renewcommand{\implies}{\Rightarrow} % redefine command "implies"  
+\renewcommand{\iff}{\Leftrightarrow} % double arrow
+\newcommand{\maps}{\rightarrow} % define command "map" 
+\newcommand{\union}{\cup}
+\newcommand{\intersect}{\cap}
+\newcommand{\N}{\mathbb{N}} % natural number 
+\newcommand{\Q}{\mathbb{Q}} % rational number 
+\newcommand{\R}{\mathbb{R}} % real number 
+\newcommand{\Z}{\mathbb{Z}} % integers 
+\newcommand\tab[1][1cm]{\hspace*{#1}} %\tab command
+
+% Add more packages that you use here...
+
+\begin{document}
+\title{Homework 23}
+\author{Joe Baker, Brett Schreiber, Brian Knotten}
+\maketitle
+
+\section*{39}
+
+\section*{40}
+Alice and Bob both know a secret key, a one time pad, which is the same bitlength as the message.
+Carol does not know any information about this secret key, and her best course of action for determining a random bit of the key is to guess.
+So Carol has probability $1/2$ of guessing any bit of the key using a randomized polynomial algorithm $A$.
+
+The xor operation has the property such that $m \oplus k = c$ and $c \oplus k = m$. Moreover, the xor function is one-to-one, meaning that no other $k$ can derive $c$ from $m$ and vice versa.
+
+Alice can encrypt her message $m$ using a one time pad $k$ to get $c$ using xor. Bob can similarly decrypt $c$ into $m$ using xor.
+Since no other $k$ can derive $m$, and since Carol cannot determine any bit of $k$ with probability greater than $1/2$, it follows that Carol cannot derive any bit of $m$ with the same probability greater than $1/2$.
+So Alice and Bob have computational security on $m$.
+
+\section*{41}
+
+\end{document}
