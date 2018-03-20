@@ -1,32 +1,55 @@
 \documentclass[letterpaper,notitlepage,twoside]{article}
+
+% Basic imports, increase margins...
 \usepackage[margin=0.75in]{geometry}
 \usepackage{amssymb}
+\usepackage{amsmath}
+
+% Finite State Machine stuff
 \usepackage{pgf}
 \usepackage{tikz}
 \usetikzlibrary{arrows,automata}
+
+% Format tables nicely
 \usepackage[latin1]{inputenc}
 \usepackage{array}
 \usepackage{booktabs}
 \setlength{\heavyrulewidth}{1.5pt}
 \setlength{\abovetopsep}{4pt}
 
+\usepackage{amsfonts} 
+\usepackage{amssymb}
+\usepackage{amsmath,amsthm}
+
+\renewcommand{\implies}{\Rightarrow} % redefine command "implies"  
+\renewcommand{\iff}{\Leftrightarrow} % double arrow
+\newcommand{\maps}{\rightarrow} % define command "map" 
+\newcommand{\union}{\cup}
+\newcommand{\intersect}{\cap}
+\newcommand{\N}{\mathbb{N}} % natural number 
+\newcommand{\Q}{\mathbb{Q}} % rational number 
+\newcommand{\R}{\mathbb{R}} % real number 
+\newcommand{\Z}{\mathbb{Z}} % integers 
+\newcommand\tab[1][1cm]{\hspace*{#1}} %\tab command
+
+% Add more packages that you use here...
+
 \begin{document}
-\title{Homework 24}
+\title{Homework N}
 \author{Joe Baker, Brett Schreiber, Brian Knotten}
 \maketitle
+
 \section*{42}
 
 \section*{43}
-Assume that $f^k(x)$ is not a one-way permutation of $x$. $f^k(x)$ is still a permutation, since $f(x)$ is a permutation. So therefore $f^k(x)$ is not one-way. That means an algorithm $A$ could figure out the input in polynomial time.
-
-Construct an algorithm $B$ as follows:
-Given $x$ and the one-way permutation $f$:
-\tab Run $A$ on $f, x$ to get $y$ such that $f^k(y) = x$.
-\tab Repeat the following procedure $k - 1$ times:
-\tab\tab $y' := f(y)$
-\tab\tab $y := y'$
-\tab Return $y'$
-
+Assume that $f^k(x)$ is not a one-way permutation of $x$. $f^k(x)$ is still a permutation, since $f(x)$ is a permutation. So therefore $f^k(x)$ is not one-way. That means an algorithm $A$ could figure out the input in polynomial time. \\\\
+Construct an algorithm $B$ as follows: \\
+Given $x$ and the one-way permutation $f$: \\
+\tab Run $A$ on $f, x$ to get $y$ such that $f^k(y) = x$. \\
+\tab Repeat the following procedure $k - 1$ times: \\
+\tab\tab $y' := f(y)$ \\
+\tab\tab $y := y'$ \\
+\tab Return $y'$ \\\\
 Since $k$ is polynomial on $n$, then $B$ is a polynomial algorithm, since it loops only $k - 1$ times. $B$ returns the final value $y'$ such that $f(y') = x$. Therefore $B$ can reverse $f$. But $f$ is a one way permutation. It cannot be cracked in polynomial time. There is a contradiction. Therefore $f^k$ must also be a one-way permutation.
 
 \end{document}
