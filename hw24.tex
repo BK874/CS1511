@@ -17,13 +17,6 @@
 \section*{42}
 
 \section*{43}
-Consider a one-way permutation $f$ on an input of size $n$ as a directed graph with $2^n$ nodes where each node corresponds to a binary string of size $n$. If $x$ and $y$ are nodes on the graph, and $f(x) = y$, then there is a directed edge from $x$ to $y$. Since $f$ is a function, there will only be one incoming and one outgoing edge from each node. If there were multiple outgoing edges from some node $x$, then that would imply there are two different results possible from $f(x)$, which can't be true since $x$ is a function. If there are multiple incoming edges for some node $x$ that would imply a loss of information, since a decryptor would not be able to tell which input caused the result to be $x$.
-
-There are no cycles of size $n^k$ in the graph, because that would imply that a polynomial eavesdropper could, given $y$, find the $x$ such that $f(x) = y$. The eavesdropping algorithm would follow the cycle (that is, repeatedly apply the function) until it reaches $y$ again. Then it would know that the node it had just seen was $x$. So there can't be any cycles of polynomial size.
-
-So it can be concluded that applying $f^k(x)$, that is, traversing a polynomial number of nodes, will result in a permutation that cannot be cracked.
-
-Alternative proof by contradiction:
 Assume that $f^k(x)$ is not a one-way permutation of $x$. $f^k(x)$ is still a permutation, since $f(x)$ is a permutation. So therefore $f^k(x)$ is not one-way. That means an algorithm $A$ could figure out the input in polynomial time.
 
 Construct an algorithm $B$ as follows:
