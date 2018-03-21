@@ -46,16 +46,6 @@ Now consider the set of all possible decryptions of $c_0$ $D=\{D_k(c_0) | k \in 
 
 
 \section*{43}
-Assume that $f^k(x)$ is not a one-way permutation of $x$. $f^k(x)$ is still a permutation, since $f(x)$ is a permutation. So therefore $f^k(x)$ is not one-way. That means an algorithm $A$, given $b$ and $f^k$ will output the $a$ such that $f^k(a) = b$ in polynomial time. \\\\
-Construct an algorithm $B$ as follows: \\
-Given $y, k$ and the one-way permutation $f$: \\
-\tab Compute $z := f^{(k - 1)}(y)$ \\
-\tab Compute $x := A(z, f^k)$ \\
-\tab Return $x$\\\\
-This algorithm $B$ computes $A(f^{(k - 1)}(y), f^k)$. Since $k$ is polynomial on $n$, then $B$ is a polynomial algorithm, since computes the function $f$ only $k - 1$ times. $B$ returns a value $x$ such that $f(x) = y$. Therefore $B$ can reverse $f$. But $f$ is a one way permutation. It cannot be cracked in polynomial time. There is a contradiction. Therefore $f^k$ must also be a one-way permutation.
-\\\\
-Alternative solution:
-\\\\
 Let $f$ be a one-way function and let $f^k(x) := f(f(...(f(x))))$ where $f$ is applied $k$ times. We will show that if $f$ is a one-way function, then $f^k$ is also a one-way function by contra-positive. Specifically we will show that if $f^k$ is not a one-way function, then $f$ is not a one-way function.
 \\\\
 Assume $f^k$ is not a one-way function. Then given $f^k(x) = y$, $x$ can be computed in polynomial time. We also know that $ f^k(x) = f(f^{k-1}(x')) = y$. Let $x := f^{k-1}(x')$. Since $f^k$ is not a one-way function, given $y$ we can determine $x$ in polynomial time. This means given $y$, we can compute $x$ such that $f(x) = y$ in polynomial time. Thus $f$ is also not a one-way function.
