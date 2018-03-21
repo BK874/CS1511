@@ -46,7 +46,7 @@ Now consider the set of all possible decryptions of $c_0$ $D=\{D_k(c_0) | k \in 
 
 
 \section*{43}
-Assume that $f^k(x)$ is not a one-way permutation of $x$. $f^k(x)$ is still a permutation, since $f(x)$ is a permutation. So therefore $f^k(x)$ is not one-way. That means an algorithm $A$, given $y$ and $f^k$ will output the $a$ such that $f^k(a) = b$ in polynomial time. \\\\
+Assume that $f^k(x)$ is not a one-way permutation of $x$. $f^k(x)$ is still a permutation, since $f(x)$ is a permutation. So therefore $f^k(x)$ is not one-way. That means an algorithm $A$, given $b$ and $f^k$ will output the $a$ such that $f^k(a) = b$ in polynomial time. \\\\
 Construct an algorithm $B$ as follows: \\
 Given $y, k$ and the one-way permutation $f$: \\
 \tab Compute $z := f^{(k - 1)}(y)$ \\
