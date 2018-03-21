@@ -49,12 +49,10 @@ Now consider the set of all possible decryptions of $c_0$ $D=\{D_k(c_0) | k \in 
 Assume that $f^k(x)$ is not a one-way permutation of $x$. $f^k(x)$ is still a permutation, since $f(x)$ is a permutation. So therefore $f^k(x)$ is not one-way. That means an algorithm $A$, given $y$ and $f^k$ will output the $x$ such that $f^k(x) = y$ in polynomial time. \\\\
 Construct an algorithm $B$ as follows: \\
 Given $y, k$ and the one-way permutation $f$: \\
-\tab Run $A$ on $f^k, y$ to get $x$ such that $f^k(x) = y$. \\
-\tab Repeat the following procedure $k - 1$ times: \\
-\tab\tab $x' := f(x)$ \\
-\tab\tab $x := x'$ \\
-\tab Return $x'$ \\\\
-Since $k$ is polynomial on $n$, then $B$ is a polynomial algorithm, since it loops only $k - 1$ times. $B$ returns the final value $x'$ such that $f(x') = y$. Therefore $B$ can reverse $f$. But $f$ is a one way permutation. It cannot be cracked in polynomial time. There is a contradiction. Therefore $f^k$ must also be a one-way permutation.
+\tab Compute $z := f^{(k - 1)}(y)$ \\
+\tab Compute $x := A(z, f^k)$ \\
+\tab Return $x$\\\\
+This algorithm $B$ computes $A(f^{(k - 1)}(y), f^k)$. Since $k$ is polynomial on $n$, then $B$ is a polynomial algorithm, since computes the function $f$ only $k - 1$ times. $B$ returns a value $x$ such that $f(x) = y$. Therefore $B$ can reverse $f$. But $f$ is a one way permutation. It cannot be cracked in polynomial time. There is a contradiction. Therefore $f^k$ must also be a one-way permutation.
 \\\\
 Alternative solution:
 \\\\
