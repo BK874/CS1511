@@ -40,6 +40,8 @@
 \maketitle
 
 \section*{42}
+Consider the example where $|m| = 2$ and $|k| = 1$. Therefore there are $2^2 = 4$ possible messages and $2^1 = 2$ possible keys. An eavesdropper Carol intercepts an encrypted message $c$. The encryption-decryption scheme $(E, D)$ is public and so Carol knows it. But she doesn't know the key, so she tries all possible keys: $0$ and $1$. Carol runs $D_0(c)$ and gets $m_0$. Then she runs $D_1(c)$ and gets $m_1$. So Carol knows that the original message $m \in {m_0, m_1}$. So Carol can guess the message with probability $1/2$.
+
 
 \section*{43}
 Assume that $f^k(x)$ is not a one-way permutation of $x$. $f^k(x)$ is still a permutation, since $f(x)$ is a permutation. So therefore $f^k(x)$ is not one-way. That means an algorithm $A$ could figure out the input in polynomial time. \\\\
