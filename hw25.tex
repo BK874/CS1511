@@ -80,6 +80,8 @@ Consider the algorithm $A(E_{U_n}(0^m))$. Since $G$ is a pseudo-random generator
 \subsection*{c}
 For the definitions to be equal, it must be proved in both directions.\\\\
 The general definition to the special case is trivial, since the special case is an assignment to the general definition, namely that $X_n$ is specifically the uniform distribution over a pair of strings $x_0^n, x_1^n$, and $f$ is the function that maps $x_0^n$ to $0$ and $x_1^n$ to $1$.\\\\
-Therefore the bulk of the proof is proving that the specific random variable and the specific function are sufficient for the general definition of semantic security. Since all possible $B$ functions are equally powerful, let $B = A(E_{U_n}(0^m))$.
+Therefore the bulk of the proof is proving that the specific random variable and the specific function are sufficient for the general definition of semantic security. Since all possible $B$ functions are equally powerful, let $B = A(E_{U_n}(0^m))$.\\
+
+This special case roughly means that the guessing function must guess either a string of all zeroes or a string of all ones, both of which are equally likely to show up. Thus the probability of guessing one over the other is exactly 50-50. But since the algorithm $B$ is being summed with a negligible function, the value is slightly greater than the probability that algorithm $A$ is correct. So the definition holds.
 
 \end{document}
