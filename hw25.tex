@@ -51,14 +51,14 @@ First, $g$ runs in $O(n^2)$ time, because $f$ performing $log(n)$ computations. 
 
 \subsection*{b}
 $f$ is one way $\implies f_U$ is one-way. This can be proved by contrapositive, that $f_U$ is not one-way $\implies f$ is not one way. \\
-Assume $f_U$ is not one-way. Then there exists an algorithm $A_U$ which given $y$ can produce the $x$ such that $f_U(x) = y$ in polynomial time. Then you can construct an algorithm $A$ which given $y$ can produce the $x$ such that $f(x) = y$ in polynomial time.
+Assume $f_U$ is not one-way. Then there exists an algorithm $A_U$ which given $y$ can produce the $x$ such that $f_U(x') = y'$ in polynomial time. Then you can construct an algorithm $A$ which given $y$ can produce the $x$ such that $f(x) = y$ in polynomial time.
 
-$A =$ on input $x$:
-\end{enumerate}
+$A =$ on input $y$:
+\begin{enumerate}
 \item Generate $r = $ some number of random bits.
-\item Construct the string $x' := x || r$.
-\item Run $A$ on $x'$ to get $y$.
-\item If $f(y) = x$, return $y$, else, go back to step $1$.
+\item Construct the string $y' := y || r$.
+\item Run $A$ on $y'$ to get $x'$.
+\item If $f(x') = y$, return $x$, else, go back to step $1$.
 \end{enumerate}
 
 $A$ will halt in polynomial time because \\
