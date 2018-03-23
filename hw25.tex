@@ -65,6 +65,12 @@ $A =$ on input $y$:
 $A$ will halt in polynomial time because \\
 
 \section*{45}
+\subsection*{a}
+Let $(E, D)$ be a semantically secure encryption scheme and let $f(x)$ be a function that returns 1 if a bit of $x$ is 1 and 0 otherwise.
+Then, by definition, for all probabilistic poly-time algorithms $A$: $P(A(E_k(x)) = 1) \leq P(B(1^{n}) = 1) + \epsilon(n)$.
+Clearly, if $A$ cannot determine if a bit of $E_k(x) = 1$, then by definition the $P(A(E_k(x) = (i,b)$ s.t. $x_i = b)$ requirement of computational security is satisfied. 
+Further, the probability of a random bit being $1$ is $\frac{1}{2}$ so $P(B(1^{n}) = 1) = \frac{1}{2}$. 
+Then our definition becomes: $P(A(E_k(x)) = 1) \leq \frac{1}{2} + \epsilon(n)$ and semantic security satisfies computational security.
 
 
 \end{document}
