@@ -43,9 +43,8 @@
 \subsection*{a}
 Given a one-way function $f$, it is possible to create a new one-way function $g$ which runs in $O(n^2)$ time as follows: \\
 On input $x$ of size $n$: \\
-\tab Split the input $x$ into $log(n)$ chunks: $x_1, x_2...x_{log(n)}$.
-\tab Return $f(x_1) || f(x_2) ... || f(x_{log(n)}$ where $||$ is the concatenation of the bitstrings.
-
+\tab Split the input $x$ into $log(n)$ chunks: $x_1, x_2...x_{log(n)}$. \\
+\tab Return $f(x_1) || f(x_2) ... || f(x_{log(n)}$ where $||$ is the concatenation of the bitstrings. \\\\
 First, $g$ runs in $O(n^2)$ time, because $f$ performing $log(n)$ computations. So $g$ is the complexity of $f$ multiplied by $log(n)$. Assuming $f$ runs in at least linear time, the $log(n)$ multiplier is negligible.
 
 
@@ -54,7 +53,7 @@ $f$ is one way $\implies f_U$ is one-way. This can be proved by contrapositive, 
 Assume $f_U$ is not one-way. Then there exists an algorithm $A_U$ which given $y$ can produce the $x$ such that $f_U(x) = y$ in polynomial time. Then you can construct an algorithm $A$ which given $y$ can produce the $x$ such that $f(x) = y$ in polynomial time.
 
 $A =$ on input $x$:
-\end{enumerate}
+\begin{enumerate}
 \item Generate $r = $ some number of random bits.
 \item Construct the string $x' := x || r$.
 \item Run $A$ on $x'$ to get $y$.
