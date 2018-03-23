@@ -72,5 +72,11 @@ Clearly, if $A$ cannot determine if a bit of $E_k(x) = 1$, then by definition th
 Further, the probability of a random bit being $1$ is $\frac{1}{2}$ so $P(B(1^{n}) = 1) = \frac{1}{2}$. 
 Then our definition becomes: $P(A(E_k(x)) = 1) \leq \frac{1}{2} + \epsilon(n)$ and semantic security satisfies computational security.
 
+\subsection*{b}
+Let $G$ be a pseudo-random generator mapping $\left\{0, 1\right\}^n$ to $\left\{0, 1\right\}^m$ , and (E,D) be an encryption scheme where $E_k(x) = x \oplus G(k)$ and $D_k(y) = y \oplus G(k)$. Let $A$ be any probabilistic poly-time algorithm and $x \in_R X_n,k \in_R \left\{0,1\right\}^n$.
+\\\\
+Consider the algorithm $A(E_{U_n}(0^m))$. Since $G$ is a pseudo-random generator, decrypting $E_k(x)$ will require guessing each bit of $x$. The probability of guessing 1 of $2^{|x|}$ different bitstrings is uniformly distributed, so an optimal guessing strategy would be guessing all 0's since it is just as likely to be correct as any other guess. Thus $P[A(E_k(x))=f(x)] \le P[A(E_{U_n}(0^m)) = f(x) + \epsilon(n)$ and this encryption scheme is semantically secure by definition.
+
+
 
 \end{document}
