@@ -73,4 +73,14 @@ Further, the probability of a random bit being $1$ is $\frac{1}{2}$ so $P(B(1^{n
 Then our definition becomes: $P(A(E_k(x)) = 1) \leq \frac{1}{2} + \epsilon(n)$ and semantic security satisfies computational security.
 
 
+
+
+
+
+
+\subsection*{c}
+For the definitions to be equal, it must be proved in both directions.\\\\
+The general definition to the special case is trivial, since the special case is an assignment to the general definition, namely that $X_n$ is specifically the uniform distribution over a pair of strings $x_0^n, x_1^n$, and $f$ is the function that maps $x_0^n$ to $0$ and $x_1^n$ to $1$.\\\\
+Therefore the bulk of the proof is proving that the specific random variable and the specific function are sufficient for the general definition of semantic security. Since all possible $B$ functions are equally powerful, let $B = A(E_{U_n}(0^m))$.
+
 \end{document}
