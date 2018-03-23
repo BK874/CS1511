@@ -44,10 +44,13 @@
 Given a one-way function $f$, it is possible to create a new one-way function $g$ which runs in $O(n^2)$ time as follows: \\
 On input $x$ of size $n$: \\
 \tab Split the input $x$ into $log(n)$ chunks: $x_1, x_2...x_{log(n)}$.
-\tab Return $f(x_1) || f(x_2) ... || f(x_{log(n)}$ where $||$ is the concatenation of the bitstrings.
+\tab for each $x_i$:
+\tab \tab Compute $f(x_i)$, keeping track of the number of steps $f$ takes. After $n^2$ steps, just output $0$.
+\tab Return $f(x_1) || f(x_2) ... || f(x_{log(n)}$ where $||$ is the concatenation of the bitstrings. Some of these substrings will be $0$.
 
-First, $g$ runs in $O(n^2)$ time, because $f$ performing $log(n)$ computations. So $g$ is the complexity of $f$ multiplied by $log(n)$. Assuming $f$ runs in at least linear time, the $log(n)$ multiplier is negligible.
+First, $g$ runs in $O(n^2)$ time, because $f$ performing $log(n)$ computations. So $g$ is the complexity of $f$ multiplied by $log(n)$. Since we stop $f$ after $n^2$ steps, the total runtime is $n^2 * log(n) = O(n^2)$.
 
+Second, $g$ is a one way function, since $g = f_U$, and $f_U$ is one-way as proved below.
 
 \subsection*{b}
 $f$ is one way $\implies f_U$ is one-way. This can be proved by contrapositive, that $f_U$ is not one-way $\implies f$ is not one way. \\
