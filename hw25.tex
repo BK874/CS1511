@@ -53,7 +53,7 @@ Second, $g$ is a one way function, since $g = f_U$, and $f_U$ is one-way as prov
 \subsection*{b}
 $f$ is one way $\implies f_U$ is one-way. This can be proved by contrapositive, that $f_U$ is not one-way $\implies f$ is not one way. \\
 Assume $f_U$ is not one-way. Then there exists an algorithm $A_U$ which given $y$ can produce the $x$ such that $f_U(x') = y'$ in polynomial time. Then you can construct an algorithm $A$ which given $y$ can produce the $x$ such that $f(x) = y$ in polynomial time.
-
+\\\\
 $A =$ on input $y$:
 \begin{enumerate}
 \item Generate $r = $ some number of random bits.
@@ -62,7 +62,7 @@ $A =$ on input $y$:
 \item If $f(x') = y$, return $x$, else, go back to step $1$.
 \end{enumerate}
 
-$A$ will halt in polynomial time because \\
+Since $A_U$ exists, then $f_U$ can be broken with greater than $\epsilon$ probability. Since there is a $1/2^{log(n)} = 1/n$ chance that $y'$ is picked correctly, those two probabilities multiplied together will mean that the probability of breaking $f$ is also greater than $\epsilon$ so, $f$ being a OWF $\implies f_U$ is a OWF.
 
 \section*{45}
 \subsection*{a}
