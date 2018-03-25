@@ -46,5 +46,69 @@ The Toffoli gate is reversible, because every combination of outputs indicate wh
 The Toffoli gate is universal, because two Toffoli gates can be used to construct a NAND gate, which is universal. We will make a NAND gate for input wires $x$ and $y$. Feed $x$, $y$, and $1$ into a Toffoli gate such that $a = x, b = y, c = 1$. The output wire $c' = \neg 1 = 0$ if and only if $x = y = 1$, therefore $c' = \neg (x \land y)$. Thus a Toffoli gates can be used to construct a NAND gate, and so the Toffoli gate is universal.
 
 \section*{48}
+\subsection*{a}
+\begin{enumerate}
+\setcounter{enumi}{-1}
+\item The photon starts in super-positional state:
+\[
+a\left|H\right>+b\left|V\right>=\begin{bmatrix}
+    a \\
+    b
+\end{bmatrix}
+\]
+\item Then a half-silvered mirror (Hadamard Operation):
+\[
+\begin{bmatrix}
+    \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+    \frac{1}{\sqrt{2}} & \frac{-1}{\sqrt{2}}
+\end{bmatrix}
+\begin{bmatrix}
+	a \\
+	b
+\end{bmatrix}
+=
+\begin{bmatrix}
+	\frac{a+b}{\sqrt{2}} \\
+	\frac{a-b}{\sqrt{2}}
+\end{bmatrix}
+\]
+\item Then a full-silvered mirror (Not Operation):
+\[
+\begin{bmatrix}
+    0 & 1 \\
+    1 & 0
+\end{bmatrix}
+\begin{bmatrix}
+	\frac{a+b}{\sqrt{2}} \\
+	\frac{a-b}{\sqrt{2}}
+\end{bmatrix}
+=
+\begin{bmatrix}
+	\frac{a-b}{\sqrt{2}} \\
+	\frac{a+b}{\sqrt{2}}
+\end{bmatrix}
+\]
+\item Then a half-silvered mirror (Hadamard Operation):
+\[
+\begin{bmatrix}
+    \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
+    \frac{1}{\sqrt{2}} & \frac{-1}{\sqrt{2}}
+\end{bmatrix}
+\begin{bmatrix}
+	\frac{a-b}{\sqrt{2}} \\
+	\frac{a+b}{\sqrt{2}}
+\end{bmatrix}
+=
+\begin{bmatrix}
+	a \\
+	-b
+\end{bmatrix}
+\]
+\end{enumerate}
+So the outgoing state of the photon is $a\left|H\right>-b\left|V\right>$ 
+\subsection*{b}
+The probability of the observer seeing the photon come out of the mirror horizontally is: $a^2$
+\subsection*{c}
+The probability of the observer seeing the photon come out of the mirror vertically is: $(-b)^2 = b^2$
 
 \end{document}
