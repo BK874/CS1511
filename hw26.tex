@@ -49,8 +49,10 @@ The protocol described in section a is intuitively computationally zero knowledg
 \section*{47}
 Let's define the Toffoli gate on 3 input wires: $a, b, c$  as the output $a', b', c'$, where $a' = a$, $b' = b$, and $c' = \neg c$ if $a = b = 1$, else $c' = c$. \\\\
 The Toffoli gate is reversible, because every combination of outputs indicate what inputs were used. The input wires can be determined from the following procedure: given output wires $a', b', c'$, the input wires $a = a', b = b'$, and $c = \neg c'$ if $a = b = 1$, else $c = c'$. \\\\
-The Toffoli gate is universal, because two Toffoli gates can be used to construct a NAND gate, which is universal. We will make a NAND gate for input wires $x$ and $y$. Feed $x$, $y$, and $1$ into a Toffoli gate such that $a = x, b = y, c = 1$. The output wire $c' = \neg 1 = 0$ if and only if $x = y = 1$, therefore $c' = \neg (x \land y)$. Thus a Toffoli gates can be used to construct a NAND gate, and so the Toffoli gate is universal.
-
+The Toffoli gate is universal, because two Toffoli gates can be used to construct a NAND gate, which is universal. We will make a NAND gate for input wires $x$ and $y$. Feed $x$, $y$, and $1$ into a Toffoli gate such that $a = x, b = y, c = 1$. The output wire $c' = \neg 1 = 0$ if and only if $x = y = 1$, therefore $c' = \neg (x \land y)$. Thus a Toffoli gates can be used to construct a NAND gate, and so the Toffoli gate is universal.\\\\
+Alternatively, one can construct a NOT gate and an AND gate as follows:\\
+NOT where $x$ is the input and $c'$ is the output: $a = 1, b = 1, c = x$. Then $a' = 1, b' = 1, c' = \neg x$.\\
+AND where $x$ and $y$ are inputs and $c'$ is the output: $a = x, b = y, c = 0$. Then $a' = x, b' = y, c' = 1$ iff $a$ and $b$ are both $1$. So $c' = a \land b$.
 \section*{48}
 \subsection*{a}
 \begin{enumerate}
