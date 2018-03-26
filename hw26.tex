@@ -35,10 +35,16 @@
 % Add more packages that you use here...
 
 \begin{document}
-\title{Homework 25}
+\title{Homework 26}
 \author{Joe Baker, Brett Schreiber, Brian Knotten}
 \maketitle
 \section*{46}
+\subsection*{a}
+In the protocol described in 9.17 b, the prover attempts to convince the verifier that a graph $G$ with $n$ vertices contains a Hamiltonian cycle $C$. First, the prover randomly permutes the the vertices of $G$ and encrypts every element of the adjacency matrix of $G$ such that for any given ciphertext $c$, it is equally probable that any of the elements was the original plaintext. The encrypted elements are then presented to the verifier. Next, the verifier randomly chooses $b = 0 $or $b = 1$ and sends $b$ to the prover. If the verifier sends 0, then the prover reveals to the verifier the permutation used on $G$'s vertices, the permutation's adjacency matrix, and the randomness used to encrypt the elements of the adjacency matrix. If the verifier sends 1, then the prover sends the verifier a permutation of the cycle $C$ and the randomness used to encrypt the edges of the cycle in the adjacency matrix. The verifier then checks either if the permuted adjacency matrix corresponds with $G$ properly (if $b = 0$) or if the permuted cycle is indeed a Hamiltonian cycle and if the corresponding edges match with the the prover's original message. 
+\subsection*{b}
+An interactive proof for an NP-language $L$ is computationally zero knowledge if, for all probabilistic poly-time interactive strategies $V^{*}$ there is a probabilistic poly-time algorithm $S^{*}$ such that for all $x \in L$, the distributions produces by $V^{*}$ and $S^{*}$ on $x$ are indistinguishable to all efficient algorithms.
+\subsection*{c}
+The protocol described in section a is intuitively computationally zero knowledge because, if the the verifier did have an algorithm to obtain useful information while conversing with the prover, then the algorithm could be used to obtain the information without talking to the prover: The verifier can first simulate the prover by randomly encrypting either the graph or any $n$-cycle and presenting it to the verifier. Next, the verifier acts as itself and uses the algorithm to decide whether to request a graph or cycle. The algorithm cannot guess with probability above $\frac{1}{2}$ that the encrypted information is either a graph or a cycle. Clearly, the verifier can obtain the benefit of the algorithm without interacting with the prover, so it is computationally zero knowledge.
 
 \section*{47}
 Let's define the Toffoli gate on 3 input wires: $a, b, c$  as the output $a', b', c'$, where $a' = a$, $b' = b$, and $c' = \neg c$ if $a = b = 1$, else $c' = c$. \\\\
