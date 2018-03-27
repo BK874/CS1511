@@ -40,5 +40,37 @@
 \author{Joe Baker, Brett Schreiber, Brian Knotten}
 \maketitle
 
+\section*{49}
+\subsection*{a}
+$v = \frac{1}{\sqrt{4}} \ket{00} + \frac{1}{\sqrt{4}} \ket{01} + \frac{1}{\sqrt{4}} \ket{10} + \frac{1}{\sqrt{4}} \ket{11}$
+Since the coefficients are the square-root of the probability, the probability of measuring any of $00, 01, 10, 11$ is $\frac{1}{4}$.
+\subsection*{b}
+Since $\ket{xy}$ can be rewritten as $\ket{x}\ket{y}$, we can simplify the problem into: \\
+$\begin*{align}
+v &= \frac{1}{\sqrt{4}} \ket{00} + \frac{1}{\sqrt{4}} \ket{01} + \frac{1}{\sqrt{4}} \ket{10} + \frac{1}{\sqrt{4}} \ket{11} \\
+  &= \frac{1}{\sqrt{4}} \ket{0_1} \ket{0_2} + \frac{1}{\sqrt{4}} \ket{0_1} \ket{1_2} + \frac{1}{\sqrt{4}} \ket{1_1} \ket{0_2} + \frac{1}{\sqrt{4}} \ket{1_1}\ket{1_2} \\
+  &= \frac{1}{2} \ket{0_1} \ket{0_2} + \frac{1}{2} \ket{0_1} \ket{1_2} + \frac{1}{2} \ket{1_1} \ket{0_2} + \frac{1}{2} \ket{1_1}\ket{1_2} \\
+  &= \frac{1}{\sqrt(2)}(\ket{0_1} + \ket{1_1})(\ket{0_2} + \ket{1_2})
+\end*{align}$
+Measuring the first qubit would have a 1/2 probability of resulting in a 0 and a 1/2 probability of resulting in a 1, and the equation becomes either: \\
+$v = 0_1 + \frac{1}{\sqrt{2}}(\ket{0_2} + \ket{1_2})$ \\
+or: \\
+$v = 1_1 + \frac{1}{\sqrt{2}}(\ket{0_2} + \ket{1_2})$ \\
+both with probability 1/2.\\\\
+
+And now the second qubit has a 1/2 chance of being either a 0 or 1 in both cases. So $v$ has a uniform 1/4 probability of being any of the following:\\
+$v = 0_10_2$ \\
+$v = 0_11_2$ \\
+$v = 1_10_2$ \\
+$v = 1_11_2$ \\
+
+\subsection*{c}
+The same proof as in b, but measure the second bit first. The probabilities will be the same due to the commutivity of multiplying the coefficient.\\
+\section*{50}
+\subsection*{a}
+
+\subsection*{b}
+
+\subsection*{c}
 
 \end{document}
