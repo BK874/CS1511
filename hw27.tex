@@ -73,15 +73,34 @@ Prob[b_1 = i | b_2 = j] &= \frac{Prob[b_1 = i \cap b_2 = j]}{Prob[b_2 = j} \\
 So the probability of measuring the second bit to be a certain value is independent of the first bit, so the equation stays as $v = x_0y_0\ket{00} + x_0y_1\ket{01} + x_1y_0\ket{10} + x_1y_1\ket{11}$. Thus all three methods of measurement have the same probabilities.
 \section*{50}
 \subsection*{a}
-If $x=y=1$ in the EPR experiment detailed in the book then, by symmetry, we can assume without loss of generality that Alice performs her rotation first. The initial state of the system is $\frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{11}$ Applying the rotation to the first state, $\ket{00}$, results in $cos(\frac{\pi}{8}) \ket{00} + sin(\frac{\pi}{8}) \ket{10}$ and applying the rotation to the second state, $\ket{11}$, results in $cos(\frac{5\pi}{8}) \ket{01} + sin(\frac{5\pi}{8}) \ket{11}$. Therefore, Alice's rotation leaves the system in the state: $cos(\frac{\pi}{8}) \ket{00} + sin(\frac{\pi}{8}) \ket{10} + cos(\frac{5\pi}{8}) \ket{01} + sin(\frac{5pi}{8}) \ket{11}$. \\\\
+If $x=y=1$ in the EPR experiment detailed in the book then, by symmetry, we can assume without loss of generality that Alice performs her rotation first. The initial state of the system is $\frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{11}$ Applying the rotation to the first state, $\ket{00}$, results in $cos(\frac{\pi}{8}) \ket{00} + sin(\frac{\pi}{8}) \ket{10}$ and applying the rotation to the second state, $\ket{11}$, results in $cos(\frac{5\pi}{8}) \ket{01} + sin(\frac{5\pi}{8}) \ket{11}$. Therefore, Alice's rotation leaves the system in the state: $cos(\frac{\pi}{8}) \ket{00} + sin(\frac{\pi}{8}) \ket{10} + cos(\frac{5\pi}{8}) \ket{01} + sin(\frac{5\pi}{8}) \ket{11}$. \\\\
 Next, Bob performs his rotation; this results in $(cos(\frac{\pi}{8}) \ket{0} + sin(\frac{\pi}{8}) \ket{1})(cos(\frac{\pi}{8}) \ket{0}) - sin(\frac{\pi}{8})\ket{1})$ for the first states $\ket{00}$ and $\ket{10}$. The rotation on the other states $\ket{01}$ and $\ket{11}$ results in $(-sin(\frac{\pi}{8}) \ket{0} + cos(\frac{\pi}{8}) \ket{1})(sin(\frac{\pi}{8}) \ket{0} + cos(\frac{\pi}{8}) \ket{1})$
 Therefore, Bob's rotation leaves the system in the state: \\
  $(cos(\frac{\pi}{8}) \ket{0} + sin(\frac{\pi}{8}) \ket{1})(cos(\frac{\pi}{8}) \ket{0}) - sin(\frac{\pi}{8})\ket{1}) + (-sin(\frac{\pi}{8}) \ket{0} + cos(\frac{\pi}{8}) \ket{1})(sin(\frac{\pi}{8}) \ket{0} + cos(\frac{\pi}{8}) \ket{1})$. \\\\
 Note, however, that the resulting system state listed above is equivalent to the following: $(cos^{2}(\frac{\pi}{8}) - sin^{2}(\frac{\pi}{8})) \ket{00} - 2sin(\frac{\pi}{8})cos(\frac{\pi}{8}) \ket{01} + 2sin(\frac{\pi}{8})cos(\frac{\pi}{8}) \ket{10} + (cos^{2}(\frac{\pi}{8}) - sin^{2}(\frac{\pi}{8})) \ket{11}$.\\
 Further note that: $cos^{2}(\frac{\pi}{8}) - sin^{2}(\frac{\pi}{8}) = cos(\frac{\pi}{4}) = 2sin(\frac{\pi}{8})cos(\frac{\pi}{8}) = sin(\frac{\pi}{4}) = \frac{1}{\sqrt{2}}$. \\
 Thus, the final state of the system is: $\frac{1}{\sqrt{2}} \ket{00} - \frac{1}{\sqrt{2}} \ket{01} + \frac{1}{\sqrt{2}} \ket{10} + \frac{1}{\sqrt{2}} \ket{11}$. \\
-Every coefficient in this state has the same absolute value, so when measured (regardless of the order of measurement) the system will yield each of the four values 00, 01, 10, and 11 with equals probability $\frac{1}{4}$. \\
+Every coefficient in this state has the same absolute value, so when measured (regardless of the order of measurement) the system will yield each of the four values 00, 01, 10, and 11 with equal probability $\frac{1}{4}$. \\
 Therefore the probability that $a=b$ and Alice and Bob win is $\frac{1}{2}$.
 \subsection*{b}
+Similar to the protocol in the textbook, the outlined protocol has three cases: $x=y=0$, $x \neq y$, and $x=y=1$. \\
+Case 1: $x=y=0$ \\
+\tab First, Alice sees $x=0$ and sets $a=0$. Next, Bob sees $y=0$ and sets $b=0$. \\
+\tab Clearly $Pr(a=b) = 1$ and Alice and Bob always win in this case. \\
+Case 2: $x \neq y$ \\
+\tab First, Alice sees $x=1$ and rotates her qubit by $\frac{\pi}{8}$.\\
+\tab The state is now: $cos(\frac{\pi}{8}) \ket{00} + sin(\frac{\pi}{8}) \ket{10} + cos(\frac{5\pi}{8}) \ket{01} + sin(\frac{5\pi}{8}) \ket{11}$ \\
+\tab Bob sees $y=0$ and sets $b=0$ \\
+\tab The probability that Alice observes a 0 is: \\
+\tab $(\frac{1}{\sqrt{2}}cos(\frac{\pi}{8})^{2}) + (-\frac{1}{\sqrt(2)}sin(\frac{\pi}{8})^{2}) \approx 0.14$ \\
+\tab Therefore the probability that $a=b$ and Alice and Bob win is $\approx 0.14$ \\
+\tab Similarly, Alice sees $x=0$ she sets $a=0$. \\
+\tab Bob then sees $y=1$ and rotates his qubit by $-\frac{\pi}{8}$. \\
+\tab By similar calculations to the prior case, the probability that Bob observes a 0 $\approx 0.14$ \\
+\tab Therefore, if $x \neq y$, the probability that Alice and Bob win is $\approx 0.14$ \\
+Case 3: $x=y=1$ \\
+\tab The calculations for this case proceed in the same manner as part (a) and result in a probability of $\frac{1}{2}$ that  \tab Alice and Bob win. \\
+Therefore, $Pr($Alice and Bob win$) = \frac{1}{4} \cdot 1 + \frac{1}{2} \cdot 0.14 + \frac{1}{4} \cdot \frac{1}{2} = 0.445$. \\
+The book's protocol resulted in a probability of $0.8 > 0.445$, so having Alice and Bob determine their outputs $a$ and $b$ without measuring their qubits in certain cases lessens their probability of success.
 
 \end{document}
