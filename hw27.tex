@@ -65,12 +65,18 @@ $v = 1_10_2$ \\
 $v = 1_11_2$ \\
 
 \subsection*{c}
-The same proof as in b, but measure the second bit first. The probabilities will be the same due to the commutivity of multiplying the coefficient.\\
+The same proof as in b, but measure the second bit first. The probabilities will be the same due to the commutativity of multiplying the coefficient.\\
 \section*{50}
 \subsection*{a}
-
+If $x=y=1$ in the EPR experiment detailed in the book then, by symmetry, we can assume without loss of generality that Alice performs her rotation first. The initial state of the system is $\frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{11}$ Applying the rotation to the first state, $\ket{00}$, results in $cos(\frac{\pi}{8}) \ket{00} + sin(\frac{\pi}{8}) \ket{10}$ and applying the rotation to the second state, $\ket{11}$, results in $cos(\frac{5\pi}{8}) \ket{01} + sin(\frac{5\pi}{8}) \ket{11}$. Therefore, Alice's rotation leaves the system in the state: $cos(\frac{\pi}{8}) \ket{00} + sin(\frac{\pi}{8}) \ket{10} + cos(\frac{5\pi}{8}) \ket{01} + sin(\frac{5pi}{8}) \ket{11}$. \\\\
+Next, Bob performs his rotation; this results in $(cos(\frac{\pi}{8}) \ket{0} + sin(\frac{\pi}{8}) \ket{1})(cos(\frac{\pi}{8}) \ket{0}) - sin(\frac{\pi}{8})\ket{1})$ for the first states $\ket{00}$ and $\ket{10}$. The rotation on the other states $\ket{01}$ and $\ket{11}$ results in $(-sin(\frac{\pi}{8}) \ket{0} + cos(\frac{\pi}{8}) \ket{1})(sin(\frac{\pi}{8}) \ket{0} + cos(\frac{\pi}{8}) \ket{1})$
+Therefore, Bob's rotation leaves the system in the state: \\
+ $(cos(\frac{\pi}{8}) \ket{0} + sin(\frac{\pi}{8}) \ket{1})(cos(\frac{\pi}{8}) \ket{0}) - sin(\frac{\pi}{8})\ket{1}) + (-sin(\frac{\pi}{8}) \ket{0} + cos(\frac{\pi}{8}) \ket{1})(sin(\frac{\pi}{8}) \ket{0} + cos(\frac{\pi}{8}) \ket{1})$. \\\\
+Note, however, that the resulting system state listed above is equivalent to the following: $(cos^{2}(\frac{\pi}{8}) - sin^{2}(\frac{\pi}{8})) \ket{00} - 2sin(\frac{\pi}{8})cos(\frac{\pi}{8}) \ket{01} + 2sin(\frac{\pi}{8})cos(\frac{\pi}{8}) \ket{10} + (cos^{2}(\frac{\pi}{8}) - sin^{2}(\frac{\pi}{8})) \ket{11}$.\\
+Further note that: $cos^{2}(\frac{\pi}{8}) - sin^{2}(\frac{\pi}{8}) = cos(\frac{\pi}{4}) = 2sin(\frac{\pi}{8})cos(\frac{\pi}{8}) = sin(\frac{\pi}{4}) = \frac{1}{\sqrt{2}}$. \\
+Thus, the final state of the system is: $\frac{1}{\sqrt{2}} \ket{00} - \frac{1}{\sqrt{2}} \ket{01} + \frac{1}{\sqrt{2}} \ket{10} + \frac{1}{\sqrt{2}} \ket{11}$. \\
+Every coefficient in this state has the same absolute value, so when measured (regardless of the order of measurement) the system will yield each of the four values 00, 01, 10, and 11 with equals probability $\frac{1}{4}$. \\
+Therefore the probability that $a=b$ and Alice and Bob win is $\frac{1}{2}$.
 \subsection*{b}
-
-\subsection*{c}
 
 \end{document}
