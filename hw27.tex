@@ -40,32 +40,37 @@
 \author{Joe Baker, Brett Schreiber, Brian Knotten}
 \maketitle
 
-\section*{49}
+\\section*{49}
 \subsection*{a}
-$v = \frac{1}{\sqrt{4}} \ket{00} + \frac{1}{\sqrt{4}} \ket{01} + \frac{1}{\sqrt{4}} \ket{10} + \frac{1}{\sqrt{4}} \ket{11}$
-Since the coefficients are the square-root of the probability, the probability of measuring any of $00, 01, 10, 11$ is $\frac{1}{4}$.
-\subsection*{b}
-Since $\ket{xy}$ can be rewritten as $\ket{x}\ket{y}$, we can simplify the problem into: \\
+Let the state of $v = \alpha_{00}\ket{00} + \alpha_{01}\ket{01} + \alpha_{10}\ket{10} + \alpha_{11}\ket{11}$ where $Prob[$register's state is measured as $b_1b_2] = |\alpha_{b_1b_2}|^2$. \\
+
+The coefficients can be rewritten to reflect the probabilities of each individual bit as $x_i$ and $y_i$ such that $Prob[b_1 = i] = x_i^2$ and $Prob[b_2 = i] = y_i^2$. \\
+
+Using the multiplicative rule the $\alpha$ coefficients can be rewritten as follows: \\
 \begin{align*}
-  &= \frac{1}{\sqrt{4}} \ket{00} + \frac{1}{\sqrt{4}} \ket{01} + \frac{1}{\sqrt{4}} \ket{10} + \frac{1}{\sqrt{4}} \ket{11} \\
-  &= \frac{1}{\sqrt{4}} \ket{0_1} \ket{0_2} + \frac{1}{\sqrt{4}} \ket{0_1} \ket{1_2} + \frac{1}{\sqrt{4}} \ket{1_1} \ket{0_2} + \frac{1}{\sqrt{4}} \ket{1_1}\ket{1_2} \\
-  &= \frac{1}{2} \ket{0_1} \ket{0_2} + \frac{1}{2} \ket{0_1} \ket{1_2} + \frac{1}{2} \ket{1_1} \ket{0_2} + \frac{1}{2} \ket{1_1}\ket{1_2} \\
-  &= \frac{1}{\sqrt(2)}(\ket{0_1} + \ket{1_1})(\ket{0_2} + \ket{1_2})
+Prob[b_1 = i \cap b_2 = j] &= Prob[b_1 = i] * Prob[b_2 = j] \\
+|\alpha_{ij}|^2 &= x_i^2y_j^2 \\
+\alpha_{ij} &= x_iy_j \\
 \end{align*}
-Measuring the first qubit would have a 1/2 probability of resulting in a 0 and a 1/2 probability of resulting in a 1, and the equation becomes either: \\
-$v = 0_1 + \frac{1}{\sqrt{2}}(\ket{0_2} + \ket{1_2})$ \\
-or: \\
-$v = 1_1 + \frac{1}{\sqrt{2}}(\ket{0_2} + \ket{1_2})$ \\
-both with probability 1/2.\\\\
 
-And now the second qubit has a 1/2 chance of being either a 0 or 1 in both cases. So $v$ has a uniform 1/4 probability of being any of the following:\\
-$v = 0_10_2$ \\
-$v = 0_11_2$ \\
-$v = 1_10_2$ \\
-$v = 1_11_2$ \\
+So the overall equation for $v = x_0y_0\ket{00} + x_0y_1\ket{01} + x_1y_0\ket{10} + x_1y_1\ket{11}$.
 
+\subsection*{b}
+The probability of measuring the second bit as a certain value given that the first bit measured to be a certain value can be described as follows:
+\begin{align*}
+Prob[b_2 = j | b_1 = i] &= \frac{Prob[b_2 = j \cap b_1 = i]}{Prob[b_1 = i} \\
+&= \frac{x_i^2y_j^2}{x_i^2} \\
+&= y_j^2 \\
+\end{align*}
+So the probability of measuring the second bit to be a certain value is independent of the first bit, so the equation stays as $v = x_0y_0\ket{00} + x_0y_1\ket{01} + x_1y_0\ket{10} + x_1y_1\ket{11}$.
 \subsection*{c}
-The same proof as in b, but measure the second bit first. The probabilities will be the same due to the commutativity of multiplying the coefficient.\\
+The probability of measuring the first bit as a certain value given that the second bit measured to be a certain value can be described as follows:
+\begin{align*}
+Prob[b_1 = i | b_2 = j] &= \frac{Prob[b_1 = i \cap b_2 = j]}{Prob[b_2 = j} \\
+&= \frac{x_i^2y_j^2}{y_j^2} \\
+&= x_i^2 \\
+\end{align*}
+So the probability of measuring the second bit to be a certain value is independent of the first bit, so the equation stays as $v = x_0y_0\ket{00} + x_0y_1\ket{01} + x_1y_0\ket{10} + x_1y_1\ket{11}$. Thus all three methods of measurement have the same probabilities.
 \section*{50}
 \subsection*{a}
 If $x=y=1$ in the EPR experiment detailed in the book then, by symmetry, we can assume without loss of generality that Alice performs her rotation first. The initial state of the system is $\frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{11}$ Applying the rotation to the first state, $\ket{00}$, results in $cos(\frac{\pi}{8}) \ket{00} + sin(\frac{\pi}{8}) \ket{10}$ and applying the rotation to the second state, $\ket{11}$, results in $cos(\frac{5\pi}{8}) \ket{01} + sin(\frac{5\pi}{8}) \ket{11}$. Therefore, Alice's rotation leaves the system in the state: $cos(\frac{\pi}{8}) \ket{00} + sin(\frac{\pi}{8}) \ket{10} + cos(\frac{5\pi}{8}) \ket{01} + sin(\frac{5pi}{8}) \ket{11}$. \\\\
