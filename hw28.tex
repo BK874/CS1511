@@ -36,11 +36,12 @@
 \usepackage{braket}
 
 \begin{document}
-\title{Homework 27}
+\title{Homework 28}
 \author{Joe Baker, Brett Schreiber, Brian Knotten}
 \maketitle
 
 \section*{51}
+Let $f$ be the function passed as input to Simon's algorithm. When Simon's algorithm returns $a=0$ it is claiming that the function from $\left\{0,1\right\}^n \rightarrow \left\{0,1\right\}^n$ is a permutation. During the measurement of the first $n$ bits in Simon's algorithm, you get a uniformly distributed $y$ at random such that $y*a=0$. Since $a=0$ in this case, you get a uniformly distributed measurement of $y$. If $f$ is a permutation, then there is a uniform distribution that $y$ in the range of $f$ is chosen from input $x$, so Simon's algorithm correctly handles the case where $a=0$.
 
 \section*{52}
 \subsection*{a}
