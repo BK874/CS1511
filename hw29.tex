@@ -74,6 +74,7 @@ $H(-\frac{1}{\sqrt 2} \ket{0} - \frac{1}{\sqrt 2} \ket{1}) = \frac{1}{\sqrt 2} \
 Each of these results corresponds to a rotation of the form $\sin(\theta) + \cos(\theta)$. Bob can then compare this result to his bit $b$ and see what the difference in angle is. This will indicate the quadrant that the original value of $a$ was in. Since there are 4 quadrants, each could represent combinations of $x$ and $y$ such that QI $\implies x = 0, y = 0$, QII $\implies x = 0, y = 1$, QIII $\implies x = 1, y = 1$, and QIV $\implies x = 1, y = 0$. So Bob can determine the values of $x$ and $y$.
 
 \section*{54}
-
+The final state works by mapping the two classical particles $z_0,z_1$ to indicate the quadrant that the Bell measurement of $a,x$ ends up in. Then the rotation from $b$ to the quadrant indicated by $z_0,z_1$ is measured. Finally, that difference in rotation is added to $b$ to make a qubit identical to $x$.
+\\\\
 At first, $x = \alpha \ket 0 + \beta \ket 1$, and $a = $ either $0$ or $1$, since it's already been measured. Then, $x$ will become its negative, $x = \beta \ket 0 + \alpha \ket 1$, if and only if $a = 1$. Then, the Hadamard operation is performed on $a$, which becomes $a = \frac{\ket 0 + \ket 1}{\sqrt 2}$. Then, $x$ and $a$ are both measured to be either $0$ or $1$. At this point, consider these measured values to be $x$ and $y$ described in problem 53, and do the procedure described in the solution to 54 to get the original state of $x$.
 \end{document}
