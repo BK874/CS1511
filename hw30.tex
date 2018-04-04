@@ -42,8 +42,9 @@
 
 \section*{55}
 \section*{57}
-Let L be a language that has a PCP-verifier using $r$ coins and $q$ adaptive queries and let $V$ be the PCP-verifier with $q$ adaptive queries. We can construct a PCP-verifier $V'$ with $2^q$ non-adaptive queries by having $V'$ read all possible $2^q$ bits that can be read by $V$. $V$ will ask for the first address and get a single bit back, then ask for one of two second addresses based on whether or not the first bit was 0 or 1. This process continues for $q$ bits. $V$ can ask for at most $2^q$ locations. $V'$ will simply ask for all $2^q$ addresses all at once.
+Let L be a language that has a PCP-verifier using $r$ coins and $q$ adaptive queries and let $V$ be the PCP-verifier with $\left\{x_1,x_2,...,x_q\right\}$ as the $q$ adaptive queries. We can construct a PCP-verifier $V'$ with $2^q$ non-adaptive queries by having $V'$ read all possible $2^q$ bits that can be read by $V$.
 
 \section*{58}
-
+Let $\pi^n$ be the proof string where the $i$th bit contains a polynomial $g(x)$ which is supposedly the permanent of the matrix encoded as $i$ with the 1st row and the $x$th column removed. The verifier composes $i$ as $A$ and queries for the $i$th bit of $\pi^n$. Then the verifier calculates $\Sigma_{c = 1}^{n - 1}a_cg(c)$ where $a_c$ is the $c$th value of the first row of $A$ and checks to make sure that the sum equals $k$. If it does not, reject. Then, do this for the second row of $A$ on the advice tape $\pi^{n - 1}$ and again compare the result to $k$. Continue this for all rows in $A$. \\\\
+To deal with the multiple proof $\pi^1...\pi^n$, just concatenate all the proof strings into one, and have the verifier consider this offset in the query. The verifier does not use the result of each query in order to specify the next query, since the queries are determined only by the input.
 \end{document}
