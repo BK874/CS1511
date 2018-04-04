@@ -41,6 +41,8 @@
 \maketitle
 
 \section*{55}
+Let $f \in BQP$ and let $M$ be a quantum turing machine that accepts $f$. Next construct a new quantum turing machine from $M$ called $M'$ which works the same as $M$ except it takes in a quantum register $m'$ of size $m+1$ where $M$ took in a quantum register of size $m$. Additionally the final qubit of the new register must be 0 if and only if all amplitudes of the first $m$ qubits correspond to the real-part of their amplitudes in the original $M$ and 1 if and only if all amplitudes of the first $m$ qubits correspond to the imaginary-part of their amplitudes in the original $M$. Then apply elementary quantum operations $F_1,...,F_T$ on $m'$. Finally measure the register and let $Y$ denote the obtained value.
+
 \section*{57}
 Let L be a language that has a PCP-verifier using $r$ coins and $q$ adaptive queries and let $V$ be the PCP-verifier with $\left\{x_1,x_2,...,x_q\right\}$ as the $q$ adaptive queries. We can construct a PCP-verifier $V'$ with $2^q$ non-adaptive queries by having $V'$ read all possible $2^q$ bits that can be read by $V$.
 
