@@ -77,7 +77,7 @@ There are now three cases to consider to show that the number of correct clauses
 \item If one of $x$ and $y$ is true: Then the first equation is true, but the second equation is false.
 \item Neither $x$ or $y$ is true: Then neither equation is true
 \end{enumerate}
-In all three cases, the number of correct clauses will match the number of correct equations. Finally note that this rule to transform variables can be extended to more than two variables. Now we have that MAX-3SAT $\leq$ MAX-LINEAR.
+In all three cases, the number of correct clauses will match the number of correct equations. Finally note that this rule to transform variables can be extended to more than two variables by making $n-1$ copies of the equation $x+y+...$ each equal to a value $1...n_1$ (one equation for each number of true variables, and one equation equal to 1 for when all variables are true. Now we have that MAX-3SAT $\leq$ MAX-LINEAR.
 \\\\
 Theorem 11.9 says that there is a constant $\rho < 1$ such that approximating MAX-3SAT is NP-Hard. Finally, since MAX-3SAT $\leq$ MAX-LINEAR, $\exists \rho < 1$ such that approximating MAX-LINEAR is NP-Hard.
 
