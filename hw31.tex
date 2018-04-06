@@ -45,28 +45,63 @@
 \maketitle
 
 \section*{59}
-Step 1: Show that MAX-3SAT reduces to the problem P of finding the maximum number of linear equations in $n$ with coefficients that are rational numbers that can be satisfied.
+Step 1: Show that the problem P of satisfying $n$ rational linear equations reduces to MAXSAT.
 \\\\
-Consider a MAX-3SAT instance of the following form:\\
+Step 2: Explain that MAXSAT reduces to MAX-3SAT
+\\\\
+Step 3: Cite Theorem 11.9. Theorem 11.9 says that there is a constant $\rho < 1$ such that approximating MAX-3SAT is NP-Hard. Finally, since Since P $\leq$ MAXSAT $\leq$ MAX-3SAT, $\exists \rho < 1$ such that approximating P is NP-Hard.
+\\\\
+Old Proof:
+We want to show that satisfying a set of inequalities is NP-hard by reducing the conjunctive normal form satisfiability algorithm ot it. Let INQ be the algorithm for inequality satisfiability, and CNF-SAT be the algorithm for conjunctive normal form satsifiability. To reduce CNF-SAT to INQ (CNF-SAT $\leq$ INQ), we must first be able to convert the input of CNF-SAT to INQ in polynomial time. We will convert the input by mapping each clause to one inequality of the form $var_x + var_y + .. + var_z \geq 1$. Each variable in the inequality is mapped to one literal in the clause, but the variable's form depends on the literal. If the literal is not a negation, it is simply added within the inequality; however, if the literal is a negation, then $1 - literal$ is added to the inequality. For example, suppose we had the following boolean formula:
 \begin{gather*}
-(x_0 \vee x_1 \vee x_2) \wedge \\
-(x_0 \vee \overline{x_1} \vee x_2) \wedge \\
-(\overline{x_0} \vee x_1 \vee \overline{x_2})
+(x \vee y \vee z) \wedge \\
+(x \vee \overline{y}) \wedge \\
+(\overline{z} \vee \overline{x})
 \end{gather*}
-All clauses satisfiable when all three variables are assigned true.
-Convert each clause into a separate equation of the form $x + y + z = 1$, where each variable is either itself, $x$, or if it is negated, is of the form $1 - x$. So the equations are:
-\begin{align*}
-x_0 + x_1 + x_2 &= 1 \\
-x_0 + (1 - x_1) + x_2 &= 1 \\
-(1 - x_0) + x_1 + (1 - x_2) &= 1
-\end{align*}
-This system of equations can be simplified to:
-\begin{align*}
-x_0 + x_1 + x_2 &= 1 \\
-x_0 - x_1 + x_2 &= 0 \\
-- x_0 + x_1 - x_2) &= -1
-\end{align*}
-Now, an oracle machine for solving the problem P can determine the approximate maximum subset of satisfying equations with assignments to the variables such that if a variable is 0, then the corresponding SAT assignment is false, and if it's nonzero, then the SAT variable is assignmened true.
 
+\noindent With our mapping, the formula would become the following set of inequalities:
+\begin{gather*}
+x + y + z \geq 1 \\
+x + (1-y) \geq 1 \\
+(1-z) + (1-x) \geq 1
+\end{gather*}
+
+In the case of our inequalities, $1$ represents the boolean $true$ and $0$ the boolean $false$. For all of the inequalities to pass, each must have at least one variable result in $1$ (true). As long as any of the are $1$, then the inequality will pass, regardless of the value (truthiness) of the other variables. This also enforces that the negation of any variable results in the opposite value compared to the literal. For example, if we set $y=1$, i.e. true, then $(1-y)$ would result in $0$, or false. Setting $y=0$ also results in $(1-y)$ being $1$. \\
+
+The next step is to guarantee that each variable is set to either $1$ or $0$, and not any other integer. This is done by adding one additional inequality to the set for each variable of the form: $0 \leq x \leq 1$. Since INQ only sets variables to integers, it will set each variable to either $0$ or $1$ ($false$ or $true$) in order to ensure the inequality passes. \\
+
+The end result of this transformation results in one inequality per clause, and one additional inequality per variable. This can trivially be done in polynomial time, since it just needs to loop over all the clauses once. \\
+
+Once the input is transformed, the CNF-SAT algorithm calls INQ on the input and returns the result. The following pseudocode is a basic implementation of our algorithm: \\
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[frame=single, mathescape=true, linewidth=14.5cm]
+def CNF-SAT(F: Formula)
+    # list of inequalities
+    Q = []
+    # list of literals
+    L = []
+    for clause in F:
+        inequality = ""
+        for literal in clause:
+            if not literal in L:
+                Q.append("0 $\leq$ " + literal + " $\leq$ 1")
+            if literal.not_last():
+                if literal.is_negation():
+                    inequality.append("(1-"+literal+") + ")
+                else:
+                    inequality.append(literal + " + ")
+            else:
+                if literal.is_negation():
+                    inequality.append("(1-"+literal")")
+                else:
+                    inequality.append(literal)
+        Q.append(inequality)
+    return INQ(Q)
+\end{lstlisting}
+\end{minipage}
+
+The set of inequalities our algorithm produces should only be satisfiable if and only if the initial boolean formula is satisfiable. Let $Q$ be the set of inequalities and $F$ be the boolean formula. If $Q$ is satisfiable, then $F$ must also be satisfiable. This must be the case, since $Q$ is made up of inequalities that only require one value to be 1 (true). The same is true of $F$; each clause requires only one $true$ value to be true. In addition, each of the values in $F$ can be set to the same truth value as in $Q$ and have the same result (either satisfied or not). It must also be the case that if $F$ is satisfiable, then $Q$ is satisfiable. For $F$ to be satisfiable means that, for a set of literal assignments, every clause contains at least one $true$ assignment. Likewise, for a matching set of variable assignments, $Q$ will have at least one variable set to $1$, which would result in the inequality passing. \\
+
+Finally, it's evident that CNF-SAT reduces to INQ, and the input to CNF-SAT can be transformed to the input to INQ in polynomial time. Therefore, CNF-SAT must be NP-hard, since, if a polynomial time algorithm existed for INQ, it would be used to solve CNF-SAT in polynomial time as well.
 
 \end{document}
