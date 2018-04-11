@@ -1,0 +1,54 @@
+\documentclass[letterpaper,notitlepage,twoside]{article}
+
+% Basic imports, increase margins...
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\usepackage{microtype}
+\usepackage{listings}
+\usepackage{framed}
+\usepackage{wrapfig}
+
+% Finite State Machine stuff
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+% Format tables nicely
+\usepackage[latin1]{inputenc}
+\usepackage{array}
+\usepackage{booktabs}
+\setlength{\heavyrulewidth}{1.5pt}
+\setlength{\abovetopsep}{4pt}
+
+\usepackage{amsfonts} 
+\usepackage{amssymb}
+\usepackage{amsmath,amsthm}
+
+\renewcommand{\implies}{\Rightarrow} % redefine command "implies"  
+\renewcommand{\iff}{\Leftrightarrow} % double arrow
+\newcommand{\maps}{\rightarrow} % define command "map" 
+\newcommand{\union}{\cup}
+\newcommand{\intersect}{\cap}
+\newcommand{\N}{\mathbb{N}} % natural number 
+\newcommand{\Q}{\mathbb{Q}} % rational number 
+\newcommand{\R}{\mathbb{R}} % real number 
+\newcommand{\Z}{\mathbb{Z}} % integers 
+\newcommand\tab[1][1cm]{\hspace*{#1}} %\tab command
+
+% Add more packages that you use here...
+\usepackage{braket}
+
+\begin{document}
+\title{Homework 33}
+\author{Joe Baker, Brett Schreiber, Brian Knotten}
+\maketitle
+
+\section*{61}
+Show that $NP = L-PCP(log(n))$.
+\\\\
+First we must show that $L-PCP(log(n)) \subseteq NP$. Let $l \in L-PCP(log(n))$, then $l$ can be decided by a probabilistically checked logspace machine $M$ using $r(n)$ random bits and one pass over the proof $\pi$. $M$ only has 1-way access to the proof $\pi$, but an $NP$ problem can be solved with turing machines with 2-way access to a certificate. From $M$ we can construct a Turing machine $M'$ which can accept in polynomial time using $\pi$ as the certificate and following the execution of $M$.
+\\\\
+Next we show that $NP \subseteq L-PCP(log(n))$.
+\end{document}
